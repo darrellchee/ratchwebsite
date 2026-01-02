@@ -153,7 +153,7 @@ export default function Footer() {
         {/* Bottom Bar */}
         <div className="mt-16 pt-8 border-t border-gray-800 flex flex-col sm:flex-row items-center justify-between gap-4">
           <p className="text-gray-400 text-sm">
-            © {new Date().getFullYear()} MeetMatch. All rights reserved.
+            Darrell Chee and Samuel Jason 0508.
           </p>
           <p className="text-gray-500 text-sm">Made with ❤️ for singles everywhere</p>
         </div>
