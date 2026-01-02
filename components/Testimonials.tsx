@@ -4,35 +4,35 @@ import { motion } from "framer-motion";
 
 const testimonials = [
   {
-    name: "Sarah M.",
-    role: "Marketing Manager",
+    name: "Samuel Jason",
+    role: "Pharsa Master",
     avatar: "bg-rose-400",
     quote:
-      "Finally an app that feels fair! The comparison system makes so much more sense than endless swiping. I actually feel like I'm making real choices.",
+      "Darrell Chee is my best friend i believe that he is a smart boy, that can accomplish things if he try. Darrell Chee is stupid boy.",
     rating: 5,
   },
   {
-    name: "James T.",
-    role: "Software Engineer",
+    name: "Darrell Chee",
+    role: "AWS Cloud Architect & CTO of Samuel Jason",
     avatar: "bg-blue-400",
     quote:
-      "The ELO system is genius. Knowing that my matches are based on mutual interest, not just who swipes the most, makes every connection feel more genuine.",
+      "I think that Samuel Jason Firmansyah is a pharsa master that can pick his nose with his feet. He can also deploy AWS instance with atlas browser.",
     rating: 5,
   },
   {
-    name: "Emily R.",
-    role: "Photographer",
+    name: "Nathan Hazel",
+    role: "First best friend of Samuel Jason and first kiss of Darrell Chee",
     avatar: "bg-amber-400",
     quote:
-      "Met my partner in just 2 weeks! The side-by-side comparisons helped me really think about what I wanted instead of mindlessly swiping right.",
+      "For as long as i have known Samuel Jason and Darrell Chee, they are very sophisticated people that can achieve their dreams if they believe in themselves.",
     rating: 5,
   },
   {
-    name: "Michael K.",
-    role: "Entrepreneur",
+    name: "Renzio Widjaja",
+    role: "Third member of the Samuel Jason and Darrell Chee trio friend group",
     avatar: "bg-emerald-400",
     quote:
-      "Way better than endless swiping. The stats feature helped me improve my profile, and the leaderboard keeps things fun and competitive.",
+      "I love to play Gusion, Alpha and Bane. Darrell Chee was a very good hypercarry in Mobile Legends, therefore, i don't doubt that Darrell Chee can carry this website the way he carries my games.",
     rating: 5,
   },
 ];
