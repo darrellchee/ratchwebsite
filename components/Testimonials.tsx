@@ -35,6 +35,54 @@ const testimonials = [
       "I love to play Gusion, Alpha and Bane. Darrell Chee was a very good hypercarry in Mobile Legends, therefore, i don't doubt that Darrell Chee can carry this website the way he carries my games.",
     rating: 5,
   },
+  {
+    name: "Mylo Marciano",
+    role: "Husband of Josephine Santoso",
+    avatar: "bg-emerald-400",
+    quote:
+      "I love Josephine Santoso, but i love to play Bane and Martis more.",
+    rating: 5,
+  },
+  {
+    name: "Josephine Santoso",
+    role: "Friend of Mylo Marciano",
+    avatar: "bg-emerald-400",
+    quote:
+      "Mylo Marciano is my friend.",
+    rating: 5,
+  },
+  {
+    name: "Jeremy Lim",
+    role: "Brother of Gregory Lim",
+    avatar: "bg-emerald-400",
+    quote:
+      "I cannot believe that the man i have been making found off have been this successful, i am very proud of this man.",
+    rating: 5,
+  },
+  {
+    name: "Gregory Lim",
+    role: "Minotaur Main",
+    avatar: "bg-emerald-400",
+    quote:
+      "Jeremy Lim is very strong.",
+    rating: 5,
+  },
+  {
+    name: "April Hermawati",
+    role: "Latina",
+    avatar: "bg-emerald-400",
+    quote:
+      "I am impressed by the work Darrell Chee and Samuel Jason Firmansyah have done, they come a long way from stealing pencil cases and water bottles and flipping butterfly knives in class.",
+    rating: 5,
+  },
+  {
+    name: "Vanessa Ridwan",
+    role: "Mongolian",
+    avatar: "bg-emerald-400",
+    quote:
+      "I have triumphed with conquest in Springfield through Genghis Khan, therefore, i am best friends with Darrell Chee and Samuel Jason Firmansyah.",
+    rating: 5,
+  }
 ];
 
 const containerVariants = {
