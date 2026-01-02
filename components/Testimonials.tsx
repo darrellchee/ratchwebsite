@@ -38,7 +38,7 @@ const testimonials = [
   {
     name: "Mylo Marciano",
     role: "Husband of Josephine Santoso",
-    avatar: "bg-emerald-400",
+    avatar: "bg-red-400",
     quote:
       "I love Josephine Santoso, but i love to play Bane and Martis more.",
     rating: 5,
@@ -46,7 +46,7 @@ const testimonials = [
   {
     name: "Josephine Santoso",
     role: "Friend of Mylo Marciano",
-    avatar: "bg-emerald-400",
+    avatar: "bg-blue-400",
     quote:
       "Mylo Marciano is my friend.",
     rating: 5,
@@ -54,7 +54,7 @@ const testimonials = [
   {
     name: "Jeremy Lim",
     role: "Brother of Gregory Lim",
-    avatar: "bg-emerald-400",
+    avatar: "bg-yellow-400",
     quote:
       "I cannot believe that the man i have been making found off have been this successful, i am very proud of this man.",
     rating: 5,
@@ -70,7 +70,7 @@ const testimonials = [
   {
     name: "April Hermawati",
     role: "Latina",
-    avatar: "bg-emerald-400",
+    avatar: "bg-blue-400",
     quote:
       "I am impressed by the work Darrell Chee and Samuel Jason Firmansyah have done, they come a long way from stealing pencil cases and water bottles and flipping butterfly knives in class.",
     rating: 5,
@@ -78,7 +78,7 @@ const testimonials = [
   {
     name: "Vanessa Ridwan",
     role: "Mongolian",
-    avatar: "bg-emerald-400",
+    avatar: "bg-red-400",
     quote:
       "I have triumphed with conquest in Springfield through Genghis Khan, therefore, i am best friends with Darrell Chee and Samuel Jason Firmansyah.",
     rating: 5,
