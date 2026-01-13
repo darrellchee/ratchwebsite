@@ -291,7 +291,7 @@ export default function StatsOverview() {
             Track Your Progress
           </h2>
           <p className="mt-4 text-lg text-bumble-gray max-w-2xl mx-auto">
-            Your rating journey at a glance. See how you've performed over time and where you stand.
+            Your rating journey at a glance. See how you&apos;ve performed over time and where you stand.
           </p>
         </motion.div>
 

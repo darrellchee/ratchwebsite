@@ -2,6 +2,7 @@
 
 import { useState, useRef, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import Image from "next/image";
 
 const footerLinks = {
   navigation: [
@@ -124,9 +125,11 @@ export default function Footer() {
           {/* Brand & QR Code */}
           <div className="lg:col-span-4">
             <a href="/" className="inline-block">
-              <img 
+              <Image 
                 src="/ratchtransparent2.png" 
                 alt="Ratch" 
+                width={192}
+                height={77}
                 className="h-[4.8rem] w-auto"
               />
             </a>

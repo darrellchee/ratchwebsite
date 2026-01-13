@@ -171,7 +171,7 @@ export default function OverlayScrollbar({ scrollRef }: Props) {
       window.removeEventListener("pointerup", handlePointerUp);
       window.removeEventListener("pointercancel", handlePointerUp);
     };
-  }, [metrics.thumbHeight, scrollRef]);
+  }, [metrics.thumbHeight, scrollRef, scheduleHide]);
 
   const handlePointerDown = (event: React.PointerEvent<HTMLDivElement>) => {
     const el = scrollRef.current;

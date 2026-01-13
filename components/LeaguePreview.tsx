@@ -52,8 +52,8 @@ const LeagueRow = ({
           : 'hover:bg-white/60'
       }`}
       style={{ 
-        ringColor: isCurrentLeague ? league.color : "transparent",
-      }}
+        "--tw-ring-color": isCurrentLeague ? league.color : "transparent",
+      } as React.CSSProperties}
     >
       {/* Connection line to ladder */}
       <div 

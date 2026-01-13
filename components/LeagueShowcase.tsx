@@ -42,8 +42,8 @@ const LeagueCard = ({
     className={`relative bg-white rounded-2xl overflow-hidden shadow-sm border ${isCurrentLeague ? 'ring-2' : ''}`}
     style={{ 
       borderColor: isCurrentLeague ? league.color : "#E5E7EB",
-      ringColor: isCurrentLeague ? league.color : "transparent"
-    }}
+      "--tw-ring-color": isCurrentLeague ? league.color : "transparent"
+    } as React.CSSProperties}
   >
     {/* Gradient accent bar */}
     <div 

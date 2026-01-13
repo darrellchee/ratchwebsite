@@ -54,8 +54,8 @@ const MemberRow = ({
       style={{ 
         backgroundColor: member.isYou ? `${leagueColor}15` : "white",
         borderColor: member.isYou ? leagueColor : "transparent",
-        ringColor: member.isYou ? leagueColor : "transparent"
-      }}
+        "--tw-ring-color": member.isYou ? leagueColor : "transparent"
+      } as React.CSSProperties}
     >
       {/* Rank */}
       <div className="w-8 text-center">

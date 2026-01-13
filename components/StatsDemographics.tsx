@@ -256,7 +256,7 @@ export default function StatsDemographics() {
             Know Your Audience
           </h2>
           <p className="mt-4 text-lg text-bumble-gray max-w-2xl mx-auto">
-            Discover who's attracted to you. Insights into the demographics of users who view and choose your profile.
+            Discover who&apos;s attracted to you. Insights into the demographics of users who view and choose your profile.
           </p>
           
           {/* Pro/Ultra badge */}
@@ -320,7 +320,7 @@ export default function StatsDemographics() {
         >
           <span className="text-4xl">📊</span>
           <p className="text-white text-xl font-bold mt-4">
-            Want to know exactly who's into you?
+            Want to know exactly who&apos;s into you?
           </p>
           <p className="text-white/80 mt-2">
             Pro users get full demographic breakdowns. Ultra users get win rates by specific groups.

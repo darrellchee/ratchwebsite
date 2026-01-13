@@ -187,7 +187,7 @@ const FirstPhotoImpact = () => (
       <span className="text-3xl">👆</span>
       <div>
         <p className="text-lg font-bold text-bumble-black">First Impression Matters</p>
-        <p className="text-sm text-bumble-gray">Your main photo's impact</p>
+        <p className="text-sm text-bumble-gray">Your main photo&apos;s impact</p>
       </div>
     </div>
 

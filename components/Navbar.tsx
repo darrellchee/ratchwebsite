@@ -3,6 +3,7 @@
 import { useState, useEffect, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import Link from "next/link";
+import Image from "next/image";
 
 const navLinks = [
   { name: "Home", href: "/" },
@@ -61,10 +62,13 @@ export default function Navbar() {
         <div className="relative flex items-center justify-center h-20">
           {/* Logo - Absolute positioned on left */}
           <Link href="/" className="absolute left-0 flex items-center">
-            <img 
+            <Image 
               src="/ratchtransparent2.png" 
               alt="Ratch" 
+              width={136}
+              height={54}
               className="h-[3.4rem] w-auto"
+              priority
             />
           </Link>
 
