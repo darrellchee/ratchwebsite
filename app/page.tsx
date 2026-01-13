@@ -1,28 +1,23 @@
 import Navbar from "@/components/Navbar";
 import Hero from "@/components/Hero";
 import HowItWorks from "@/components/HowItWorks";
-import Features from "@/components/Features";
-import AppPreview from "@/components/AppPreview";
-import Testimonials from "@/components/Testimonials";
-import Pricing from "@/components/Pricing";
-import FAQ from "@/components/FAQ";
-import CTA from "@/components/CTA";
+import CompareShowcase from "@/components/CompareShowcase";
+import LeaguePreview from "@/components/LeaguePreview";
+import StatsTeaser from "@/components/StatsTeaser";
+import FinalCTA from "@/components/FinalCTA";
 import Footer from "@/components/Footer";
 
 export default function Home() {
   return (
-    <main className="min-h-screen bg-[#FAFAFA]">
+    <main className="min-h-screen" style={{ backgroundColor: "var(--ratch-cream)" }}>
       <Navbar />
       <Hero />
       <HowItWorks />
-      <Features />
-      <AppPreview />
-      <Testimonials />
-      <Pricing />
-      <FAQ />
-      <CTA />
+      <CompareShowcase />
+      <LeaguePreview />
+      <StatsTeaser />
+      <FinalCTA />
       <Footer />
     </main>
   );
 }
-

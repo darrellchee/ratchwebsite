@@ -1,122 +1,380 @@
 "use client";
 
 import { motion } from "framer-motion";
+import { useEffect, useState } from "react";
 
-const avatars = [
-  { color: "bg-rose-400" },
-  { color: "bg-amber-400" },
-  { color: "bg-emerald-400" },
-  { color: "bg-blue-400" },
-  { color: "bg-purple-400" },
+type ProfileCard = {
+  name: string;
+  age: number;
+  color: string;
+  gradientFrom: string;
+  gradientTo: string;
+};
+
+const profiles: ProfileCard[] = [
+  { 
+    name: "Sarah", 
+    age: 26, 
+    color: "#FFB6C1",
+    gradientFrom: "#FFB6C1",
+    gradientTo: "#FF8FA3"
+  },
+  { 
+    name: "Marcus", 
+    age: 29, 
+    color: "#87CEEB",
+    gradientFrom: "#87CEEB",
+    gradientTo: "#5BA3D9"
+  },
 ];
 
-export default function Hero() {
+const FloatingCard = ({ 
+  profile, 
+  position,
+  isSelected,
+  delay = 0 
+}: { 
+  profile: ProfileCard;
+  position: "top" | "bottom";
+  isSelected: boolean;
+  delay?: number;
+}) => {
+  const yOffset = position === "top" ? -20 : 20;
+  const rotation = position === "top" ? -6 : 6;
+  
   return (
-    <section className="relative pt-32 pb-20 lg:pt-40 lg:pb-32 overflow-hidden">
-      {/* Background gradient */}
-      <div className="absolute inset-0 bg-gradient-to-b from-amber-50/50 to-transparent pointer-events-none" />
-      
-      <div className="max-w-6xl mx-auto px-6 lg:px-8 relative">
-        <div className="text-center max-w-3xl mx-auto">
-          {/* Badge */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5 }}
-          >
-            <span className="inline-block px-4 py-1.5 text-sm font-medium text-amber-600 bg-amber-100 rounded-full border border-amber-200">
-              THE FAIR WAY TO DATE
-            </span>
-          </motion.div>
-
-          {/* Headline */}
-          <motion.h1
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: 0.1 }}
-            className="mt-8 text-4xl sm:text-5xl lg:text-6xl font-semibold text-gray-900 tracking-tight leading-tight"
-          >
-            Find Your Match Through{" "}
-            <span className="text-amber-500 italic">Real Comparisons</span>
-          </motion.h1>
-
-          {/* Subheadline */}
-          <motion.p
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: 0.2 }}
-            className="mt-6 text-lg sm:text-xl text-gray-500 max-w-2xl mx-auto"
-          >
-            No more endless swiping. Compare profiles side-by-side, and let your
-            choices reveal who truly stands out.
-          </motion.p>
-
-          {/* CTA Button */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: 0.3 }}
-            className="mt-10"
-          >
-            <motion.a
-              href="#download"
-              whileHover={{ scale: 1.02, boxShadow: "0 20px 40px rgba(245, 158, 11, 0.3)" }}
-              whileTap={{ scale: 0.98 }}
-              className="inline-flex items-center gap-3 px-8 py-4 bg-gray-900 text-white rounded-full text-lg font-medium shadow-xl shadow-gray-900/10 hover:bg-gray-800 transition-colors"
-            >
-              <svg
-                className="w-6 h-6"
-                viewBox="0 0 24 24"
-                fill="currentColor"
-              >
-                <path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.81-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z" />
-              </svg>
-              Download on App Store
-            </motion.a>
-          </motion.div>
-
-          {/* Social Proof */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: 0.4 }}
-            className="mt-12 flex flex-col items-center gap-4"
-          >
-            {/* Avatar Stack */}
-            <div className="flex -space-x-3">
-              {avatars.map((avatar, index) => (
-                <div
-                  key={index}
-                  className={`w-10 h-10 rounded-full ${avatar.color} border-2 border-white shadow-sm flex items-center justify-center`}
-                >
-                  <span className="text-white text-xs font-medium">
-                    {String.fromCharCode(65 + index)}
-                  </span>
-                </div>
-              ))}
-            </div>
-            
-            {/* Stars */}
-            <div className="flex items-center gap-1">
-              {[...Array(5)].map((_, i) => (
-                <svg
-                  key={i}
-                  className="w-5 h-5 text-amber-400"
-                  fill="currentColor"
-                  viewBox="0 0 20 20"
-                >
-                  <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
-                </svg>
-              ))}
-            </div>
-            
-            <p className="text-gray-500 font-medium">
-              Loved by <span className="text-gray-900">10,000+</span> singles
+    <motion.div
+      initial={{ opacity: 0, y: 50, rotate: 0 }}
+      animate={{ 
+        opacity: 1, 
+        y: yOffset, 
+        rotate: rotation,
+        scale: isSelected ? 1.05 : 1,
+      }}
+      transition={{ 
+        duration: 0.8, 
+        delay,
+        type: "spring",
+        stiffness: 100,
+        damping: 15
+      }}
+      className="relative"
+    >
+      <motion.div
+        animate={{ y: [0, -8, 0] }}
+        transition={{ 
+          duration: 4, 
+          repeat: Infinity, 
+          ease: "easeInOut",
+          delay: position === "top" ? 0 : 2
+        }}
+        className="relative"
+      >
+        {/* Card */}
+        <div 
+          className={`relative w-[180px] md:w-[200px] lg:w-[220px] aspect-[3/4] rounded-3xl overflow-hidden card-shadow-xl transition-all duration-300 ${isSelected ? 'ring-4 ring-white/50' : ''}`}
+          style={{ 
+            background: `linear-gradient(135deg, ${profile.gradientFrom} 0%, ${profile.gradientTo} 100%)`,
+          }}
+        >
+          {/* Overlay gradient */}
+          <div
+            className="absolute inset-0"
+            style={{
+              background: "linear-gradient(to top, rgba(0,0,0,0.5) 0%, rgba(0,0,0,0) 60%)",
+            }}
+          />
+          
+          {/* Light reflection */}
+          <div
+            className="absolute inset-0"
+            style={{
+              background: "radial-gradient(circle at 30% 20%, rgba(255,255,255,0.4), transparent 50%)",
+            }}
+          />
+          
+          {/* Profile info */}
+          <div className="absolute bottom-0 left-0 right-0 p-5">
+            <p className="text-white font-bold text-xl drop-shadow-lg">
+              {profile.name}, {profile.age}
             </p>
+            <div className="flex gap-1.5 mt-2">
+              <div className="w-2 h-2 rounded-full bg-white/80" />
+              <div className="w-2 h-2 rounded-full bg-white/50" />
+              <div className="w-2 h-2 rounded-full bg-white/50" />
+            </div>
+          </div>
+
+          {/* Selection indicator */}
+          {isSelected && (
+            <motion.div
+              initial={{ scale: 0 }}
+              animate={{ scale: 1 }}
+              className="absolute top-4 right-4 w-10 h-10 rounded-full bg-white flex items-center justify-center"
+            >
+              <svg className="w-6 h-6 text-green-500" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={3}>
+                <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
+              </svg>
+            </motion.div>
+          )}
+        </div>
+      </motion.div>
+    </motion.div>
+  );
+};
+
+export default function Hero() {
+  const [selectedIndex, setSelectedIndex] = useState<number | null>(null);
+  const [showSelection, setShowSelection] = useState(false);
+
+  // Auto-demo the selection
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setShowSelection(false);
+      setSelectedIndex(null);
+      
+      setTimeout(() => {
+        setSelectedIndex(0);
+        setShowSelection(true);
+      }, 2000);
+      
+      setTimeout(() => {
+        setShowSelection(false);
+        setSelectedIndex(null);
+      }, 4000);
+    }, 6000);
+
+    // Initial animation
+    const initialTimeout = setTimeout(() => {
+      setSelectedIndex(0);
+      setShowSelection(true);
+    }, 2500);
+
+    return () => {
+      clearInterval(interval);
+      clearTimeout(initialTimeout);
+    };
+  }, []);
+
+  return (
+    <section 
+      className="relative min-h-screen overflow-hidden pt-20 pb-24"
+      style={{ 
+        backgroundColor: "var(--ratch-cream)",
+      }}
+    >
+      {/* Animated gradient blobs */}
+      <div className="absolute inset-0 overflow-hidden pointer-events-none">
+        <motion.div
+          className="absolute blob w-[600px] h-[600px] -top-48 -right-48 opacity-40"
+          style={{ background: "linear-gradient(135deg, #FFB347 0%, #FF6B6B 100%)" }}
+          animate={{ 
+            x: [0, 30, 0],
+            y: [0, -50, 0],
+            scale: [1, 1.1, 1]
+          }}
+          transition={{ duration: 20, repeat: Infinity, ease: "easeInOut" }}
+        />
+        <motion.div
+          className="absolute blob w-[500px] h-[500px] -bottom-32 -left-32 opacity-30"
+          style={{ background: "linear-gradient(135deg, #FF8FA3 0%, #FFB347 100%)" }}
+          animate={{ 
+            x: [0, -30, 0],
+            y: [0, 30, 0],
+            scale: [1, 0.95, 1]
+          }}
+          transition={{ duration: 25, repeat: Infinity, ease: "easeInOut" }}
+        />
+        <motion.div
+          className="absolute blob-sm w-[300px] h-[300px] top-1/3 left-1/4 opacity-20"
+          style={{ background: "linear-gradient(135deg, #FFD700 0%, #FF69B4 100%)" }}
+          animate={{ 
+            x: [0, 40, 0],
+            y: [0, -20, 0],
+          }}
+          transition={{ duration: 15, repeat: Infinity, ease: "easeInOut" }}
+        />
+      </div>
+
+      <div className="relative max-w-[1400px] mx-auto px-6 lg:px-12">
+        <div className="min-h-[calc(100vh-80px)] flex flex-col lg:flex-row items-center justify-center gap-12 lg:gap-20 py-12">
+          
+          {/* Left Content - Typography */}
+          <motion.div
+            initial={{ opacity: 0, x: -50 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.8, delay: 0.2 }}
+            className="flex-1 text-center lg:text-left max-w-xl"
+          >
+            {/* Badge */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.4 }}
+              className="inline-flex items-center gap-2 px-4 py-2 rounded-full mb-6"
+              style={{ backgroundColor: "rgba(255, 107, 107, 0.1)" }}
+            >
+              <span className="w-2 h-2 rounded-full bg-[#FF6B6B] animate-pulse" />
+              <span className="text-sm font-medium text-[#FF6B6B]">A new way to date</span>
+            </motion.div>
+
+            {/* Main heading */}
+            <motion.h1
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.5, duration: 0.8 }}
+              className="text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-bold leading-[0.95] tracking-tight"
+            >
+              <span className="text-gradient">Dating,</span>
+              <br />
+              <span className="text-[var(--ratch-black)]">Decided.</span>
+            </motion.h1>
+
+            {/* Subheading */}
+            <motion.p
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.7 }}
+              className="mt-6 text-lg lg:text-xl text-[var(--ratch-gray)] max-w-md mx-auto lg:mx-0"
+            >
+              No more endless swiping. Compare two profiles, pick your preference, 
+              and let your choices build your perfect match pool.
+            </motion.p>
+
+            {/* CTAs */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.9 }}
+              className="mt-8 flex flex-wrap gap-4 justify-center lg:justify-start"
+            >
+              <motion.a
+                href="#download"
+                whileHover={{ scale: 1.02, y: -2 }}
+                whileTap={{ scale: 0.98 }}
+                className="px-8 py-4 bg-[var(--ratch-black)] text-white rounded-full font-medium text-lg btn-glow"
+              >
+                Download App
+              </motion.a>
+              <motion.a
+                href="#how-it-works"
+                whileHover={{ scale: 1.02 }}
+                whileTap={{ scale: 0.98 }}
+                className="px-8 py-4 border-2 border-[var(--ratch-black)] text-[var(--ratch-black)] rounded-full font-medium text-lg hover:bg-[var(--ratch-black)] hover:text-white transition-colors"
+              >
+                How It Works
+              </motion.a>
+            </motion.div>
+
+            {/* Stats row */}
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ delay: 1.1 }}
+              className="mt-12 flex gap-8 justify-center lg:justify-start"
+            >
+              <div>
+                <p className="text-2xl lg:text-3xl font-bold text-[var(--ratch-black)]">10</p>
+                <p className="text-sm text-[var(--ratch-gray)]">Leagues</p>
+              </div>
+              <div className="w-px bg-gray-200" />
+              <div>
+                <p className="text-2xl lg:text-3xl font-bold text-[var(--ratch-black)]">ELO</p>
+                <p className="text-sm text-[var(--ratch-gray)]">Rating</p>
+              </div>
+              <div className="w-px bg-gray-200" />
+              <div>
+                <p className="text-2xl lg:text-3xl font-bold text-[var(--ratch-black)]">0-10K</p>
+                <p className="text-sm text-[var(--ratch-gray)]">Scale</p>
+              </div>
+            </motion.div>
+          </motion.div>
+
+          {/* Right Content - Floating Cards Demo */}
+          <motion.div
+            initial={{ opacity: 0, x: 50 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.8, delay: 0.4 }}
+            className="relative flex flex-col items-center gap-4"
+          >
+            {/* Top Card */}
+            <FloatingCard 
+              profile={profiles[0]} 
+              position="top"
+              isSelected={showSelection && selectedIndex === 0}
+              delay={0.6}
+            />
+            
+            {/* VS Badge */}
+            <motion.div
+              initial={{ opacity: 0, scale: 0 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ delay: 1.2, type: "spring" }}
+              className="relative z-10 -my-6"
+            >
+              <div 
+                className="w-14 h-14 rounded-full flex items-center justify-center font-bold text-white text-sm card-shadow-lg"
+                style={{ background: "var(--gradient-coral-amber)" }}
+              >
+                VS
+              </div>
+            </motion.div>
+            
+            {/* Bottom Card */}
+            <FloatingCard 
+              profile={profiles[1]} 
+              position="bottom"
+              isSelected={showSelection && selectedIndex === 1}
+              delay={0.8}
+            />
+
+            {/* Tap hint */}
+            <motion.p
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ delay: 1.5 }}
+              className="text-sm text-[var(--ratch-gray)] mt-4"
+            >
+              Tap to choose your preference
+            </motion.p>
           </motion.div>
         </div>
+      </div>
+
+      {/* Scroll indicator */}
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ delay: 2 }}
+        className="absolute bottom-32 left-1/2 -translate-x-1/2 z-10"
+      >
+        <motion.div
+          animate={{ y: [0, 8, 0] }}
+          transition={{ duration: 2, repeat: Infinity }}
+          className="flex flex-col items-center gap-2"
+        >
+          <span className="text-xs text-[var(--ratch-gray)]">Scroll to explore</span>
+          <svg className="w-5 h-5 text-[var(--ratch-gray)]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 14l-7 7m0 0l-7-7m7 7V3" />
+          </svg>
+        </motion.div>
+      </motion.div>
+
+      {/* Curved wave transition to next section */}
+      <div className="absolute bottom-0 left-0 right-0">
+        <svg 
+          viewBox="0 0 1440 120" 
+          fill="none" 
+          xmlns="http://www.w3.org/2000/svg"
+          className="w-full h-auto"
+          preserveAspectRatio="none"
+        >
+          <path 
+            d="M0 120L60 110C120 100 240 80 360 70C480 60 600 60 720 65C840 70 960 80 1080 85C1200 90 1320 90 1380 90L1440 90V120H1380C1320 120 1200 120 1080 120C960 120 840 120 720 120C600 120 480 120 360 120C240 120 120 120 60 120H0Z" 
+            fill="var(--ratch-warm-white)"
+          />
+        </svg>
       </div>
     </section>
   );
 }
-

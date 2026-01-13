@@ -1,22 +1,28 @@
 import type { Metadata } from "next";
 import "./globals.css";
+import ScrollFrame from "@/components/ScrollFrame";
 
 export const metadata: Metadata = {
-  title: "MeetMatch - Find Your Match Through Real Comparisons",
-  description: "The dating app that uses fair, side-by-side comparisons with an ELO rating system. No more endless swiping - compare profiles and let your choices reveal who truly stands out.",
-  keywords: ["dating app", "matchmaking", "ELO rating", "profile comparison", "fair dating"],
-  authors: [{ name: "MeetMatch" }],
+  title: "Ratch",
+  description: "Ratch - Rate and match with people. Compare profiles, track your stats, and climb the leaderboard.",
+  keywords: ["dating app", "ratch", "relationships", "dating", "rating", "matching"],
+  authors: [{ name: "Ratch" }],
+  icons: {
+    icon: "/favicon.png",
+    shortcut: "/favicon.png",
+    apple: "/favicon.png",
+  },
   openGraph: {
-    title: "MeetMatch - Find Your Match Through Real Comparisons",
-    description: "The dating app that uses fair, side-by-side comparisons with an ELO rating system.",
+    title: "Ratch",
+    description: "Ratch - Rate and match with people. Compare profiles, track your stats, and climb the leaderboard.",
     type: "website",
     locale: "en_US",
-    siteName: "MeetMatch",
+    siteName: "Ratch",
   },
   twitter: {
     card: "summary_large_image",
-    title: "MeetMatch - Find Your Match Through Real Comparisons",
-    description: "The dating app that uses fair, side-by-side comparisons with an ELO rating system.",
+    title: "Ratch",
+    description: "Ratch - Rate and match with people. Compare profiles, track your stats, and climb the leaderboard.",
   },
   robots: {
     index: true,
@@ -32,9 +38,8 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className="antialiased">
-        {children}
+        <ScrollFrame>{children}</ScrollFrame>
       </body>
     </html>
   );
 }
-

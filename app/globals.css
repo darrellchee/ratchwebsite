@@ -2,16 +2,63 @@
 @tailwind components;
 @tailwind utilities;
 
-@import url('https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,200..800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&display=swap');
+
+:root {
+  /* Core brand colors */
+  --ratch-black: #1A1A1A;
+  --ratch-gray: #666666;
+  --ratch-light-gray: #F5F5F5;
+  
+  /* Warm light backgrounds */
+  --ratch-cream: #FEFCF8;
+  --ratch-warm-white: #FFF9F0;
+  --ratch-soft-peach: #FFF5F0;
+  
+  /* Vibrant gradient colors */
+  --ratch-coral: #FF6B6B;
+  --ratch-amber: #FFB347;
+  --ratch-rose: #FF8FA3;
+  --ratch-gold: #FFD700;
+  --ratch-orange: #FF7F50;
+  --ratch-pink: #FF69B4;
+  
+  /* League colors */
+  --league-irresistible: #EAB308;
+  --league-iconic: #F59E0B;
+  --league-elite: #FFC629;
+  --league-stunning: #F43F5E;
+  --league-hot: #F97316;
+  --league-attractive: #3B82F6;
+  --league-pleasant: #0EA5E9;
+  --league-balanced: #14B8A6;
+  --league-natural: #22C55E;
+  --league-lowkey: #6B7280;
+  
+  /* Gradients */
+  --gradient-coral-amber: linear-gradient(135deg, #FF6B6B 0%, #FFB347 100%);
+  --gradient-rose-orange: linear-gradient(135deg, #FF8FA3 0%, #FF7F50 100%);
+  --gradient-gold-pink: linear-gradient(135deg, #FFD700 0%, #FF69B4 100%);
+  --gradient-warm-sunset: linear-gradient(135deg, #FF6B6B 0%, #FFB347 50%, #FFD700 100%);
+  --gradient-hero-text: linear-gradient(135deg, #FF6B6B 0%, #FF7F50 50%, #FFB347 100%);
+}
 
 html {
   scroll-behavior: smooth;
 }
 
 body {
-  font-family: 'DM Sans', system-ui, sans-serif;
-  background-color: #FAFAFA;
-  color: #1F2937;
+  font-family: 'Bricolage Grotesque', system-ui, sans-serif;
+  background-color: var(--ratch-cream);
+  color: var(--ratch-black);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Serif accent font */
+.font-serif-accent {
+  font-family: 'Instrument Serif', Georgia, serif;
 }
 
 @layer utilities {
@@ -20,22 +67,194 @@ body {
   }
 }
 
-/* Custom scrollbar */
-::-webkit-scrollbar {
-  width: 8px;
-  height: 8px;
+/* Gradient text utility */
+.text-gradient {
+  background: var(--gradient-hero-text);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
 }
 
-::-webkit-scrollbar-track {
-  background: #f1f1f1;
+.text-gradient-warm {
+  background: var(--gradient-warm-sunset);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
 }
 
-::-webkit-scrollbar-thumb {
-  background: #c4c4c4;
-  border-radius: 4px;
+/* Floating blob animations */
+@keyframes blob-float {
+  0%, 100% {
+    transform: translate(0, 0) scale(1);
+  }
+  33% {
+    transform: translate(30px, -50px) scale(1.05);
+  }
+  66% {
+    transform: translate(-20px, 20px) scale(0.95);
+  }
 }
 
-::-webkit-scrollbar-thumb:hover {
-  background: #a3a3a3;
+@keyframes blob-float-reverse {
+  0%, 100% {
+    transform: translate(0, 0) scale(1);
+  }
+  33% {
+    transform: translate(-30px, 30px) scale(0.95);
+  }
+  66% {
+    transform: translate(40px, -20px) scale(1.05);
+  }
 }
 
+@keyframes blob-pulse {
+  0%, 100% {
+    opacity: 0.6;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.8;
+    transform: scale(1.1);
+  }
+}
+
+.animate-blob {
+  animation: blob-float 20s ease-in-out infinite;
+}
+
+.animate-blob-reverse {
+  animation: blob-float-reverse 25s ease-in-out infinite;
+}
+
+.animate-blob-pulse {
+  animation: blob-pulse 8s ease-in-out infinite;
+}
+
+/* Float animation */
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0) rotate(var(--rotate, 0deg));
+  }
+  50% {
+    transform: translateY(-10px) rotate(var(--rotate, 0deg));
+  }
+}
+
+.animate-float {
+  animation: float 4s ease-in-out infinite;
+}
+
+/* Gentle sway animation for cards */
+@keyframes sway {
+  0%, 100% {
+    transform: rotate(-3deg) translateY(0);
+  }
+  50% {
+    transform: rotate(3deg) translateY(-8px);
+  }
+}
+
+.animate-sway {
+  animation: sway 6s ease-in-out infinite;
+}
+
+/* Soft card shadows */
+.card-shadow {
+  box-shadow: 
+    0 4px 6px -1px rgba(0, 0, 0, 0.05),
+    0 10px 15px -3px rgba(0, 0, 0, 0.08),
+    0 20px 40px -10px rgba(0, 0, 0, 0.1);
+}
+
+.card-shadow-lg {
+  box-shadow: 
+    0 10px 15px -3px rgba(0, 0, 0, 0.08),
+    0 25px 50px -12px rgba(0, 0, 0, 0.15),
+    0 40px 80px -20px rgba(0, 0, 0, 0.1);
+}
+
+.card-shadow-xl {
+  box-shadow: 
+    0 20px 25px -5px rgba(0, 0, 0, 0.08),
+    0 40px 60px -15px rgba(0, 0, 0, 0.12),
+    0 60px 100px -30px rgba(0, 0, 0, 0.15);
+}
+
+/* Gradient border utility */
+.gradient-border {
+  position: relative;
+  background: white;
+  border-radius: 24px;
+}
+
+.gradient-border::before {
+  content: '';
+  position: absolute;
+  inset: -2px;
+  border-radius: 26px;
+  background: var(--gradient-coral-amber);
+  z-index: -1;
+}
+
+/* Button hover glow */
+.btn-glow {
+  transition: all 0.3s ease;
+}
+
+.btn-glow:hover {
+  box-shadow: 0 10px 40px -10px rgba(255, 107, 107, 0.5);
+  transform: translateY(-2px);
+}
+
+/* Stagger animation delays */
+.stagger-1 { animation-delay: 0.1s; }
+.stagger-2 { animation-delay: 0.2s; }
+.stagger-3 { animation-delay: 0.3s; }
+.stagger-4 { animation-delay: 0.4s; }
+.stagger-5 { animation-delay: 0.5s; }
+
+/* Hide native scrollbars for custom overlay scroll container */
+.custom-scroll-container {
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+.custom-scroll-container::-webkit-scrollbar {
+  display: none;
+}
+
+/* Overlay scrollbar layer */
+.overlay-scrollbar {
+  pointer-events: none;
+  position: fixed;
+  inset: 0;
+  z-index: 50;
+}
+
+.overlay-scrollbar-thumb {
+  pointer-events: auto;
+  position: absolute;
+  right: 4px;
+  width: 10px;
+  border-radius: 999px;
+  background: var(--ratch-black);
+  opacity: 0.75;
+  transition: background-color 0.2s ease, opacity 0.2s ease, transform 0.1s ease;
+}
+
+/* Decorative blob shapes */
+.blob {
+  border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%;
+  filter: blur(60px);
+}
+
+.blob-sm {
+  border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%;
+  filter: blur(40px);
+}
+
+/* Selection styling */
+::selection {
+  background: rgba(255, 107, 107, 0.3);
+  color: var(--ratch-black);
+}

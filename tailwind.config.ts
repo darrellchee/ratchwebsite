@@ -9,21 +9,23 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        amber: {
-          50: '#FFFBEB',
-          100: '#FEF3C7',
-          200: '#FDE68A',
-          300: '#FCD34D',
-          400: '#FBBF24',
-          500: '#F59E0B',
-          600: '#D97706',
-          700: '#B45309',
-          800: '#92400E',
-          900: '#78350F',
+        bumble: {
+          yellow: '#FFC629',
+          'yellow-light': '#FFF8E1',
+          black: '#1A1A1A',
+          gray: '#666666',
+          'light-gray': '#F5F5F5',
         },
       },
       fontFamily: {
-        sans: ['DM Sans', 'system-ui', 'sans-serif'],
+        sans: ['Bricolage Grotesque', 'system-ui', 'sans-serif'],
+      },
+      borderRadius: {
+        '2xl': '16px',
+        '3xl': '24px',
+      },
+      fontSize: {
+        'display': ['clamp(4rem, 15vw, 12rem)', { lineHeight: '0.9', fontWeight: '700' }],
       },
     },
   },
@@ -31,4 +33,3 @@ const config: Config = {
 };
 
 export default config;
-
