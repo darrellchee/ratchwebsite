@@ -1,12 +1,13 @@
 "use client";
 
 import { motion } from "framer-motion";
+import { useLanguage } from "@/contexts/LanguageContext";
 
-const steps = [
+const getSteps = (t: (key: string) => string) => [
   {
     number: "01",
-    title: "Compare",
-    description: "Two profiles appear side by side. No endless swiping – just pick the one you find more attractive.",
+    title: t("howItWorks.step1.title"),
+    description: t("howItWorks.step1.desc"),
     icon: (
       <svg className="w-8 h-8" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.5}>
         <path strokeLinecap="round" strokeLinejoin="round" d="M7.5 21L3 16.5m0 0L7.5 12M3 16.5h13.5m0-13.5L21 7.5m0 0L16.5 12M21 7.5H7.5" />
@@ -17,8 +18,8 @@ const steps = [
   },
   {
     number: "02",
-    title: "Climb",
-    description: "Every choice updates ELO ratings. Win comparisons to rise through 10 unique leagues.",
+    title: t("howItWorks.step2.title"),
+    description: t("howItWorks.step2.desc"),
     icon: (
       <svg className="w-8 h-8" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.5}>
         <path strokeLinecap="round" strokeLinejoin="round" d="M2.25 18L9 11.25l4.306 4.307a11.95 11.95 0 015.814-5.519l2.74-1.22m0 0l-5.94-2.28m5.94 2.28l-2.28 5.941" />
@@ -29,8 +30,8 @@ const steps = [
   },
   {
     number: "03",
-    title: "Connect",
-    description: "Match with people in your league. Quality over quantity – find your true match.",
+    title: t("howItWorks.step3.title"),
+    description: t("howItWorks.step3.desc"),
     icon: (
       <svg className="w-8 h-8" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.5}>
         <path strokeLinecap="round" strokeLinejoin="round" d="M21 8.25c0-2.485-2.099-4.5-4.688-4.5-1.935 0-3.597 1.126-4.312 2.733-.715-1.607-2.377-2.733-4.313-2.733C5.1 3.75 3 5.765 3 8.25c0 7.22 9 12 9 12s9-4.78 9-12z" />
@@ -43,10 +44,12 @@ const steps = [
 
 const StepCard = ({ 
   step, 
-  index 
+  index,
+  totalSteps
 }: { 
-  step: typeof steps[0]; 
+  step: ReturnType<typeof getSteps>[0]; 
   index: number;
+  totalSteps: number;
 }) => (
   <motion.div
     initial={{ opacity: 0, y: 40 }}
@@ -56,14 +59,12 @@ const StepCard = ({
     className="relative"
   >
     {/* Connector line (not on last item) */}
-    {index < steps.length - 1 && (
+    {index < totalSteps - 1 && (
       <div className="hidden lg:block absolute top-1/2 left-full w-full h-px bg-gradient-to-r from-gray-200 to-transparent z-0" />
     )}
     
-    <motion.div
-      whileHover={{ y: -8, scale: 1.02 }}
-      transition={{ type: "spring", stiffness: 300, damping: 20 }}
-      className="relative bg-white rounded-3xl p-8 card-shadow h-full"
+    <div
+      className="relative bg-white rounded-3xl p-8 card-shadow h-full gpu-accelerated transition-transform duration-300 hover:-translate-y-2 hover:scale-[1.02]"
     >
       {/* Step number */}
       <div 
@@ -94,11 +95,14 @@ const StepCard = ({
         className="absolute bottom-0 right-0 w-24 h-24 rounded-tl-[60px] opacity-5"
         style={{ backgroundColor: step.color }}
       />
-    </motion.div>
+    </div>
   </motion.div>
 );
 
 export default function HowItWorks() {
+  const { t } = useLanguage();
+  const steps = getSteps(t);
+  
   return (
     <section 
       id="how-it-works" 
@@ -126,25 +130,24 @@ export default function HowItWorks() {
             className="inline-block px-4 py-2 rounded-full text-sm font-medium mb-6"
             style={{ backgroundColor: "rgba(255, 107, 107, 0.1)", color: "#FF6B6B" }}
           >
-            How It Works
+            {t("howItWorks.badge")}
           </motion.span>
           
           <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-[var(--ratch-black)] leading-tight">
-            Three steps to
+            {t("howItWorks.title1")}
             <br />
-            <span className="text-gradient">better dating</span>
+            <span className="text-gradient">{t("howItWorks.title2")}</span>
           </h2>
           
           <p className="mt-6 text-lg text-[var(--ratch-gray)]">
-            Our unique comparison system learns your preferences and matches you 
-            with people who are truly compatible.
+            {t("howItWorks.subtitle")}
           </p>
         </motion.div>
 
         {/* Steps Grid */}
         <div className="grid md:grid-cols-3 gap-8 lg:gap-12">
           {steps.map((step, index) => (
-            <StepCard key={step.number} step={step} index={index} />
+            <StepCard key={step.number} step={step} index={index} totalSteps={steps.length} />
           ))}
         </div>
 
@@ -162,7 +165,7 @@ export default function HowItWorks() {
             whileTap={{ scale: 0.98 }}
             className="inline-flex items-center gap-2 px-6 py-3 rounded-full font-medium text-[var(--ratch-black)] border-2 border-[var(--ratch-black)] hover:bg-[var(--ratch-black)] hover:text-white transition-colors"
           >
-            See it in action
+            {t("howItWorks.cta")}
             <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 14l-7 7m0 0l-7-7m7 7V3" />
             </svg>

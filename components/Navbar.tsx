@@ -4,32 +4,32 @@ import { useState, useEffect, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import Link from "next/link";
 import Image from "next/image";
+import { useLanguage, type Language } from "@/contexts/LanguageContext";
 
-const navLinks = [
-  { name: "Home", href: "/" },
-  { name: "Date", href: "/date" },
-  { name: "Stats", href: "/stats" },
-  { name: "Leaderboard", href: "/leaderboard" },
-  { name: "Support", href: "/support" },
+const languages: { code: Language; name: string; nativeName: string }[] = [
+  { code: "en", name: "English", nativeName: "English" },
+  { code: "id", name: "Indonesian", nativeName: "Bahasa Indonesia" },
+  { code: "zh", name: "Chinese", nativeName: "中文" },
+  { code: "fr", name: "French", nativeName: "Français" },
 ];
 
-const languages = [
-  "English (United States)",
-  "English (United Kingdom)",
-  "Deutsch",
-  "Français",
-  "Español (España)",
-  "Italiano",
-  "Português (Brasil)",
-  "日本語",
-  "한국어",
+const navLinks = [
+  { key: "nav.home", href: "/" },
+  { key: "nav.date", href: "/date" },
+  { key: "nav.stats", href: "/stats" },
+  { key: "nav.leaderboard", href: "/leaderboard" },
+  { key: "nav.pricing", href: "/pricing" },
+  { key: "nav.support", href: "/support" },
 ];
 
 export default function Navbar() {
+  const { language, setLanguage, t } = useLanguage();
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isLanguageOpen, setIsLanguageOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
   const languageRef = useRef<HTMLDivElement>(null);
+
+  const currentLanguage = languages.find((lang) => lang.code === language) || languages[0];
 
   useEffect(() => {
     const handleScroll = () => {
@@ -83,23 +83,23 @@ export default function Navbar() {
             >
               {navLinks.map((link) => (
                 <Link
-                  key={link.name}
+                  key={link.key}
                   href={link.href}
                   className="px-5 py-2 transition-colors font-medium text-[15px] text-[var(--ratch-black)] hover:text-[var(--ratch-gray)]"
                 >
-                  {link.name}
+                  {t(link.key)}
                 </Link>
               ))}
             </div>
           </div>
 
-          {/* Right Side - Language & Sign In - Absolute positioned on right */}
-          <div className="hidden lg:flex absolute right-0 items-center gap-3">
+          {/* Right Side - Language Selector - Absolute positioned on right */}
+          <div className="hidden lg:flex absolute right-0 items-center">
             {/* Language Selector */}
             <div className="relative" ref={languageRef}>
               <button
                 onClick={() => setIsLanguageOpen(!isLanguageOpen)}
-                className={`flex items-center gap-1.5 px-4 py-2.5 rounded-full border transition-all duration-300 ${
+                className={`flex items-center gap-2 px-4 py-2.5 rounded-full border transition-all duration-300 ${
                   isScrolled 
                     ? 'bg-[var(--ratch-cream)] border-gray-200 hover:border-gray-300' 
                     : 'bg-white/70 backdrop-blur-md border-black/10 hover:bg-white/90'
@@ -108,6 +108,9 @@ export default function Navbar() {
                 <svg className="w-5 h-5 text-[var(--ratch-black)]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
                   <path strokeLinecap="round" strokeLinejoin="round" d="M12 21a9.004 9.004 0 008.716-6.747M12 21a9.004 9.004 0 01-8.716-6.747M12 21c2.485 0 4.5-4.03 4.5-9S14.485 3 12 3m0 18c-2.485 0-4.5-4.03-4.5-9S9.515 3 12 3m0 0a8.997 8.997 0 017.843 4.582M12 3a8.997 8.997 0 00-7.843 4.582m15.686 0A11.953 11.953 0 0112 10.5c-2.998 0-5.74-1.1-7.843-2.918m15.686 0A8.959 8.959 0 0121 12c0 .778-.099 1.533-.284 2.253m0 0A17.919 17.919 0 0112 16.5c-3.162 0-6.133-.815-8.716-2.247m0 0A9.015 9.015 0 013 12c0-1.605.42-3.113 1.157-4.418" />
                 </svg>
+                <span className="text-sm font-medium text-[var(--ratch-black)]">
+                  {currentLanguage.nativeName}
+                </span>
                 <svg className={`w-4 h-4 transition-transform text-[var(--ratch-black)] ${isLanguageOpen ? 'rotate-180' : ''}`} fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
                   <path strokeLinecap="round" strokeLinejoin="round" d="M19 9l-7 7-7-7" />
                 </svg>
@@ -119,31 +122,31 @@ export default function Navbar() {
                     initial={{ opacity: 0, y: 10 }}
                     animate={{ opacity: 1, y: 0 }}
                     exit={{ opacity: 0, y: 10 }}
-                    className="absolute right-0 mt-2 w-56 bg-white rounded-2xl shadow-xl border border-gray-100 py-2 max-h-80 overflow-y-auto"
+                    className="absolute right-0 mt-2 w-56 bg-white rounded-2xl shadow-xl border border-gray-100 py-2 max-h-80 overflow-y-auto z-50"
                   >
                     {languages.map((lang) => (
                       <button
-                        key={lang}
-                        onClick={() => setIsLanguageOpen(false)}
-                        className="w-full text-left px-4 py-2.5 text-sm text-[var(--ratch-black)] hover:bg-gray-50 transition-colors"
+                        key={lang.code}
+                        onClick={() => {
+                          setLanguage(lang.code);
+                          setIsLanguageOpen(false);
+                        }}
+                        className={`w-full text-left px-4 py-2.5 text-sm transition-colors ${
+                          language === lang.code
+                            ? 'bg-gray-100 text-[var(--ratch-black)] font-medium'
+                            : 'text-[var(--ratch-black)] hover:bg-gray-50'
+                        }`}
                       >
-                        {lang}
+                        <div className="flex items-center justify-between">
+                          <span>{lang.nativeName}</span>
+                          <span className="text-xs text-gray-500">{lang.name}</span>
+                        </div>
                       </button>
                     ))}
                   </motion.div>
                 )}
               </AnimatePresence>
             </div>
-
-            {/* Sign In Button */}
-            <motion.a
-              href="#signin"
-              whileHover={{ scale: 1.02 }}
-              whileTap={{ scale: 0.98 }}
-              className="px-6 py-2.5 text-white rounded-full font-medium text-[15px] transition-all bg-[var(--ratch-black)] hover:bg-gray-800"
-            >
-              Sign in
-            </motion.a>
           </div>
 
           {/* Mobile Menu Button - Absolute positioned on right */}
@@ -181,28 +184,39 @@ export default function Navbar() {
             <div className="px-6 py-4 space-y-1">
               {navLinks.map((link) => (
                 <Link
-                  key={link.name}
+                  key={link.key}
                   href={link.href}
                   onClick={() => setIsMobileMenuOpen(false)}
                   className="block py-3 font-medium text-lg text-[var(--ratch-black)]"
                 >
-                  {link.name}
+                  {t(link.key)}
                 </Link>
               ))}
-              <div className="pt-4 border-t border-gray-100 mt-4 space-y-3">
-                <button className="flex items-center gap-2 font-medium text-[var(--ratch-black)]">
-                  <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
-                    <path strokeLinecap="round" strokeLinejoin="round" d="M12 21a9.004 9.004 0 008.716-6.747M12 21a9.004 9.004 0 01-8.716-6.747M12 21c2.485 0 4.5-4.03 4.5-9S14.485 3 12 3m0 18c-2.485 0-4.5-4.03-4.5-9S9.515 3 12 3m0 0a8.997 8.997 0 017.843 4.582M12 3a8.997 8.997 0 00-7.843 4.582m15.686 0A11.953 11.953 0 0112 10.5c-2.998 0-5.74-1.1-7.843-2.918m15.686 0A8.959 8.959 0 0121 12c0 .778-.099 1.533-.284 2.253m0 0A17.919 17.919 0 0112 16.5c-3.162 0-6.133-.815-8.716-2.247m0 0A9.015 9.015 0 013 12c0-1.605.42-3.113 1.157-4.418" />
-                  </svg>
-                  English (United States)
-                </button>
-                <a
-                  href="#signin"
-                  onClick={() => setIsMobileMenuOpen(false)}
-                  className="block w-full text-center py-3 text-white rounded-full font-medium bg-[var(--ratch-black)]"
-                >
-                  Sign in
-                </a>
+              <div className="pt-4 border-t border-gray-100 mt-4">
+                <div className="space-y-2">
+                  {languages.map((lang) => (
+                    <button
+                      key={lang.code}
+                      onClick={() => {
+                        setLanguage(lang.code);
+                        setIsMobileMenuOpen(false);
+                      }}
+                      className={`w-full flex items-center justify-between px-4 py-3 rounded-lg transition-colors ${
+                        language === lang.code
+                          ? 'bg-gray-100 text-[var(--ratch-black)] font-medium'
+                          : 'text-[var(--ratch-black)] hover:bg-gray-50'
+                      }`}
+                    >
+                      <div className="flex items-center gap-2">
+                        <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
+                          <path strokeLinecap="round" strokeLinejoin="round" d="M12 21a9.004 9.004 0 008.716-6.747M12 21a9.004 9.004 0 01-8.716-6.747M12 21c2.485 0 4.5-4.03 4.5-9S14.485 3 12 3m0 18c-2.485 0-4.5-4.03-4.5-9S9.515 3 12 3m0 0a8.997 8.997 0 017.843 4.582M12 3a8.997 8.997 0 00-7.843 4.582m15.686 0A11.953 11.953 0 0112 10.5c-2.998 0-5.74-1.1-7.843-2.918m15.686 0A8.959 8.959 0 0121 12c0 .778-.099 1.533-.284 2.253m0 0A17.919 17.919 0 0112 16.5c-3.162 0-6.133-.815-8.716-2.247m0 0A9.015 9.015 0 013 12c0-1.605.42-3.113 1.157-4.418" />
+                        </svg>
+                        <span>{lang.nativeName}</span>
+                      </div>
+                      <span className="text-xs text-gray-500">{lang.name}</span>
+                    </button>
+                  ))}
+                </div>
               </div>
             </div>
           </motion.div>

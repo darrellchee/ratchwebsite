@@ -1,6 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
+import { useLanguage } from "@/contexts/LanguageContext";
 
 type League = {
   name: string;
@@ -30,12 +31,14 @@ const LeagueRow = ({
   league, 
   index,
   isCurrentLeague,
-  totalLeagues
+  totalLeagues,
+  t
 }: { 
   league: League;
   index: number;
   isCurrentLeague: boolean;
   totalLeagues: number;
+  t: (key: string) => string;
 }) => {
   const delayBase = 0.05;
   
@@ -45,8 +48,7 @@ const LeagueRow = ({
       whileInView={{ opacity: 1, x: 0 }}
       viewport={{ once: true, margin: "-50px" }}
       transition={{ delay: index * delayBase }}
-      whileHover={{ x: 8 }}
-      className={`relative flex items-center gap-4 p-4 rounded-2xl transition-all cursor-pointer ${
+      className={`relative flex items-center gap-4 p-4 rounded-2xl cursor-pointer gpu-accelerated transition-transform duration-200 hover:translate-x-2 ${
         isCurrentLeague 
           ? 'bg-white card-shadow ring-2' 
           : 'hover:bg-white/60'
@@ -86,7 +88,7 @@ const LeagueRow = ({
               className="px-2 py-0.5 rounded-full text-xs font-bold text-white"
               style={{ backgroundColor: league.color }}
             >
-              YOU
+              {t("league.you")}
             </motion.span>
           )}
         </div>
@@ -96,7 +98,7 @@ const LeagueRow = ({
       {/* ELO range */}
       <div className="text-right">
         <p className="text-sm font-medium text-[var(--ratch-black)]">{league.range}</p>
-        <p className="text-xs text-[var(--ratch-gray)]">ELO</p>
+        <p className="text-xs text-[var(--ratch-gray)]">{t("league.elo")}</p>
       </div>
 
       {/* Current league indicator */}
@@ -117,6 +119,8 @@ const LeagueRow = ({
 };
 
 export default function LeaguePreview() {
+  const { t } = useLanguage();
+  
   return (
     <section 
       id="leagues" 
@@ -177,8 +181,8 @@ export default function LeaguePreview() {
 
             {/* Scale labels */}
             <div className="flex justify-between mb-8 text-xs text-[var(--ratch-gray)]">
-              <span>0 ELO</span>
-              <span>10,000 ELO</span>
+              <span>0 {t("league.elo")}</span>
+              <span>10,000 {t("league.elo")}</span>
             </div>
 
             {/* League list */}
@@ -190,6 +194,7 @@ export default function LeaguePreview() {
                   index={index}
                   isCurrentLeague={index === currentLeagueIndex}
                   totalLeagues={leagues.length}
+                  t={t}
                 />
               ))}
             </div>
@@ -204,7 +209,7 @@ export default function LeaguePreview() {
             >
               <span className="text-lg">🏆</span>
               <p className="text-sm text-[var(--ratch-gray)]">
-                <span className="font-medium text-[var(--ratch-black)]">Tip:</span> Win more comparisons to climb leagues!
+                <span className="font-medium text-[var(--ratch-black)]">{t("league.tip")}</span> {t("league.tipText")}
               </p>
             </motion.div>
           </motion.div>
@@ -224,18 +229,17 @@ export default function LeaguePreview() {
               className="inline-block px-4 py-2 rounded-full text-sm font-medium mb-6"
               style={{ backgroundColor: "#F97316", color: "white" }}
             >
-              League System
+              {t("league.badge")}
             </motion.span>
             
             <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-[var(--ratch-black)] leading-tight">
-              Climb the
+              {t("league.title1")}
               <br />
-              <span className="text-gradient">ranks</span>
+              <span className="text-gradient">{t("league.title2")}</span>
             </h2>
             
             <p className="mt-6 text-lg text-[var(--ratch-gray)] max-w-lg leading-relaxed">
-              Compete with users worldwide. Rise through 10 unique leagues based on your ELO rating 
-              and see where you stand on the global leaderboard.
+              {t("league.subtitle")}
             </p>
 
             {/* Stats */}
@@ -248,7 +252,7 @@ export default function LeaguePreview() {
                 className="text-center p-4 rounded-2xl bg-white card-shadow"
               >
                 <p className="text-3xl font-bold text-[var(--ratch-black)]">10</p>
-                <p className="text-sm text-[var(--ratch-gray)] mt-1">Leagues</p>
+                <p className="text-sm text-[var(--ratch-gray)] mt-1">{t("league.leagues")}</p>
               </motion.div>
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
@@ -258,7 +262,7 @@ export default function LeaguePreview() {
                 className="text-center p-4 rounded-2xl bg-white card-shadow"
               >
                 <p className="text-3xl font-bold text-[var(--ratch-black)]">Top 100</p>
-                <p className="text-sm text-[var(--ratch-gray)] mt-1">Global</p>
+                <p className="text-sm text-[var(--ratch-gray)] mt-1">{t("league.global")}</p>
               </motion.div>
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
@@ -268,7 +272,7 @@ export default function LeaguePreview() {
                 className="text-center p-4 rounded-2xl bg-white card-shadow"
               >
                 <p className="text-3xl font-bold text-[var(--ratch-black)]">24/7</p>
-                <p className="text-sm text-[var(--ratch-gray)] mt-1">Updates</p>
+                <p className="text-sm text-[var(--ratch-gray)] mt-1">{t("league.updates")}</p>
               </motion.div>
             </div>
 
@@ -287,7 +291,7 @@ export default function LeaguePreview() {
                 className="inline-flex items-center gap-2 px-8 py-4 rounded-full font-medium text-white btn-glow"
                 style={{ backgroundColor: "#F97316" }}
               >
-                View Full Leaderboard
+                {t("league.cta")}
                 <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
                 </svg>

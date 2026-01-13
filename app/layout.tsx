@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import "./globals.css";
 import ScrollFrame from "@/components/ScrollFrame";
+import { LanguageProvider } from "@/contexts/LanguageContext";
 
 export const metadata: Metadata = {
   title: "Ratch",
@@ -38,7 +39,9 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className="antialiased">
-        <ScrollFrame>{children}</ScrollFrame>
+        <LanguageProvider>
+          <ScrollFrame>{children}</ScrollFrame>
+        </LanguageProvider>
       </body>
     </html>
   );

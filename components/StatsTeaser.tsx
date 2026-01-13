@@ -1,6 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
+import { useLanguage } from "@/contexts/LanguageContext";
 
 // Mini chart component
 const MiniLineChart = () => {
@@ -44,7 +45,7 @@ const MiniLineChart = () => {
   );
 };
 
-// Floating stat badge component
+// Floating stat badge component - Using CSS animation for better mobile performance
 const FloatingStat = ({ 
   children, 
   className = "",
@@ -63,16 +64,21 @@ const FloatingStat = ({
     transition={{ delay, duration: 0.5 }}
     className={`absolute ${className}`}
   >
-    <motion.div
-      animate={{ y: direction === "up" ? [0, -8, 0] : [0, 8, 0] }}
-      transition={{ duration: 4, repeat: Infinity, ease: "easeInOut", delay }}
+    <div
+      className="animate-float gpu-accelerated"
+      style={{ 
+        animationDelay: `${delay}s`,
+        animationDirection: direction === "down" ? "reverse" : "normal"
+      }}
     >
       {children}
-    </motion.div>
+    </div>
   </motion.div>
 );
 
 export default function StatsTeaser() {
+  const { t } = useLanguage();
+  
   return (
     <section 
       id="stats" 
@@ -101,18 +107,17 @@ export default function StatsTeaser() {
               className="inline-block px-4 py-2 rounded-full text-sm font-medium mb-6"
               style={{ backgroundColor: "rgba(34, 197, 94, 0.1)", color: "#22C55E" }}
             >
-              Detailed Analytics
+              {t("stats.badge")}
             </motion.span>
             
             <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-[var(--ratch-black)] leading-tight">
-              Know your
+              {t("stats.title1")}
               <br />
-              <span style={{ color: "#22C55E" }}>worth</span>
+              <span style={{ color: "#22C55E" }}>{t("stats.title2")}</span>
             </h2>
             
             <p className="mt-6 text-lg text-[var(--ratch-gray)] max-w-lg leading-relaxed">
-              Data-driven insights into your dating performance. Track your rating trends, 
-              analyze your wins, and understand what makes you stand out.
+              {t("stats.subtitle")}
             </p>
 
             {/* Feature highlights */}
@@ -131,8 +136,8 @@ export default function StatsTeaser() {
                   📈
                 </div>
                 <div>
-                  <p className="font-semibold text-[var(--ratch-black)]">Rating History</p>
-                  <p className="text-sm text-[var(--ratch-gray)]">Track your ELO over time</p>
+                  <p className="font-semibold text-[var(--ratch-black)]">{t("stats.feature1.title")}</p>
+                  <p className="text-sm text-[var(--ratch-gray)]">{t("stats.feature1.desc")}</p>
                 </div>
               </motion.div>
 
@@ -150,8 +155,8 @@ export default function StatsTeaser() {
                   🏆
                 </div>
                 <div>
-                  <p className="font-semibold text-[var(--ratch-black)]">Win Rate Analysis</p>
-                  <p className="text-sm text-[var(--ratch-gray)]">See your performance breakdown</p>
+                  <p className="font-semibold text-[var(--ratch-black)]">{t("stats.feature2.title")}</p>
+                  <p className="text-sm text-[var(--ratch-gray)]">{t("stats.feature2.desc")}</p>
                 </div>
               </motion.div>
 
@@ -169,8 +174,8 @@ export default function StatsTeaser() {
                   📊
                 </div>
                 <div>
-                  <p className="font-semibold text-[var(--ratch-black)]">Photo Performance</p>
-                  <p className="text-sm text-[var(--ratch-gray)]">Learn which photos work best</p>
+                  <p className="font-semibold text-[var(--ratch-black)]">{t("stats.feature3.title")}</p>
+                  <p className="text-sm text-[var(--ratch-gray)]">{t("stats.feature3.desc")}</p>
                 </div>
               </motion.div>
             </div>
@@ -190,7 +195,7 @@ export default function StatsTeaser() {
                 className="inline-flex items-center gap-2 px-8 py-4 rounded-full font-medium text-white btn-glow"
                 style={{ backgroundColor: "#22C55E" }}
               >
-                Explore Stats
+                {t("stats.cta")}
                 <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
                 </svg>
@@ -213,7 +218,7 @@ export default function StatsTeaser() {
               direction="up"
             >
               <div className="bg-white rounded-2xl p-4 card-shadow-lg">
-                <p className="text-sm text-[var(--ratch-gray)]">Win Rate</p>
+                <p className="text-sm text-[var(--ratch-gray)]">{t("stats.winRateLabel")}</p>
                 <p className="text-2xl font-bold text-green-500">72%</p>
               </div>
             </FloatingStat>
@@ -224,7 +229,7 @@ export default function StatsTeaser() {
               direction="down"
             >
               <div className="bg-white rounded-2xl p-4 card-shadow-lg">
-                <p className="text-sm text-[var(--ratch-gray)]">This Week</p>
+                <p className="text-sm text-[var(--ratch-gray)]">{t("stats.thisWeek")}</p>
                 <p className="text-2xl font-bold text-[#FF6B6B]">+128</p>
               </div>
             </FloatingStat>
@@ -237,7 +242,7 @@ export default function StatsTeaser() {
               <div className="bg-white rounded-2xl p-4 card-shadow-lg flex items-center gap-2">
                 <span className="text-xl">🔥</span>
                 <div>
-                  <p className="text-sm font-medium text-[var(--ratch-black)]">7 day streak!</p>
+                  <p className="text-sm font-medium text-[var(--ratch-black)]">7 {t("stats.dayStreak")}!</p>
                 </div>
               </div>
             </FloatingStat>
@@ -266,7 +271,7 @@ export default function StatsTeaser() {
                   >
                     {/* Header */}
                     <div className="flex items-center justify-between mb-4">
-                      <p className="text-sm font-semibold text-[var(--ratch-black)]">Statistics</p>
+                      <p className="text-sm font-semibold text-[var(--ratch-black)]">{t("stats.statistics")}</p>
                       <div className="flex gap-1.5">
                         {[0,1,2,3,4].map((i) => (
                           <div 
@@ -280,7 +285,7 @@ export default function StatsTeaser() {
                     {/* Rating Card */}
                     <div className="bg-white rounded-2xl p-4 mb-3 shadow-sm">
                       <div className="flex items-center justify-between mb-2">
-                        <p className="text-xs text-[var(--ratch-gray)]">Current Rating</p>
+                        <p className="text-xs text-[var(--ratch-gray)]">{t("stats.currentRating")}</p>
                         <span className="px-2 py-0.5 rounded-full text-xs font-medium bg-green-100 text-green-600">+128</span>
                       </div>
                       <p className="text-3xl font-bold text-[var(--ratch-black)]">7,542</p>
@@ -293,15 +298,15 @@ export default function StatsTeaser() {
                     <div className="grid grid-cols-3 gap-2 mb-3">
                       <div className="bg-white rounded-xl p-2 text-center shadow-sm">
                         <p className="text-lg font-bold text-[var(--ratch-black)]">1.2K</p>
-                        <p className="text-[10px] text-[var(--ratch-gray)]">Comparisons</p>
+                        <p className="text-[10px] text-[var(--ratch-gray)]">{t("stats.comparisons")}</p>
                       </div>
                       <div className="bg-white rounded-xl p-2 text-center shadow-sm">
                         <p className="text-lg font-bold text-[var(--ratch-black)]">892</p>
-                        <p className="text-[10px] text-[var(--ratch-gray)]">Wins</p>
+                        <p className="text-[10px] text-[var(--ratch-gray)]">{t("stats.wins")}</p>
                       </div>
                       <div className="bg-white rounded-xl p-2 text-center shadow-sm">
                         <p className="text-lg font-bold text-[var(--ratch-black)]">72%</p>
-                        <p className="text-[10px] text-[var(--ratch-gray)]">Rate</p>
+                        <p className="text-[10px] text-[var(--ratch-gray)]">{t("stats.rate")}</p>
                       </div>
                     </div>
 
@@ -315,11 +320,11 @@ export default function StatsTeaser() {
                           <span className="text-lg">🏆</span>
                         </div>
                         <div>
-                          <p className="text-xs text-[var(--ratch-gray)]">Win Rate</p>
+                          <p className="text-xs text-[var(--ratch-gray)]">{t("stats.winRate")}</p>
                           <p className="text-2xl font-bold text-[var(--ratch-black)]">72%</p>
                         </div>
                         <div className="ml-auto text-right">
-                          <p className="text-xs font-medium text-[#FF6B6B]">On Fire! 🔥</p>
+                          <p className="text-xs font-medium text-[#FF6B6B]">{t("stats.onFire")} 🔥</p>
                         </div>
                       </div>
                     </div>
@@ -327,7 +332,7 @@ export default function StatsTeaser() {
                     {/* Activity Streak */}
                     <div className="mt-3 flex items-center gap-2">
                       <span className="text-lg">🔥</span>
-                      <p className="text-xs text-[var(--ratch-gray)]">7 day streak</p>
+                      <p className="text-xs text-[var(--ratch-gray)]">7 {t("stats.dayStreak")}</p>
                       <div className="flex gap-1 ml-auto">
                         {[1,2,3,4,5,6,7].map((d) => (
                           <div key={d} className="w-4 h-4 rounded-sm bg-green-400" />

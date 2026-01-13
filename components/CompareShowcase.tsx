@@ -2,6 +2,8 @@
 
 import { motion, AnimatePresence } from "framer-motion";
 import { useState, useEffect } from "react";
+import Image from "next/image";
+import { useLanguage } from "@/contexts/LanguageContext";
 
 type Profile = {
   name: string;
@@ -9,11 +11,12 @@ type Profile = {
   gradientFrom: string;
   gradientTo: string;
   rating: number;
+  image: string;
 };
 
 const demoProfiles: Profile[] = [
-  { name: "Emma", age: 25, gradientFrom: "#FFB6C1", gradientTo: "#FF8FA3", rating: 5420 },
-  { name: "James", age: 28, gradientFrom: "#87CEEB", gradientTo: "#5BA3D9", rating: 5180 },
+  { name: "Alex", age: 25, gradientFrom: "#FFB6C1", gradientTo: "#FF8FA3", rating: 5420, image: "/person3.png" },
+  { name: "Ryan", age: 28, gradientFrom: "#87CEEB", gradientTo: "#5BA3D9", rating: 5180, image: "/person4.png" },
 ];
 
 // Smooth spring config for natural motion
@@ -34,27 +37,25 @@ const ProfileCard = ({
   ratingChange,
   showRating,
   onClick,
+  t,
 }: { 
   profile: Profile;
   isSelected: boolean;
   ratingChange: number;
   showRating: boolean;
   onClick: () => void;
+  t: (key: string) => string;
 }) => (
   <motion.div
-    layout
     whileHover={{ scale: 1.02, y: -4 }}
     whileTap={{ scale: 0.98 }}
     onClick={onClick}
     animate={{
       scale: isSelected ? 1.02 : 1,
-      boxShadow: isSelected 
-        ? "0 20px 40px -10px rgba(34, 197, 94, 0.3)" 
-        : "0 10px 30px -10px rgba(0, 0, 0, 0.1)",
     }}
     transition={springConfig}
-    className={`relative cursor-pointer rounded-3xl overflow-hidden ${
-      isSelected ? 'ring-4 ring-green-500' : ''
+    className={`relative cursor-pointer rounded-3xl overflow-hidden gpu-accelerated ${
+      isSelected ? 'ring-4 ring-green-500 card-shadow-lg' : 'card-shadow'
     }`}
     style={{ 
       background: `linear-gradient(135deg, ${profile.gradientFrom} 0%, ${profile.gradientTo} 100%)`,
@@ -65,6 +66,17 @@ const ProfileCard = ({
       animate={{ opacity: isSelected ? 1 : 0.95 }}
       transition={smoothTransition}
     >
+      {/* Profile Image */}
+      <div className="absolute inset-0">
+        <Image
+          src={profile.image}
+          alt={profile.name}
+          fill
+          className="object-cover"
+          priority
+        />
+      </div>
+      
       {/* Light overlay */}
       <div
         className="absolute inset-0"
@@ -171,7 +183,7 @@ const ProfileCard = ({
             className="px-6 py-4"
           >
             <div className="flex items-center justify-between">
-              <span className="text-sm text-[var(--ratch-gray)]">ELO Rating</span>
+              <span className="text-sm text-[var(--ratch-gray)]">{t("compare.eloRating")}</span>
               <motion.span 
                 className="text-xl font-bold"
                 initial={{ scale: 0.8 }}
@@ -190,6 +202,7 @@ const ProfileCard = ({
 );
 
 export default function CompareShowcase() {
+  const { t } = useLanguage();
   const [selectedIndex, setSelectedIndex] = useState<number | null>(null);
   const [showRatings, setShowRatings] = useState(false);
   const [ratingChanges, setRatingChanges] = useState<[number, number]>([0, 0]);
@@ -280,19 +293,17 @@ export default function CompareShowcase() {
               className="inline-block px-4 py-2 rounded-full text-sm font-medium mb-6"
               style={{ background: "var(--gradient-coral-amber)", color: "white" }}
             >
-              The Compare Experience
+              {t("compare.badge")}
             </motion.span>
             
             <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-[var(--ratch-black)] leading-tight">
-              Forced choices,
+              {t("compare.title1")}
               <br />
-              <span className="text-gradient">better matches</span>
+              <span className="text-gradient">{t("compare.title2")}</span>
             </h2>
             
             <p className="mt-6 text-lg text-[var(--ratch-gray)] max-w-lg leading-relaxed">
-              No more endless swiping. We show you two profiles at a time — pick the one 
-              you find more attractive. Your choices shape your dating pool using our 
-              sophisticated ELO rating system.
+              {t("compare.subtitle")}
             </p>
 
             {/* Feature list */}
@@ -313,9 +324,9 @@ export default function CompareShowcase() {
                   </svg>
                 </div>
                 <div>
-                  <p className="font-semibold text-[var(--ratch-black)] text-lg">Two Profiles, One Choice</p>
+                  <p className="font-semibold text-[var(--ratch-black)] text-lg">{t("compare.feature1.title")}</p>
                   <p className="text-[var(--ratch-gray)] mt-1">
-                    Profiles appear side by side. Tap on the one you prefer.
+                    {t("compare.feature1.desc")}
                   </p>
                 </div>
               </motion.div>
@@ -336,9 +347,9 @@ export default function CompareShowcase() {
                   </svg>
                 </div>
                 <div>
-                  <p className="font-semibold text-[var(--ratch-black)] text-lg">ELO Rating System</p>
+                  <p className="font-semibold text-[var(--ratch-black)] text-lg">{t("compare.feature2.title")}</p>
                   <p className="text-[var(--ratch-gray)] mt-1">
-                    Every choice updates both profiles&apos; ratings on a 0-10,000 scale.
+                    {t("compare.feature2.desc")}
                   </p>
                 </div>
               </motion.div>
@@ -360,9 +371,9 @@ export default function CompareShowcase() {
                   </svg>
                 </div>
                 <div>
-                  <p className="font-semibold text-[var(--ratch-black)] text-lg">Instant Feedback</p>
+                  <p className="font-semibold text-[var(--ratch-black)] text-lg">{t("compare.feature3.title")}</p>
                   <p className="text-[var(--ratch-gray)] mt-1">
-                    See rating changes after each choice. Tap to reveal exact ratings.
+                    {t("compare.feature3.desc")}
                   </p>
                 </div>
               </motion.div>
@@ -379,10 +390,9 @@ export default function CompareShowcase() {
           >
             <div className="relative w-full max-w-[480px]">
               {/* Demo container */}
-              <motion.div 
-                className="rounded-[32px] p-6 lg:p-8 card-shadow-lg"
+              <div 
+                className="rounded-[32px] p-6 lg:p-8 card-shadow-lg gpu-accelerated"
                 style={{ backgroundColor: "white" }}
-                layout
               >
                 {/* Demo header */}
                 <div className="flex items-center justify-between mb-6">
@@ -401,7 +411,7 @@ export default function CompareShowcase() {
                       className="px-4 py-1.5 rounded-full text-sm font-medium"
                       style={{ background: "var(--gradient-coral-amber)", color: "white" }}
                     >
-                      Round {roundNumber}
+                      {t("compare.round")} {roundNumber}
                     </motion.div>
                   </AnimatePresence>
                 </div>
@@ -416,23 +426,23 @@ export default function CompareShowcase() {
                       ratingChange={selectedIndex !== null ? ratingChanges[index] : 0}
                       showRating={showRatings}
                       onClick={() => handleSelect(index)}
+                      t={t}
                     />
                   ))}
                 </div>
 
-                {/* VS Badge */}
+                {/* VS Badge - Using CSS animation for idle state */}
                 <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-10">
                   <motion.div
-                    animate={{ 
-                      scale: selectedIndex === null ? [1, 1.08, 1] : 1,
-                      rotate: selectedIndex !== null ? [0, 5, -5, 0] : 0,
+                    animate={selectedIndex !== null ? { rotate: [0, 5, -5, 0] } : {}}
+                    transition={{ rotate: { duration: 0.5 } }}
+                    className={`w-14 h-14 rounded-full flex items-center justify-center font-bold text-white text-sm shadow-xl gpu-accelerated ${
+                      selectedIndex === null ? 'animate-pulse' : ''
+                    }`}
+                    style={{ 
+                      background: "var(--gradient-coral-amber)",
+                      animationDuration: selectedIndex === null ? "2.5s" : undefined
                     }}
-                    transition={{ 
-                      scale: { duration: 2.5, repeat: Infinity, ease: "easeInOut" },
-                      rotate: { duration: 0.5 }
-                    }}
-                    className="w-14 h-14 rounded-full flex items-center justify-center font-bold text-white text-sm shadow-xl"
-                    style={{ background: "var(--gradient-coral-amber)" }}
                   >
                     VS
                   </motion.div>
@@ -449,13 +459,13 @@ export default function CompareShowcase() {
                     className="text-center text-sm text-[var(--ratch-gray)] mt-6"
                   >
                     {selectedIndex === null 
-                      ? "Tap a profile to choose" 
+                      ? t("compare.tapToChoose")
                       : showRatings 
-                        ? "Ratings revealed! Next round coming..." 
-                        : "Great choice!"}
+                        ? t("compare.ratingsRevealed")
+                        : t("compare.greatChoice")}
                   </motion.p>
                 </AnimatePresence>
-              </motion.div>
+              </div>
 
               {/* Decorative elements */}
               <div 

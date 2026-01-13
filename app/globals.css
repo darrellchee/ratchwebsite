@@ -82,88 +82,97 @@ body {
   background-clip: text;
 }
 
-/* Floating blob animations */
+/* Floating blob animations - GPU optimized */
 @keyframes blob-float {
   0%, 100% {
-    transform: translate(0, 0) scale(1);
+    transform: translate3d(0, 0, 0) scale(1);
   }
   33% {
-    transform: translate(30px, -50px) scale(1.05);
+    transform: translate3d(30px, -50px, 0) scale(1.05);
   }
   66% {
-    transform: translate(-20px, 20px) scale(0.95);
+    transform: translate3d(-20px, 20px, 0) scale(0.95);
   }
 }
 
 @keyframes blob-float-reverse {
   0%, 100% {
-    transform: translate(0, 0) scale(1);
+    transform: translate3d(0, 0, 0) scale(1);
   }
   33% {
-    transform: translate(-30px, 30px) scale(0.95);
+    transform: translate3d(-30px, 30px, 0) scale(0.95);
   }
   66% {
-    transform: translate(40px, -20px) scale(1.05);
+    transform: translate3d(40px, -20px, 0) scale(1.05);
   }
 }
 
 @keyframes blob-pulse {
   0%, 100% {
     opacity: 0.6;
-    transform: scale(1);
+    transform: translate3d(0, 0, 0) scale(1);
   }
   50% {
     opacity: 0.8;
-    transform: scale(1.1);
+    transform: translate3d(0, 0, 0) scale(1.1);
   }
 }
 
 .animate-blob {
   animation: blob-float 20s ease-in-out infinite;
+  will-change: transform;
 }
 
 .animate-blob-reverse {
   animation: blob-float-reverse 25s ease-in-out infinite;
+  will-change: transform;
 }
 
 .animate-blob-pulse {
   animation: blob-pulse 8s ease-in-out infinite;
+  will-change: transform, opacity;
 }
 
-/* Float animation */
+/* Float animation - GPU optimized */
 @keyframes float {
   0%, 100% {
-    transform: translateY(0) rotate(var(--rotate, 0deg));
+    transform: translateY(0) rotate(var(--rotate, 0deg)) translateZ(0);
   }
   50% {
-    transform: translateY(-10px) rotate(var(--rotate, 0deg));
+    transform: translateY(-10px) rotate(var(--rotate, 0deg)) translateZ(0);
   }
 }
 
 .animate-float {
   animation: float 4s ease-in-out infinite;
+  will-change: transform;
+  backface-visibility: hidden;
 }
 
-/* Gentle sway animation for cards */
+/* Gentle sway animation for cards - GPU optimized */
 @keyframes sway {
   0%, 100% {
-    transform: rotate(-3deg) translateY(0);
+    transform: rotate(-3deg) translateY(0) translateZ(0);
   }
   50% {
-    transform: rotate(3deg) translateY(-8px);
+    transform: rotate(3deg) translateY(-8px) translateZ(0);
   }
 }
 
 .animate-sway {
   animation: sway 6s ease-in-out infinite;
+  will-change: transform;
+  backface-visibility: hidden;
 }
 
-/* Soft card shadows */
+/* Soft card shadows - GPU optimized */
 .card-shadow {
   box-shadow: 
     0 4px 6px -1px rgba(0, 0, 0, 0.05),
     0 10px 15px -3px rgba(0, 0, 0, 0.08),
     0 20px 40px -10px rgba(0, 0, 0, 0.1);
+  transform: translateZ(0);
+  backface-visibility: hidden;
 }
 
 .card-shadow-lg {
@@ -171,6 +180,8 @@ body {
     0 10px 15px -3px rgba(0, 0, 0, 0.08),
     0 25px 50px -12px rgba(0, 0, 0, 0.15),
     0 40px 80px -20px rgba(0, 0, 0, 0.1);
+  transform: translateZ(0);
+  backface-visibility: hidden;
 }
 
 .card-shadow-xl {
@@ -178,6 +189,21 @@ body {
     0 20px 25px -5px rgba(0, 0, 0, 0.08),
     0 40px 60px -15px rgba(0, 0, 0, 0.12),
     0 60px 100px -30px rgba(0, 0, 0, 0.15);
+  transform: translateZ(0);
+  backface-visibility: hidden;
+}
+
+/* Simplify shadows on mobile for better performance */
+@media (max-width: 768px) {
+  .card-shadow {
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  }
+  .card-shadow-lg {
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+  }
+  .card-shadow-xl {
+    box-shadow: 0 12px 32px rgba(0, 0, 0, 0.15);
+  }
 }
 
 /* Gradient border utility */
@@ -242,19 +268,92 @@ body {
   transition: background-color 0.2s ease, opacity 0.2s ease, transform 0.1s ease;
 }
 
-/* Decorative blob shapes */
+/* Decorative blob shapes - GPU accelerated */
 .blob {
   border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%;
   filter: blur(60px);
+  will-change: transform;
+  transform: translateZ(0);
+  backface-visibility: hidden;
+  contain: layout style paint;
 }
 
 .blob-sm {
   border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%;
   filter: blur(40px);
+  will-change: transform;
+  transform: translateZ(0);
+  backface-visibility: hidden;
+  contain: layout style paint;
+}
+
+/* Reduce blur intensity on mobile for better performance */
+@media (max-width: 768px) {
+  .blob {
+    filter: blur(40px);
+  }
+  .blob-sm {
+    filter: blur(25px);
+  }
 }
 
 /* Selection styling */
 ::selection {
   background: rgba(255, 107, 107, 0.3);
   color: var(--ratch-black);
+}
+
+/* GPU-accelerated animated elements */
+.gpu-accelerated {
+  transform: translateZ(0);
+  backface-visibility: hidden;
+  will-change: transform;
+}
+
+/* Reduce motion for users who prefer it */
+@media (prefers-reduced-motion: reduce) {
+  .animate-blob,
+  .animate-blob-reverse,
+  .animate-blob-pulse,
+  .animate-float,
+  .animate-sway {
+    animation: none !important;
+  }
+  
+  * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* Mobile performance optimizations */
+@media (max-width: 768px) {
+  /* Reduce animation complexity on mobile */
+  .animate-blob,
+  .animate-blob-reverse {
+    animation-duration: 30s;
+  }
+  
+  /* Ensure smooth scrolling container performance */
+  .custom-scroll-container {
+    -webkit-overflow-scrolling: touch;
+    transform: translateZ(0);
+  }
+  
+  /* Reduce backdrop-blur complexity on mobile */
+  .backdrop-blur-sm {
+    backdrop-filter: blur(2px);
+    -webkit-backdrop-filter: blur(2px);
+  }
+}
+
+/* Touch device optimizations */
+@media (hover: none) and (pointer: coarse) {
+  /* Disable hover animations on touch devices */
+  .hover\:translate-x-2:hover,
+  .hover\:-translate-y-2:hover,
+  .hover\:scale-\[1\.02\]:hover {
+    transform: none;
+  }
 }

@@ -3,28 +3,29 @@
 import { useState, useRef, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import Image from "next/image";
+import { useLanguage } from "@/contexts/LanguageContext";
 
-const footerLinks = {
+const getFooterLinks = (t: (key: string) => string) => ({
   navigation: [
-    { name: "Home", href: "/" },
-    { name: "Date", href: "/date" },
-    { name: "Stats", href: "/stats" },
-    { name: "Leaderboard", href: "/leaderboard" },
-    { name: "Support", href: "/support" },
+    { name: t("nav.home"), href: "/" },
+    { name: t("nav.date"), href: "/date" },
+    { name: t("nav.stats"), href: "/stats" },
+    { name: t("nav.leaderboard"), href: "/leaderboard" },
+    { name: t("nav.support"), href: "/support" },
   ],
   company: [
-    { name: "Contact us", href: "/support#support-contact" },
-    { name: "Support", href: "/support" },
-    { name: "Subscriptions", href: "/support#subscriptions" },
-    { name: "User Rights", href: "/support#user-rights" },
+    { name: t("footer.contactUs"), href: "/support#support-contact" },
+    { name: t("nav.support"), href: "/support" },
+    { name: t("footer.subscriptions"), href: "/support#subscriptions" },
+    { name: t("footer.userRights"), href: "/support#user-rights" },
   ],
   legal: [
-    { name: "Terms of Service", href: "/support#terms-of-service" },
-    { name: "Privacy Policy", href: "/support#privacy-policy" },
-    { name: "Third-Party Services", href: "/support#third-party" },
-    { name: "Compliance", href: "/support#compliance" },
+    { name: t("footer.termsOfService"), href: "/support#terms-of-service" },
+    { name: t("footer.privacyPolicy"), href: "/support#privacy-policy" },
+    { name: t("footer.thirdPartyServices"), href: "/support#third-party" },
+    { name: t("footer.compliance"), href: "/support#compliance" },
   ],
-};
+});
 
 const socialLinks = [
   {
@@ -105,6 +106,8 @@ const languages = [
 ];
 
 export default function Footer() {
+  const { t } = useLanguage();
+  const footerLinks = getFooterLinks(t);
   const [isLanguageOpen, setIsLanguageOpen] = useState(false);
   const languageRef = useRef<HTMLDivElement>(null);
 
@@ -146,7 +149,7 @@ export default function Footer() {
                 </div>
                 <div>
                   <p className="text-sm text-bumble-black font-medium">
-                    Scan the QR code to get the Ratch app
+                    {t("footer.qrCode")}
                   </p>
                 </div>
               </div>
@@ -155,7 +158,7 @@ export default function Footer() {
 
           {/* Navigation */}
           <div className="lg:col-span-2">
-            <h3 className="text-sm text-bumble-gray mb-4">Navigation</h3>
+            <h3 className="text-sm text-bumble-gray mb-4">{t("footer.navigation")}</h3>
             <ul className="space-y-3">
               {footerLinks.navigation.map((link) => (
                 <li key={link.name}>
@@ -172,7 +175,7 @@ export default function Footer() {
 
           {/* Company */}
           <div className="lg:col-span-2">
-            <h3 className="text-sm text-bumble-gray mb-4">Company</h3>
+            <h3 className="text-sm text-bumble-gray mb-4">{t("footer.company")}</h3>
             <ul className="space-y-3">
               {footerLinks.company.map((link) => (
                 <li key={link.name}>
@@ -189,7 +192,7 @@ export default function Footer() {
 
           {/* Legal */}
           <div className="lg:col-span-4">
-            <h3 className="text-sm text-bumble-gray mb-4">Legal</h3>
+            <h3 className="text-sm text-bumble-gray mb-4">{t("footer.legal")}</h3>
             <ul className="space-y-3">
               {footerLinks.legal.map((link) => (
                 <li key={link.name}>
@@ -202,59 +205,6 @@ export default function Footer() {
                 </li>
               ))}
             </ul>
-          </div>
-        </div>
-
-        {/* Bottom Section */}
-        <div className="mt-16 pt-8 border-t border-gray-100 flex flex-col lg:flex-row items-center justify-between gap-6">
-          {/* Social Links */}
-          <div className="flex gap-4">
-            {socialLinks.map((social) => (
-              <a
-                key={social.name}
-                href={social.href}
-                className="text-bumble-black hover:text-bumble-gray transition-colors"
-                aria-label={social.name}
-              >
-                {social.icon}
-              </a>
-            ))}
-          </div>
-
-          {/* Language Selector */}
-          <div className="relative" ref={languageRef}>
-            <button
-              onClick={() => setIsLanguageOpen(!isLanguageOpen)}
-              className="flex items-center gap-2 px-5 py-3 rounded-full border border-gray-200 hover:border-gray-300 transition-colors bg-white"
-            >
-              <svg className="w-5 h-5 text-bumble-black" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
-                <path strokeLinecap="round" strokeLinejoin="round" d="M12 21a9.004 9.004 0 008.716-6.747M12 21a9.004 9.004 0 01-8.716-6.747M12 21c2.485 0 4.5-4.03 4.5-9S14.485 3 12 3m0 18c-2.485 0-4.5-4.03-4.5-9S9.515 3 12 3m0 0a8.997 8.997 0 017.843 4.582M12 3a8.997 8.997 0 00-7.843 4.582m15.686 0A11.953 11.953 0 0112 10.5c-2.998 0-5.74-1.1-7.843-2.918m15.686 0A8.959 8.959 0 0121 12c0 .778-.099 1.533-.284 2.253m0 0A17.919 17.919 0 0112 16.5c-3.162 0-6.133-.815-8.716-2.247m0 0A9.015 9.015 0 013 12c0-1.605.42-3.113 1.157-4.418" />
-              </svg>
-              <svg className={`w-4 h-4 text-bumble-black transition-transform ${isLanguageOpen ? 'rotate-180' : ''}`} fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-                <path strokeLinecap="round" strokeLinejoin="round" d="M19 9l-7 7-7-7" />
-              </svg>
-            </button>
-
-            <AnimatePresence>
-              {isLanguageOpen && (
-                <motion.div
-                  initial={{ opacity: 0, y: 10 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  exit={{ opacity: 0, y: 10 }}
-                  className="absolute bottom-full right-0 mb-2 w-56 bg-white rounded-2xl shadow-xl border border-gray-100 py-2 max-h-80 overflow-y-auto"
-                >
-                  {languages.map((lang) => (
-                    <button
-                      key={lang}
-                      onClick={() => setIsLanguageOpen(false)}
-                      className="w-full text-left px-4 py-2.5 text-sm text-bumble-black hover:bg-gray-50 transition-colors"
-                    >
-                      {lang}
-                    </button>
-                  ))}
-                </motion.div>
-              )}
-            </AnimatePresence>
           </div>
         </div>
       </div>

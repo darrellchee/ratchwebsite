@@ -1,0 +1,523 @@
+"use client";
+
+import { createContext, useContext, useState, useEffect, ReactNode } from "react";
+
+export type Language = "en" | "id" | "zh" | "fr";
+
+type LanguageContextType = {
+  language: Language;
+  setLanguage: (lang: Language) => void;
+  t: (key: string) => string;
+};
+
+const LanguageContext = createContext<LanguageContextType | undefined>(undefined);
+
+const translations: Record<Language, Record<string, string>> = {
+  en: {
+    // Navigation
+    "nav.home": "Home",
+    "nav.date": "Date",
+    "nav.stats": "Stats",
+    "nav.leaderboard": "Leaderboard",
+    "nav.pricing": "Pricing",
+    "nav.support": "Support",
+    
+    // Hero Section
+    "hero.badge": "A new way to date",
+    "hero.title1": "Dating,",
+    "hero.title2": "Decided.",
+    "hero.subtitle": "No more endless swiping. Compare two profiles, pick your preference, and let your choices build your perfect match pool.",
+    "hero.download": "Download App",
+    "hero.howItWorks": "How It Works",
+    "hero.leagues": "Leagues",
+    "hero.rating": "Rating",
+    "hero.scale": "Scale",
+    "hero.tryIt": "Try it",
+    "hero.tapToChoose": "Tap to choose your preference",
+    "hero.chosen": "chosen!",
+    "hero.scrollToExplore": "Scroll to explore",
+    
+    // How It Works
+    "howItWorks.badge": "How It Works",
+    "howItWorks.title1": "Three steps to",
+    "howItWorks.title2": "better dating",
+    "howItWorks.subtitle": "Our unique comparison system learns your preferences and matches you with people who are truly compatible.",
+    "howItWorks.step1.title": "Compare",
+    "howItWorks.step1.desc": "Two profiles appear side by side. No endless swiping – just pick the one you find more attractive.",
+    "howItWorks.step2.title": "Climb",
+    "howItWorks.step2.desc": "Every choice updates ELO ratings. Win comparisons to rise through 10 unique leagues.",
+    "howItWorks.step3.title": "Connect",
+    "howItWorks.step3.desc": "Match with people in your league. Quality over quantity – find your true match.",
+    "howItWorks.cta": "See it in action",
+    
+    // Compare Showcase
+    "compare.badge": "The Compare Experience",
+    "compare.title1": "Forced choices,",
+    "compare.title2": "better matches",
+    "compare.subtitle": "No more endless swiping. We show you two profiles at a time — pick the one you find more attractive. Your choices shape your dating pool using our sophisticated ELO rating system.",
+    "compare.feature1.title": "Two Profiles, One Choice",
+    "compare.feature1.desc": "Profiles appear side by side. Tap on the one you prefer.",
+    "compare.feature2.title": "ELO Rating System",
+    "compare.feature2.desc": "Every choice updates both profiles' ratings on a 0-10,000 scale.",
+    "compare.feature3.title": "Instant Feedback",
+    "compare.feature3.desc": "See rating changes after each choice. Tap to reveal exact ratings.",
+    "compare.round": "Round",
+    "compare.tapToChoose": "Tap a profile to choose",
+    "compare.greatChoice": "Great choice!",
+    "compare.ratingsRevealed": "Ratings revealed! Next round coming...",
+    "compare.eloRating": "ELO Rating",
+    
+    // League Preview
+    "league.badge": "League System",
+    "league.title1": "Climb the",
+    "league.title2": "ranks",
+    "league.subtitle": "Compete with users worldwide. Rise through 10 unique leagues based on your ELO rating and see where you stand on the global leaderboard.",
+    "league.leagues": "Leagues",
+    "league.global": "Global",
+    "league.updates": "Updates",
+    "league.cta": "View Full Leaderboard",
+    "league.tip": "Tip:",
+    "league.tipText": "Win more comparisons to climb leagues!",
+    "league.elo": "ELO",
+    "league.you": "YOU",
+    
+    // Stats Teaser
+    "stats.badge": "Detailed Analytics",
+    "stats.title1": "Know your",
+    "stats.title2": "worth",
+    "stats.subtitle": "Data-driven insights into your dating performance. Track your rating trends, analyze your wins, and understand what makes you stand out.",
+    "stats.feature1.title": "Rating History",
+    "stats.feature1.desc": "Track your ELO over time",
+    "stats.feature2.title": "Win Rate Analysis",
+    "stats.feature2.desc": "See your performance breakdown",
+    "stats.feature3.title": "Photo Performance",
+    "stats.feature3.desc": "Learn which photos work best",
+    "stats.cta": "Explore Stats",
+    "stats.statistics": "Statistics",
+    "stats.currentRating": "Current Rating",
+    "stats.comparisons": "Comparisons",
+    "stats.wins": "Wins",
+    "stats.rate": "Rate",
+    "stats.winRate": "Win Rate",
+    "stats.onFire": "On Fire!",
+    "stats.dayStreak": "day streak",
+    "stats.thisWeek": "This Week",
+    "stats.winRateLabel": "Win Rate",
+    
+    // Final CTA
+    "cta.title1": "Ready to find your",
+    "cta.title2": "perfect match?",
+    "cta.subtitle": "Join thousands of singles who have discovered a better way to date. Download Ratch and start comparing today.",
+    "cta.downloadOn": "Download on the",
+    "cta.appStore": "App Store",
+    "cta.trustedBy": "Trusted by thousands of singles worldwide",
+    "cta.downloads": "Downloads",
+    "cta.matchesMade": "Matches Made",
+    
+    // Footer
+    "footer.navigation": "Navigation",
+    "footer.company": "Company",
+    "footer.legal": "Legal",
+    "footer.contactUs": "Contact us",
+    "footer.subscriptions": "Subscriptions",
+    "footer.userRights": "User Rights",
+    "footer.termsOfService": "Terms of Service",
+    "footer.privacyPolicy": "Privacy Policy",
+    "footer.thirdPartyServices": "Third-Party Services",
+    "footer.compliance": "Compliance",
+    "footer.qrCode": "Scan the QR code to get the Ratch app",
+  },
+  id: {
+    // Navigation
+    "nav.home": "Beranda",
+    "nav.date": "Kencan",
+    "nav.stats": "Statistik",
+    "nav.leaderboard": "Papan Peringkat",
+    "nav.pricing": "Harga",
+    "nav.support": "Dukungan",
+    
+    // Hero Section
+    "hero.badge": "Cara baru untuk berkencan",
+    "hero.title1": "Kencan,",
+    "hero.title2": "Diputuskan.",
+    "hero.subtitle": "Tidak ada lagi gesekan tanpa akhir. Bandingkan dua profil, pilih preferensi Anda, dan biarkan pilihan Anda membangun kolam pertandingan sempurna Anda.",
+    "hero.download": "Unduh Aplikasi",
+    "hero.howItWorks": "Cara Kerjanya",
+    "hero.leagues": "Liga",
+    "hero.rating": "Peringkat",
+    "hero.scale": "Skala",
+    "hero.tryIt": "Coba",
+    "hero.tapToChoose": "Ketuk untuk memilih preferensi Anda",
+    "hero.chosen": "dipilih!",
+    "hero.scrollToExplore": "Gulir untuk menjelajahi",
+    
+    // How It Works
+    "howItWorks.badge": "Cara Kerjanya",
+    "howItWorks.title1": "Tiga langkah menuju",
+    "howItWorks.title2": "kencan yang lebih baik",
+    "howItWorks.subtitle": "Sistem perbandingan unik kami mempelajari preferensi Anda dan mencocokkan Anda dengan orang yang benar-benar cocok.",
+    "howItWorks.step1.title": "Bandingkan",
+    "howItWorks.step1.desc": "Dua profil muncul berdampingan. Tidak ada gesekan tanpa akhir – cukup pilih yang Anda anggap lebih menarik.",
+    "howItWorks.step2.title": "Naik",
+    "howItWorks.step2.desc": "Setiap pilihan memperbarui peringkat ELO. Menangkan perbandingan untuk naik melalui 10 liga unik.",
+    "howItWorks.step3.title": "Terhubung",
+    "howItWorks.step3.desc": "Cocok dengan orang di liga Anda. Kualitas lebih penting daripada kuantitas – temukan pertandingan sejati Anda.",
+    "howItWorks.cta": "Lihat dalam aksi",
+    
+    // Compare Showcase
+    "compare.badge": "Pengalaman Membandingkan",
+    "compare.title1": "Pilihan terpaksa,",
+    "compare.title2": "pertandingan yang lebih baik",
+    "compare.subtitle": "Tidak ada lagi gesekan tanpa akhir. Kami menampilkan dua profil sekaligus — pilih yang Anda anggap lebih menarik. Pilihan Anda membentuk kolam kencan Anda menggunakan sistem peringkat ELO canggih kami.",
+    "compare.feature1.title": "Dua Profil, Satu Pilihan",
+    "compare.feature1.desc": "Profil muncul berdampingan. Ketuk yang Anda sukai.",
+    "compare.feature2.title": "Sistem Peringkat ELO",
+    "compare.feature2.desc": "Setiap pilihan memperbarui peringkat kedua profil pada skala 0-10.000.",
+    "compare.feature3.title": "Umpan Balik Instan",
+    "compare.feature3.desc": "Lihat perubahan peringkat setelah setiap pilihan. Ketuk untuk mengungkapkan peringkat yang tepat.",
+    "compare.round": "Putaran",
+    "compare.tapToChoose": "Ketuk profil untuk memilih",
+    "compare.greatChoice": "Pilihan bagus!",
+    "compare.ratingsRevealed": "Peringkat terungkap! Putaran berikutnya datang...",
+    "compare.eloRating": "Peringkat ELO",
+    
+    // League Preview
+    "league.badge": "Sistem Liga",
+    "league.title1": "Naik",
+    "league.title2": "peringkat",
+    "league.subtitle": "Bersaing dengan pengguna di seluruh dunia. Naik melalui 10 liga unik berdasarkan peringkat ELO Anda dan lihat di mana Anda berdiri di papan peringkat global.",
+    "league.leagues": "Liga",
+    "league.global": "Global",
+    "league.updates": "Pembaruan",
+    "league.cta": "Lihat Papan Peringkat Lengkap",
+    "league.tip": "Tip:",
+    "league.tipText": "Menangkan lebih banyak perbandingan untuk naik liga!",
+    "league.elo": "ELO",
+    "league.you": "ANDA",
+    
+    // Stats Teaser
+    "stats.badge": "Analitik Terperinci",
+    "stats.title1": "Ketahui",
+    "stats.title2": "nilai Anda",
+    "stats.subtitle": "Wawasan berbasis data tentang kinerja kencan Anda. Lacak tren peringkat Anda, analisis kemenangan Anda, dan pahami apa yang membuat Anda menonjol.",
+    "stats.feature1.title": "Riwayat Peringkat",
+    "stats.feature1.desc": "Lacak ELO Anda dari waktu ke waktu",
+    "stats.feature2.title": "Analisis Tingkat Kemenangan",
+    "stats.feature2.desc": "Lihat rincian kinerja Anda",
+    "stats.feature3.title": "Kinerja Foto",
+    "stats.feature3.desc": "Pelajari foto mana yang paling berhasil",
+    "stats.cta": "Jelajahi Statistik",
+    "stats.statistics": "Statistik",
+    "stats.currentRating": "Peringkat Saat Ini",
+    "stats.comparisons": "Perbandingan",
+    "stats.wins": "Kemenangan",
+    "stats.rate": "Tingkat",
+    "stats.winRate": "Tingkat Kemenangan",
+    "stats.onFire": "Luar Biasa!",
+    "stats.dayStreak": "hari berturut-turut",
+    "stats.thisWeek": "Minggu Ini",
+    "stats.winRateLabel": "Tingkat Kemenangan",
+    
+    // Final CTA
+    "cta.title1": "Siap menemukan",
+    "cta.title2": "pasangan sempurna Anda?",
+    "cta.subtitle": "Bergabunglah dengan ribuan lajang yang telah menemukan cara yang lebih baik untuk berkencan. Unduh Ratch dan mulai membandingkan hari ini.",
+    "cta.downloadOn": "Unduh di",
+    "cta.appStore": "App Store",
+    "cta.trustedBy": "Dipercaya oleh ribuan lajang di seluruh dunia",
+    "cta.downloads": "Unduhan",
+    "cta.matchesMade": "Pertandingan Dibuat",
+    
+    // Footer
+    "footer.navigation": "Navigasi",
+    "footer.company": "Perusahaan",
+    "footer.legal": "Hukum",
+    "footer.contactUs": "Hubungi kami",
+    "footer.subscriptions": "Langganan",
+    "footer.userRights": "Hak Pengguna",
+    "footer.termsOfService": "Ketentuan Layanan",
+    "footer.privacyPolicy": "Kebijakan Privasi",
+    "footer.thirdPartyServices": "Layanan Pihak Ketiga",
+    "footer.compliance": "Kepatuhan",
+    "footer.qrCode": "Pindai kode QR untuk mendapatkan aplikasi Ratch",
+  },
+  zh: {
+    // Navigation
+    "nav.home": "首页",
+    "nav.date": "约会",
+    "nav.stats": "统计",
+    "nav.leaderboard": "排行榜",
+    "nav.pricing": "定价",
+    "nav.support": "支持",
+    
+    // Hero Section
+    "hero.badge": "新的约会方式",
+    "hero.title1": "约会，",
+    "hero.title2": "已决定。",
+    "hero.subtitle": "不再无休止地滑动。比较两个个人资料，选择您的偏好，让您的选择建立您完美的匹配池。",
+    "hero.download": "下载应用",
+    "hero.howItWorks": "工作原理",
+    "hero.leagues": "联盟",
+    "hero.rating": "评分",
+    "hero.scale": "规模",
+    "hero.tryIt": "试试",
+    "hero.tapToChoose": "点击选择您的偏好",
+    "hero.chosen": "已选择！",
+    "hero.scrollToExplore": "滚动探索",
+    
+    // How It Works
+    "howItWorks.badge": "工作原理",
+    "howItWorks.title1": "三步走向",
+    "howItWorks.title2": "更好的约会",
+    "howItWorks.subtitle": "我们独特的比较系统学习您的偏好，并将您与真正兼容的人匹配。",
+    "howItWorks.step1.title": "比较",
+    "howItWorks.step1.desc": "两个个人资料并排出现。无需无休止地滑动——只需选择您认为更有吸引力的人。",
+    "howItWorks.step2.title": "攀升",
+    "howItWorks.step2.desc": "每次选择都会更新ELO评分。赢得比较以在10个独特联盟中攀升。",
+    "howItWorks.step3.title": "连接",
+    "howItWorks.step3.desc": "与您联盟中的人匹配。质量胜过数量——找到您的真正匹配。",
+    "howItWorks.cta": "查看实际操作",
+    
+    // Compare Showcase
+    "compare.badge": "比较体验",
+    "compare.title1": "强制选择，",
+    "compare.title2": "更好的匹配",
+    "compare.subtitle": "不再无休止地滑动。我们一次向您展示两个个人资料——选择您认为更有吸引力的人。您的选择使用我们复杂的ELO评分系统塑造您的约会池。",
+    "compare.feature1.title": "两个个人资料，一个选择",
+    "compare.feature1.desc": "个人资料并排出现。点击您喜欢的那个。",
+    "compare.feature2.title": "ELO评分系统",
+    "compare.feature2.desc": "每次选择都会在0-10,000的范围内更新两个个人资料的评分。",
+    "compare.feature3.title": "即时反馈",
+    "compare.feature3.desc": "每次选择后查看评分变化。点击以显示确切的评分。",
+    "compare.round": "轮",
+    "compare.tapToChoose": "点击个人资料进行选择",
+    "compare.greatChoice": "好选择！",
+    "compare.ratingsRevealed": "评分已显示！下一轮即将开始...",
+    "compare.eloRating": "ELO评分",
+    
+    // League Preview
+    "league.badge": "联盟系统",
+    "league.title1": "攀升",
+    "league.title2": "排名",
+    "league.subtitle": "与全球用户竞争。根据您的ELO评分在10个独特联盟中攀升，并查看您在全球排行榜上的位置。",
+    "league.leagues": "联盟",
+    "league.global": "全球",
+    "league.updates": "更新",
+    "league.cta": "查看完整排行榜",
+    "league.tip": "提示：",
+    "league.tipText": "赢得更多比较以攀升联盟！",
+    "league.elo": "ELO",
+    "league.you": "您",
+    
+    // Stats Teaser
+    "stats.badge": "详细分析",
+    "stats.title1": "了解您的",
+    "stats.title2": "价值",
+    "stats.subtitle": "基于数据的约会表现洞察。跟踪您的评分趋势，分析您的胜利，并了解是什么让您脱颖而出。",
+    "stats.feature1.title": "评分历史",
+    "stats.feature1.desc": "跟踪您的ELO随时间的变化",
+    "stats.feature2.title": "胜率分析",
+    "stats.feature2.desc": "查看您的表现细分",
+    "stats.feature3.title": "照片表现",
+    "stats.feature3.desc": "了解哪些照片效果最好",
+    "stats.cta": "探索统计",
+    "stats.statistics": "统计",
+    "stats.currentRating": "当前评分",
+    "stats.comparisons": "比较",
+    "stats.wins": "胜利",
+    "stats.rate": "比率",
+    "stats.winRate": "胜率",
+    "stats.onFire": "火热！",
+    "stats.dayStreak": "天连胜",
+    "stats.thisWeek": "本周",
+    "stats.winRateLabel": "胜率",
+    
+    // Final CTA
+    "cta.title1": "准备好找到您的",
+    "cta.title2": "完美匹配了吗？",
+    "cta.subtitle": "加入数千名单身人士，他们发现了更好的约会方式。立即下载Ratch并开始比较。",
+    "cta.downloadOn": "在",
+    "cta.appStore": "App Store下载",
+    "cta.trustedBy": "受到全球数千名单身人士的信任",
+    "cta.downloads": "下载量",
+    "cta.matchesMade": "已匹配",
+    
+    // Footer
+    "footer.navigation": "导航",
+    "footer.company": "公司",
+    "footer.legal": "法律",
+    "footer.contactUs": "联系我们",
+    "footer.subscriptions": "订阅",
+    "footer.userRights": "用户权利",
+    "footer.termsOfService": "服务条款",
+    "footer.privacyPolicy": "隐私政策",
+    "footer.thirdPartyServices": "第三方服务",
+    "footer.compliance": "合规",
+    "footer.qrCode": "扫描二维码获取Ratch应用",
+  },
+  fr: {
+    // Navigation
+    "nav.home": "Accueil",
+    "nav.date": "Rendez-vous",
+    "nav.stats": "Statistiques",
+    "nav.leaderboard": "Classement",
+    "nav.pricing": "Tarifs",
+    "nav.support": "Support",
+    
+    // Hero Section
+    "hero.badge": "Une nouvelle façon de sortir",
+    "hero.title1": "Rencontres,",
+    "hero.title2": "Décidées.",
+    "hero.subtitle": "Fini le balayage sans fin. Comparez deux profils, choisissez votre préférence et laissez vos choix construire votre pool de correspondances parfait.",
+    "hero.download": "Télécharger l'application",
+    "hero.howItWorks": "Comment ça marche",
+    "hero.leagues": "Ligues",
+    "hero.rating": "Note",
+    "hero.scale": "Échelle",
+    "hero.tryIt": "Essayez",
+    "hero.tapToChoose": "Appuyez pour choisir votre préférence",
+    "hero.chosen": "choisi !",
+    "hero.scrollToExplore": "Faites défiler pour explorer",
+    
+    // How It Works
+    "howItWorks.badge": "Comment ça marche",
+    "howItWorks.title1": "Trois étapes vers",
+    "howItWorks.title2": "de meilleures rencontres",
+    "howItWorks.subtitle": "Notre système de comparaison unique apprend vos préférences et vous met en relation avec des personnes vraiment compatibles.",
+    "howItWorks.step1.title": "Comparer",
+    "howItWorks.step1.desc": "Deux profils apparaissent côte à côte. Pas de balayage sans fin – choisissez simplement celui que vous trouvez le plus attirant.",
+    "howItWorks.step2.title": "Grimper",
+    "howItWorks.step2.desc": "Chaque choix met à jour les notes ELO. Gagnez des comparaisons pour monter dans 10 ligues uniques.",
+    "howItWorks.step3.title": "Se connecter",
+    "howItWorks.step3.desc": "Rencontrez des personnes de votre ligue. La qualité plutôt que la quantité – trouvez votre vraie correspondance.",
+    "howItWorks.cta": "Voir en action",
+    
+    // Compare Showcase
+    "compare.badge": "L'expérience de comparaison",
+    "compare.title1": "Choix forcés,",
+    "compare.title2": "meilleures correspondances",
+    "compare.subtitle": "Fini le balayage sans fin. Nous vous montrons deux profils à la fois — choisissez celui que vous trouvez le plus attirant. Vos choix façonnent votre pool de rencontres en utilisant notre système de notation ELO sophistiqué.",
+    "compare.feature1.title": "Deux profils, un choix",
+    "compare.feature1.desc": "Les profils apparaissent côte à côte. Appuyez sur celui que vous préférez.",
+    "compare.feature2.title": "Système de notation ELO",
+    "compare.feature2.desc": "Chaque choix met à jour les notes des deux profils sur une échelle de 0 à 10 000.",
+    "compare.feature3.title": "Retour instantané",
+    "compare.feature3.desc": "Voyez les changements de note après chaque choix. Appuyez pour révéler les notes exactes.",
+    "compare.round": "Tour",
+    "compare.tapToChoose": "Appuyez sur un profil pour choisir",
+    "compare.greatChoice": "Excellent choix !",
+    "compare.ratingsRevealed": "Notes révélées ! Prochain tour à venir...",
+    "compare.eloRating": "Note ELO",
+    
+    // League Preview
+    "league.badge": "Système de ligue",
+    "league.title1": "Grimpez les",
+    "league.title2": "classements",
+    "league.subtitle": "Rivalisez avec des utilisateurs du monde entier. Montez dans 10 ligues uniques basées sur votre note ELO et voyez où vous vous situez sur le classement mondial.",
+    "league.leagues": "Ligues",
+    "league.global": "Mondial",
+    "league.updates": "Mises à jour",
+    "league.cta": "Voir le classement complet",
+    "league.tip": "Astuce :",
+    "league.tipText": "Gagnez plus de comparaisons pour monter dans les ligues !",
+    "league.elo": "ELO",
+    "league.you": "VOUS",
+    
+    // Stats Teaser
+    "stats.badge": "Analyses détaillées",
+    "stats.title1": "Connaissez votre",
+    "stats.title2": "valeur",
+    "stats.subtitle": "Des informations basées sur les données concernant vos performances de rencontres. Suivez vos tendances de notation, analysez vos victoires et comprenez ce qui vous distingue.",
+    "stats.feature1.title": "Historique des notes",
+    "stats.feature1.desc": "Suivez votre ELO dans le temps",
+    "stats.feature2.title": "Analyse du taux de victoire",
+    "stats.feature2.desc": "Voyez la répartition de vos performances",
+    "stats.feature3.title": "Performance des photos",
+    "stats.feature3.desc": "Découvrez quelles photos fonctionnent le mieux",
+    "stats.cta": "Explorer les statistiques",
+    "stats.statistics": "Statistiques",
+    "stats.currentRating": "Note actuelle",
+    "stats.comparisons": "Comparaisons",
+    "stats.wins": "Victoires",
+    "stats.rate": "Taux",
+    "stats.winRate": "Taux de victoire",
+    "stats.onFire": "En feu !",
+    "stats.dayStreak": "jours consécutifs",
+    "stats.thisWeek": "Cette semaine",
+    "stats.winRateLabel": "Taux de victoire",
+    
+    // Final CTA
+    "cta.title1": "Prêt à trouver votre",
+    "cta.title2": "correspondance parfaite ?",
+    "cta.subtitle": "Rejoignez des milliers de célibataires qui ont découvert une meilleure façon de sortir. Téléchargez Ratch et commencez à comparer dès aujourd'hui.",
+    "cta.downloadOn": "Télécharger sur",
+    "cta.appStore": "App Store",
+    "cta.trustedBy": "Fait confiance par des milliers de célibataires dans le monde",
+    "cta.downloads": "Téléchargements",
+    "cta.matchesMade": "Correspondances créées",
+    
+    // Footer
+    "footer.navigation": "Navigation",
+    "footer.company": "Entreprise",
+    "footer.legal": "Légal",
+    "footer.contactUs": "Nous contacter",
+    "footer.subscriptions": "Abonnements",
+    "footer.userRights": "Droits des utilisateurs",
+    "footer.termsOfService": "Conditions d'utilisation",
+    "footer.privacyPolicy": "Politique de confidentialité",
+    "footer.thirdPartyServices": "Services tiers",
+    "footer.compliance": "Conformité",
+    "footer.qrCode": "Scannez le code QR pour obtenir l'application Ratch",
+  },
+};
+
+export function LanguageProvider({ children }: { children: ReactNode }) {
+  const [language, setLanguageState] = useState<Language>("en");
+
+  useEffect(() => {
+    // Load language from localStorage on mount
+    const savedLanguage = localStorage.getItem("language") as Language;
+    if (savedLanguage && ["en", "id", "zh", "fr"].includes(savedLanguage)) {
+      setLanguageState(savedLanguage);
+      // Update HTML lang attribute
+      if (typeof document !== "undefined") {
+        document.documentElement.lang = savedLanguage;
+      }
+    } else {
+      // Set default language
+      if (typeof document !== "undefined") {
+        document.documentElement.lang = "en";
+      }
+    }
+  }, []);
+
+  useEffect(() => {
+    // Update HTML lang attribute whenever language changes
+    if (typeof document !== "undefined") {
+      document.documentElement.lang = language;
+    }
+  }, [language]);
+
+  const setLanguage = (lang: Language) => {
+    setLanguageState(lang);
+    localStorage.setItem("language", lang);
+  };
+
+  const t = (key: string): string => {
+    return translations[language]?.[key] || key;
+  };
+
+  return (
+    <LanguageContext.Provider value={{ language, setLanguage, t }}>
+      {children}
+    </LanguageContext.Provider>
+  );
+}
+
+export function useLanguage() {
+  const context = useContext(LanguageContext);
+  if (context === undefined) {
+    throw new Error("useLanguage must be used within a LanguageProvider");
+  }
+  return context;
+}

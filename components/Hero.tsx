@@ -1,7 +1,9 @@
 "use client";
 
-import { motion } from "framer-motion";
-import { useEffect, useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
+import { useState } from "react";
+import Image from "next/image";
+import { useLanguage } from "@/contexts/LanguageContext";
 
 type ProfileCard = {
   name: string;
@@ -9,6 +11,8 @@ type ProfileCard = {
   color: string;
   gradientFrom: string;
   gradientTo: string;
+  image: string;
+  elo: string;
 };
 
 const profiles: ProfileCard[] = [
@@ -17,14 +21,18 @@ const profiles: ProfileCard[] = [
     age: 26, 
     color: "#FFB6C1",
     gradientFrom: "#FFB6C1",
-    gradientTo: "#FF8FA3"
+    gradientTo: "#FF8FA3",
+    image: "/person1.png",
+    elo: "7865"
   },
   { 
-    name: "Marcus", 
+    name: "Emma", 
     age: 29, 
     color: "#87CEEB",
     gradientFrom: "#87CEEB",
-    gradientTo: "#5BA3D9"
+    gradientTo: "#5BA3D9",
+    image: "/person2.png",
+    elo: "7925"
   },
 ];
 
@@ -32,15 +40,25 @@ const FloatingCard = ({
   profile, 
   position,
   isSelected,
+  isUnselected,
+  onClick,
   delay = 0 
 }: { 
   profile: ProfileCard;
   position: "top" | "bottom";
   isSelected: boolean;
+  isUnselected: boolean;
+  onClick: () => void;
   delay?: number;
 }) => {
   const yOffset = position === "top" ? -20 : 20;
   const rotation = position === "top" ? -6 : 6;
+  
+  const getScale = () => {
+    if (isSelected) return 1.02;
+    if (isUnselected) return 0.98;
+    return 1;
+  };
   
   return (
     <motion.div
@@ -49,34 +67,44 @@ const FloatingCard = ({
         opacity: 1, 
         y: yOffset, 
         rotate: rotation,
-        scale: isSelected ? 1.05 : 1,
+        scale: getScale(),
       }}
       transition={{ 
         duration: 0.8, 
-        delay,
+        delay: isSelected || isUnselected ? 0 : delay,
         type: "spring",
         stiffness: 100,
         damping: 15
       }}
-      className="relative"
+      onClick={onClick}
+      className="relative cursor-pointer gpu-accelerated"
     >
-      <motion.div
-        animate={{ y: [0, -8, 0] }}
-        transition={{ 
-          duration: 4, 
-          repeat: Infinity, 
-          ease: "easeInOut",
-          delay: position === "top" ? 0 : 2
+      {/* Use CSS animation for continuous float - better mobile performance */}
+      <div
+        className="relative animate-float"
+        style={{ 
+          animationDelay: position === "top" ? "0s" : "2s",
         }}
-        className="relative"
       >
         {/* Card */}
         <div 
-          className={`relative w-[180px] md:w-[200px] lg:w-[220px] aspect-[3/4] rounded-3xl overflow-hidden card-shadow-xl transition-all duration-300 ${isSelected ? 'ring-4 ring-white/50' : ''}`}
+          className={`relative w-[180px] md:w-[200px] lg:w-[220px] aspect-[3/4] rounded-3xl overflow-hidden card-shadow-xl transition-all duration-500 ${isSelected ? 'ring-4 ring-green-500' : ''}`}
           style={{ 
             background: `linear-gradient(135deg, ${profile.gradientFrom} 0%, ${profile.gradientTo} 100%)`,
+            filter: isUnselected ? 'grayscale(100%)' : 'none',
           }}
         >
+          {/* Profile Image */}
+          <div className="absolute inset-0">
+            <Image
+              src={profile.image}
+              alt={profile.name}
+              fill
+              className={`object-cover transition-all duration-500 ${isUnselected ? 'grayscale' : ''}`}
+              priority
+            />
+          </div>
+          
           {/* Overlay gradient */}
           <div
             className="absolute inset-0"
@@ -105,56 +133,56 @@ const FloatingCard = ({
             </div>
           </div>
 
-          {/* Selection indicator */}
-          {isSelected && (
-            <motion.div
-              initial={{ scale: 0 }}
-              animate={{ scale: 1 }}
-              className="absolute top-4 right-4 w-10 h-10 rounded-full bg-white flex items-center justify-center"
-            >
-              <svg className="w-6 h-6 text-green-500" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={3}>
-                <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
-              </svg>
-            </motion.div>
-          )}
+          {/* Tap indicator - only show when not selected - Using CSS animation */}
+          <AnimatePresence>
+            {!isSelected && !isUnselected && (
+              <motion.div
+                initial={{ opacity: 1 }}
+                exit={{ opacity: 0 }}
+                className="absolute top-4 right-4 w-8 h-8 rounded-full bg-white/20 backdrop-blur-sm flex items-center justify-center animate-pulse gpu-accelerated"
+                style={{ animationDuration: "2s" }}
+              >
+                <svg className="w-4 h-4 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M15 15l-2 5L9 9l11 4-5 2zm0 0l5 5M7.188 2.239l.777 2.897M5.136 7.965l-2.898-.777M13.95 4.05l-2.122 2.122m-5.657 5.656l-2.12 2.122" />
+                </svg>
+              </motion.div>
+            )}
+          </AnimatePresence>
+
+          {/* ELO Pill - shows after selection, centered in middle */}
+          <AnimatePresence>
+            {(isSelected || isUnselected) && (
+              <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
+                <motion.div
+                  initial={{ opacity: 0, scale: 0.5 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  transition={{ duration: 0.3, delay: 0.2 }}
+                  className={`px-4 py-1.5 rounded-full font-bold text-sm shadow-lg ${
+                    isSelected 
+                      ? 'bg-green-500 text-white' 
+                      : 'bg-gray-400 text-white'
+                  }`}
+                >
+                  {profile.elo}
+                </motion.div>
+              </div>
+            )}
+          </AnimatePresence>
         </div>
-      </motion.div>
+      </div>
     </motion.div>
   );
 };
 
 export default function Hero() {
+  const { t } = useLanguage();
   const [selectedIndex, setSelectedIndex] = useState<number | null>(null);
-  const [showSelection, setShowSelection] = useState(false);
 
-  // Auto-demo the selection
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setShowSelection(false);
-      setSelectedIndex(null);
-      
-      setTimeout(() => {
-        setSelectedIndex(0);
-        setShowSelection(true);
-      }, 2000);
-      
-      setTimeout(() => {
-        setShowSelection(false);
-        setSelectedIndex(null);
-      }, 4000);
-    }, 6000);
-
-    // Initial animation
-    const initialTimeout = setTimeout(() => {
-      setSelectedIndex(0);
-      setShowSelection(true);
-    }, 2500);
-
-    return () => {
-      clearInterval(interval);
-      clearTimeout(initialTimeout);
-    };
-  }, []);
+  const handleSelect = (index: number) => {
+    if (selectedIndex === null) {
+      setSelectedIndex(index);
+    }
+  };
 
   return (
     <section 
@@ -163,36 +191,23 @@ export default function Hero() {
         backgroundColor: "var(--ratch-cream)",
       }}
     >
-      {/* Animated gradient blobs */}
+      {/* Animated gradient blobs - Using CSS animations for better mobile performance */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        <motion.div
-          className="absolute blob w-[600px] h-[600px] -top-48 -right-48 opacity-40"
+        <div
+          className="absolute blob animate-blob w-[600px] h-[600px] -top-48 -right-48 opacity-40"
           style={{ background: "linear-gradient(135deg, #FFB347 0%, #FF6B6B 100%)" }}
-          animate={{ 
-            x: [0, 30, 0],
-            y: [0, -50, 0],
-            scale: [1, 1.1, 1]
-          }}
-          transition={{ duration: 20, repeat: Infinity, ease: "easeInOut" }}
         />
-        <motion.div
-          className="absolute blob w-[500px] h-[500px] -bottom-32 -left-32 opacity-30"
+        <div
+          className="absolute blob animate-blob-reverse w-[500px] h-[500px] -bottom-32 -left-32 opacity-30"
           style={{ background: "linear-gradient(135deg, #FF8FA3 0%, #FFB347 100%)" }}
-          animate={{ 
-            x: [0, -30, 0],
-            y: [0, 30, 0],
-            scale: [1, 0.95, 1]
-          }}
-          transition={{ duration: 25, repeat: Infinity, ease: "easeInOut" }}
         />
-        <motion.div
-          className="absolute blob-sm w-[300px] h-[300px] top-1/3 left-1/4 opacity-20"
-          style={{ background: "linear-gradient(135deg, #FFD700 0%, #FF69B4 100%)" }}
-          animate={{ 
-            x: [0, 40, 0],
-            y: [0, -20, 0],
+        <div
+          className="absolute blob-sm animate-blob w-[300px] h-[300px] top-1/3 left-1/4 opacity-20"
+          style={{ 
+            background: "linear-gradient(135deg, #FFD700 0%, #FF69B4 100%)",
+            animationDuration: "15s",
+            animationDelay: "5s"
           }}
-          transition={{ duration: 15, repeat: Infinity, ease: "easeInOut" }}
         />
       </div>
 
@@ -215,7 +230,7 @@ export default function Hero() {
               style={{ backgroundColor: "rgba(255, 107, 107, 0.1)" }}
             >
               <span className="w-2 h-2 rounded-full bg-[#FF6B6B] animate-pulse" />
-              <span className="text-sm font-medium text-[#FF6B6B]">A new way to date</span>
+              <span className="text-sm font-medium text-[#FF6B6B]">{t("hero.badge")}</span>
             </motion.div>
 
             {/* Main heading */}
@@ -225,9 +240,9 @@ export default function Hero() {
               transition={{ delay: 0.5, duration: 0.8 }}
               className="text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-bold leading-[0.95] tracking-tight"
             >
-              <span className="text-gradient">Dating,</span>
+              <span className="text-gradient">{t("hero.title1")}</span>
               <br />
-              <span className="text-[var(--ratch-black)]">Decided.</span>
+              <span className="text-[var(--ratch-black)]">{t("hero.title2")}</span>
             </motion.h1>
 
             {/* Subheading */}
@@ -237,8 +252,7 @@ export default function Hero() {
               transition={{ delay: 0.7 }}
               className="mt-6 text-lg lg:text-xl text-[var(--ratch-gray)] max-w-md mx-auto lg:mx-0"
             >
-              No more endless swiping. Compare two profiles, pick your preference, 
-              and let your choices build your perfect match pool.
+              {t("hero.subtitle")}
             </motion.p>
 
             {/* CTAs */}
@@ -254,7 +268,7 @@ export default function Hero() {
                 whileTap={{ scale: 0.98 }}
                 className="px-8 py-4 bg-[var(--ratch-black)] text-white rounded-full font-medium text-lg btn-glow"
               >
-                Download App
+                {t("hero.download")}
               </motion.a>
               <motion.a
                 href="#how-it-works"
@@ -262,7 +276,7 @@ export default function Hero() {
                 whileTap={{ scale: 0.98 }}
                 className="px-8 py-4 border-2 border-[var(--ratch-black)] text-[var(--ratch-black)] rounded-full font-medium text-lg hover:bg-[var(--ratch-black)] hover:text-white transition-colors"
               >
-                How It Works
+                {t("hero.howItWorks")}
               </motion.a>
             </motion.div>
 
@@ -275,17 +289,17 @@ export default function Hero() {
             >
               <div>
                 <p className="text-2xl lg:text-3xl font-bold text-[var(--ratch-black)]">10</p>
-                <p className="text-sm text-[var(--ratch-gray)]">Leagues</p>
+                <p className="text-sm text-[var(--ratch-gray)]">{t("hero.leagues")}</p>
               </div>
               <div className="w-px bg-gray-200" />
               <div>
                 <p className="text-2xl lg:text-3xl font-bold text-[var(--ratch-black)]">ELO</p>
-                <p className="text-sm text-[var(--ratch-gray)]">Rating</p>
+                <p className="text-sm text-[var(--ratch-gray)]">{t("hero.rating")}</p>
               </div>
               <div className="w-px bg-gray-200" />
               <div>
                 <p className="text-2xl lg:text-3xl font-bold text-[var(--ratch-black)]">0-10K</p>
-                <p className="text-sm text-[var(--ratch-gray)]">Scale</p>
+                <p className="text-sm text-[var(--ratch-gray)]">{t("hero.scale")}</p>
               </div>
             </motion.div>
           </motion.div>
@@ -297,11 +311,54 @@ export default function Hero() {
             transition={{ duration: 0.8, delay: 0.4 }}
             className="relative flex flex-col items-center gap-4"
           >
+            {/* Squiggly arrow pointing at the cards - only show when not selected */}
+            <AnimatePresence>
+              {selectedIndex === null && (
+                <motion.div
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  exit={{ opacity: 0 }}
+                  transition={{ duration: 0.5, delay: 1 }}
+                  className="absolute -left-28 lg:-left-36 top-1/2 -translate-y-1/2 z-20"
+                >
+                  <div className="flex items-end gap-1 animate-float gpu-accelerated" style={{ animationDuration: "1.5s" }}>
+                    <p className="text-gray-400 text-sm font-medium italic mb-6">{t("hero.tryIt")}</p>
+                    {/* Squiggly arrow SVG */}
+                    <svg 
+                      width="60" 
+                      height="50" 
+                      viewBox="0 0 60 50" 
+                      fill="none" 
+                      className="text-gray-400"
+                    >
+                      <path 
+                        d="M5 25 C10 15, 15 35, 20 25 C25 15, 30 35, 35 25 C40 15, 45 30, 50 25" 
+                        stroke="currentColor" 
+                        strokeWidth="2" 
+                        strokeLinecap="round"
+                        fill="none"
+                      />
+                      <path 
+                        d="M45 20 L52 25 L45 30" 
+                        stroke="currentColor" 
+                        strokeWidth="2" 
+                        strokeLinecap="round" 
+                        strokeLinejoin="round"
+                        fill="none"
+                      />
+                    </svg>
+                  </div>
+                </motion.div>
+              )}
+            </AnimatePresence>
+
             {/* Top Card */}
             <FloatingCard 
               profile={profiles[0]} 
               position="top"
-              isSelected={showSelection && selectedIndex === 0}
+              isSelected={selectedIndex === 0}
+              isUnselected={selectedIndex === 1}
+              onClick={() => handleSelect(0)}
               delay={0.6}
             />
             
@@ -324,40 +381,53 @@ export default function Hero() {
             <FloatingCard 
               profile={profiles[1]} 
               position="bottom"
-              isSelected={showSelection && selectedIndex === 1}
+              isSelected={selectedIndex === 1}
+              isUnselected={selectedIndex === 0}
+              onClick={() => handleSelect(1)}
               delay={0.8}
             />
 
             {/* Tap hint */}
-            <motion.p
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ delay: 1.5 }}
-              className="text-sm text-[var(--ratch-gray)] mt-4"
-            >
-              Tap to choose your preference
-            </motion.p>
+            <AnimatePresence mode="wait">
+              {selectedIndex === null ? (
+                <motion.p
+                  key="hint"
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  exit={{ opacity: 0 }}
+                  transition={{ delay: 1.5 }}
+                  className="text-sm text-[var(--ratch-gray)] mt-4"
+                >
+                  {t("hero.tapToChoose")}
+                </motion.p>
+              ) : (
+                <motion.p
+                  key="chosen"
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  className="text-sm text-green-600 font-medium mt-4"
+                >
+                  {profiles[selectedIndex].name} {t("hero.chosen")}
+                </motion.p>
+              )}
+            </AnimatePresence>
           </motion.div>
         </div>
       </div>
 
-      {/* Scroll indicator */}
+      {/* Scroll indicator - Using CSS animation */}
       <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ delay: 2 }}
         className="absolute bottom-32 left-1/2 -translate-x-1/2 z-10"
       >
-        <motion.div
-          animate={{ y: [0, 8, 0] }}
-          transition={{ duration: 2, repeat: Infinity }}
-          className="flex flex-col items-center gap-2"
-        >
-          <span className="text-xs text-[var(--ratch-gray)]">Scroll to explore</span>
+        <div className="flex flex-col items-center gap-2 animate-float gpu-accelerated">
+          <span className="text-xs text-[var(--ratch-gray)]">{t("hero.scrollToExplore")}</span>
           <svg className="w-5 h-5 text-[var(--ratch-gray)]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 14l-7 7m0 0l-7-7m7 7V3" />
           </svg>
-        </motion.div>
+        </div>
       </motion.div>
 
       {/* Curved wave transition to next section */}
