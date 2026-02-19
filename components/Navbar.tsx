@@ -17,7 +17,6 @@ const navLinks = [
   { key: "nav.home", href: "/" },
   { key: "nav.date", href: "/date" },
   { key: "nav.stats", href: "/stats" },
-  { key: "nav.leaderboard", href: "/leaderboard" },
   { key: "nav.pricing", href: "/pricing" },
   { key: "nav.support", href: "/support" },
 ];

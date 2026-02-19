@@ -10,7 +10,6 @@ const getFooterLinks = (t: (key: string) => string) => ({
     { name: t("nav.home"), href: "/" },
     { name: t("nav.date"), href: "/date" },
     { name: t("nav.stats"), href: "/stats" },
-    { name: t("nav.leaderboard"), href: "/leaderboard" },
     { name: t("nav.support"), href: "/support" },
   ],
   company: [

@@ -165,7 +165,7 @@ export default function DateHero() {
               className="inline-block px-4 py-2 rounded-full text-sm font-medium mb-6"
               style={{ backgroundColor: "#FFC629", color: "#1A1A1A" }}
             >
-              MeetMatch Dating
+              Ratch Dating
             </motion.span>
             
             <h1 className="text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold text-bumble-black leading-[1.1]">

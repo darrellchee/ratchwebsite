@@ -1,13 +1,21 @@
 "use client";
 
 import { motion } from "framer-motion";
+import type { BillingPeriod } from "@/app/pricing/page";
 
 interface PricingHeroProps {
-  isAnnual: boolean;
-  setIsAnnual: (value: boolean) => void;
+  period: BillingPeriod;
+  setPeriod: (value: BillingPeriod) => void;
 }
 
-export default function PricingHero({ isAnnual, setIsAnnual }: PricingHeroProps) {
+const PERIODS: { value: BillingPeriod; label: string; badge?: string }[] = [
+  { value: "weekly", label: "Weekly" },
+  { value: "monthly", label: "Monthly" },
+  { value: "quarterly", label: "Quarterly" },
+  { value: "annually", label: "Annually", badge: "Best value" },
+];
+
+export default function PricingHero({ period, setPeriod }: PricingHeroProps) {
   return (
     <section className="relative pt-32 pb-16 lg:pt-40 lg:pb-20 overflow-hidden">
       {/* Animated background blobs */}
@@ -65,37 +73,32 @@ export default function PricingHero({ isAnnual, setIsAnnual }: PricingHeroProps)
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.4 }}
-            className="mt-10 inline-flex items-center gap-4 p-1.5 rounded-full bg-white border border-gray-200 shadow-sm"
+            className="mt-10 flex flex-wrap justify-center gap-2 p-1.5 rounded-full bg-white border border-gray-200 shadow-sm max-w-lg mx-auto"
           >
-            <button
-              onClick={() => setIsAnnual(false)}
-              className={`px-6 py-2.5 rounded-full text-sm font-medium transition-all duration-300 ${
-                !isAnnual
-                  ? "bg-[var(--ratch-black)] text-white"
-                  : "text-[var(--ratch-gray)] hover:text-[var(--ratch-black)]"
-              }`}
-            >
-              Monthly
-            </button>
-            <button
-              onClick={() => setIsAnnual(true)}
-              className={`px-6 py-2.5 rounded-full text-sm font-medium transition-all duration-300 flex items-center gap-2 ${
-                isAnnual
-                  ? "bg-[var(--ratch-black)] text-white"
-                  : "text-[var(--ratch-gray)] hover:text-[var(--ratch-black)]"
-              }`}
-            >
-              Annual
-              <span 
-                className="px-2 py-0.5 rounded-full text-xs font-semibold"
-                style={{ 
-                  background: isAnnual ? "var(--ratch-gold)" : "var(--ratch-light-gray)",
-                  color: "var(--ratch-black)"
-                }}
+            {PERIODS.map(({ value, label, badge }) => (
+              <button
+                key={value}
+                onClick={() => setPeriod(value)}
+                className={`px-4 py-2 rounded-full text-sm font-medium transition-all duration-300 flex items-center gap-1.5 ${
+                  period === value
+                    ? "bg-[var(--ratch-black)] text-white"
+                    : "text-[var(--ratch-gray)] hover:text-[var(--ratch-black)]"
+                }`}
               >
-                Save 20%
-              </span>
-            </button>
+                {label}
+                {badge && (
+                  <span
+                    className="px-2 py-0.5 rounded-full text-xs font-semibold"
+                    style={{
+                      background: period === value ? "var(--ratch-gold)" : "var(--ratch-light-gray)",
+                      color: "var(--ratch-black)",
+                    }}
+                  >
+                    {badge}
+                  </span>
+                )}
+              </button>
+            ))}
           </motion.div>
         </motion.div>
       </div>

@@ -149,7 +149,7 @@ const FloatingCard = ({
             )}
           </AnimatePresence>
 
-          {/* ELO Pill - shows after selection, centered in middle */}
+          {/* Higher/Lower Pill - shows after selection, centered in middle */}
           <AnimatePresence>
             {(isSelected || isUnselected) && (
               <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
@@ -158,12 +158,14 @@ const FloatingCard = ({
                   animate={{ opacity: 1, scale: 1 }}
                   transition={{ duration: 0.3, delay: 0.2 }}
                   className={`px-4 py-1.5 rounded-full font-bold text-sm shadow-lg ${
-                    isSelected 
-                      ? 'bg-green-500 text-white' 
-                      : 'bg-gray-400 text-white'
+                    isSelected
+                      ? position === "top"
+                        ? "bg-green-500 text-white"
+                        : "bg-red-500 text-white"
+                      : "bg-gray-400 text-white"
                   }`}
                 >
-                  {profile.elo}
+                  {position === "top" ? "higher" : "lower"}
                 </motion.div>
               </div>
             )}

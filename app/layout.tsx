@@ -5,7 +5,7 @@ import { LanguageProvider } from "@/contexts/LanguageContext";
 
 export const metadata: Metadata = {
   title: "Ratch",
-  description: "Ratch - Rate and match with people. Compare profiles, track your stats, and climb the leaderboard.",
+  description: "Ratch - Match with people. Compare profiles and track your stats.",
   keywords: ["dating app", "ratch", "relationships", "dating", "rating", "matching"],
   authors: [{ name: "Ratch" }],
   icons: {
@@ -15,7 +15,7 @@ export const metadata: Metadata = {
   },
   openGraph: {
     title: "Ratch",
-    description: "Ratch - Rate and match with people. Compare profiles, track your stats, and climb the leaderboard.",
+    description: "Ratch - Match with people. Compare profiles and track your stats.",
     type: "website",
     locale: "en_US",
     siteName: "Ratch",
@@ -23,7 +23,7 @@ export const metadata: Metadata = {
   twitter: {
     card: "summary_large_image",
     title: "Ratch",
-    description: "Ratch - Rate and match with people. Compare profiles, track your stats, and climb the leaderboard.",
+    description: "Ratch - Match with people. Compare profiles and track your stats.",
   },
   robots: {
     index: true,

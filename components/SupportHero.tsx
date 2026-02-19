@@ -69,7 +69,7 @@ export default function SupportHero() {
             Support & Legal
           </h1>
           <p className="text-lg text-bumble-gray max-w-2xl mx-auto">
-            Everything you need to know about using MeetMatch. Find answers to common questions, 
+            Everything you need to know about using Ratch. Find answers to common questions, 
             understand our policies, and get in touch with our support team.
           </p>
           <p className="mt-4 text-sm text-bumble-gray">

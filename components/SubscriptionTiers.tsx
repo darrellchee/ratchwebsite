@@ -23,7 +23,7 @@ const features: TierFeature[] = [
 const tiers = [
   {
     name: "Free",
-    price: "$0",
+    price: "A$0",
     period: "forever",
     description: "Get started with the basics",
     highlighted: false,
@@ -31,7 +31,7 @@ const tiers = [
   },
   {
     name: "Plus",
-    price: "$9.99",
+    price: "A$9.99",
     period: "/month",
     description: "More features, more matches",
     highlighted: false,
@@ -39,7 +39,7 @@ const tiers = [
   },
   {
     name: "Pro",
-    price: "$19.99",
+    price: "A$15.99",
     period: "/month",
     description: "Unlock your full potential",
     highlighted: true,
@@ -47,7 +47,7 @@ const tiers = [
   },
   {
     name: "Ultra",
-    price: "$29.99",
+    price: "A$21.99",
     period: "/month",
     description: "The ultimate dating experience",
     highlighted: false,

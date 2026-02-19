@@ -18,7 +18,6 @@ const translations: Record<Language, Record<string, string>> = {
     "nav.home": "Home",
     "nav.date": "Date",
     "nav.stats": "Stats",
-    "nav.leaderboard": "Leaderboard",
     "nav.pricing": "Pricing",
     "nav.support": "Support",
     
@@ -44,10 +43,10 @@ const translations: Record<Language, Record<string, string>> = {
     "howItWorks.subtitle": "Our unique comparison system learns your preferences and matches you with people who are truly compatible.",
     "howItWorks.step1.title": "Compare",
     "howItWorks.step1.desc": "Two profiles appear side by side. No endless swiping – just pick the one you find more attractive.",
-    "howItWorks.step2.title": "Climb",
-    "howItWorks.step2.desc": "Every choice updates ELO ratings. Win comparisons to rise through 10 unique leagues.",
+    "howItWorks.step2.title": "Rate",
+    "howItWorks.step2.desc": "Every choice updates ELO ratings. Your preferences shape your match pool.",
     "howItWorks.step3.title": "Connect",
-    "howItWorks.step3.desc": "Match with people in your league. Quality over quantity – find your true match.",
+    "howItWorks.step3.desc": "Match with people at your level. Quality over quantity – find your true match.",
     "howItWorks.cta": "See it in action",
     
     // Compare Showcase
@@ -66,20 +65,6 @@ const translations: Record<Language, Record<string, string>> = {
     "compare.greatChoice": "Great choice!",
     "compare.ratingsRevealed": "Ratings revealed! Next round coming...",
     "compare.eloRating": "ELO Rating",
-    
-    // League Preview
-    "league.badge": "League System",
-    "league.title1": "Climb the",
-    "league.title2": "ranks",
-    "league.subtitle": "Compete with users worldwide. Rise through 10 unique leagues based on your ELO rating and see where you stand on the global leaderboard.",
-    "league.leagues": "Leagues",
-    "league.global": "Global",
-    "league.updates": "Updates",
-    "league.cta": "View Full Leaderboard",
-    "league.tip": "Tip:",
-    "league.tipText": "Win more comparisons to climb leagues!",
-    "league.elo": "ELO",
-    "league.you": "YOU",
     
     // Stats Teaser
     "stats.badge": "Detailed Analytics",
@@ -132,7 +117,6 @@ const translations: Record<Language, Record<string, string>> = {
     "nav.home": "Beranda",
     "nav.date": "Kencan",
     "nav.stats": "Statistik",
-    "nav.leaderboard": "Papan Peringkat",
     "nav.pricing": "Harga",
     "nav.support": "Dukungan",
     
@@ -158,10 +142,10 @@ const translations: Record<Language, Record<string, string>> = {
     "howItWorks.subtitle": "Sistem perbandingan unik kami mempelajari preferensi Anda dan mencocokkan Anda dengan orang yang benar-benar cocok.",
     "howItWorks.step1.title": "Bandingkan",
     "howItWorks.step1.desc": "Dua profil muncul berdampingan. Tidak ada gesekan tanpa akhir – cukup pilih yang Anda anggap lebih menarik.",
-    "howItWorks.step2.title": "Naik",
-    "howItWorks.step2.desc": "Setiap pilihan memperbarui peringkat ELO. Menangkan perbandingan untuk naik melalui 10 liga unik.",
+    "howItWorks.step2.title": "Nilai",
+    "howItWorks.step2.desc": "Setiap pilihan memperbarui peringkat ELO. Preferensi Anda membentuk kolam pertandingan Anda.",
     "howItWorks.step3.title": "Terhubung",
-    "howItWorks.step3.desc": "Cocok dengan orang di liga Anda. Kualitas lebih penting daripada kuantitas – temukan pertandingan sejati Anda.",
+    "howItWorks.step3.desc": "Cocok dengan orang yang setara dengan Anda. Kualitas lebih penting daripada kuantitas – temukan pertandingan sejati Anda.",
     "howItWorks.cta": "Lihat dalam aksi",
     
     // Compare Showcase
@@ -180,20 +164,6 @@ const translations: Record<Language, Record<string, string>> = {
     "compare.greatChoice": "Pilihan bagus!",
     "compare.ratingsRevealed": "Peringkat terungkap! Putaran berikutnya datang...",
     "compare.eloRating": "Peringkat ELO",
-    
-    // League Preview
-    "league.badge": "Sistem Liga",
-    "league.title1": "Naik",
-    "league.title2": "peringkat",
-    "league.subtitle": "Bersaing dengan pengguna di seluruh dunia. Naik melalui 10 liga unik berdasarkan peringkat ELO Anda dan lihat di mana Anda berdiri di papan peringkat global.",
-    "league.leagues": "Liga",
-    "league.global": "Global",
-    "league.updates": "Pembaruan",
-    "league.cta": "Lihat Papan Peringkat Lengkap",
-    "league.tip": "Tip:",
-    "league.tipText": "Menangkan lebih banyak perbandingan untuk naik liga!",
-    "league.elo": "ELO",
-    "league.you": "ANDA",
     
     // Stats Teaser
     "stats.badge": "Analitik Terperinci",
@@ -246,7 +216,6 @@ const translations: Record<Language, Record<string, string>> = {
     "nav.home": "首页",
     "nav.date": "约会",
     "nav.stats": "统计",
-    "nav.leaderboard": "排行榜",
     "nav.pricing": "定价",
     "nav.support": "支持",
     
@@ -272,10 +241,10 @@ const translations: Record<Language, Record<string, string>> = {
     "howItWorks.subtitle": "我们独特的比较系统学习您的偏好，并将您与真正兼容的人匹配。",
     "howItWorks.step1.title": "比较",
     "howItWorks.step1.desc": "两个个人资料并排出现。无需无休止地滑动——只需选择您认为更有吸引力的人。",
-    "howItWorks.step2.title": "攀升",
-    "howItWorks.step2.desc": "每次选择都会更新ELO评分。赢得比较以在10个独特联盟中攀升。",
+    "howItWorks.step2.title": "评分",
+    "howItWorks.step2.desc": "每次选择都会更新ELO评分。您的偏好塑造您的匹配池。",
     "howItWorks.step3.title": "连接",
-    "howItWorks.step3.desc": "与您联盟中的人匹配。质量胜过数量——找到您的真正匹配。",
+    "howItWorks.step3.desc": "与您同级别的人匹配。质量胜过数量——找到您的真正匹配。",
     "howItWorks.cta": "查看实际操作",
     
     // Compare Showcase
@@ -294,20 +263,6 @@ const translations: Record<Language, Record<string, string>> = {
     "compare.greatChoice": "好选择！",
     "compare.ratingsRevealed": "评分已显示！下一轮即将开始...",
     "compare.eloRating": "ELO评分",
-    
-    // League Preview
-    "league.badge": "联盟系统",
-    "league.title1": "攀升",
-    "league.title2": "排名",
-    "league.subtitle": "与全球用户竞争。根据您的ELO评分在10个独特联盟中攀升，并查看您在全球排行榜上的位置。",
-    "league.leagues": "联盟",
-    "league.global": "全球",
-    "league.updates": "更新",
-    "league.cta": "查看完整排行榜",
-    "league.tip": "提示：",
-    "league.tipText": "赢得更多比较以攀升联盟！",
-    "league.elo": "ELO",
-    "league.you": "您",
     
     // Stats Teaser
     "stats.badge": "详细分析",
@@ -360,7 +315,6 @@ const translations: Record<Language, Record<string, string>> = {
     "nav.home": "Accueil",
     "nav.date": "Rendez-vous",
     "nav.stats": "Statistiques",
-    "nav.leaderboard": "Classement",
     "nav.pricing": "Tarifs",
     "nav.support": "Support",
     
@@ -386,10 +340,10 @@ const translations: Record<Language, Record<string, string>> = {
     "howItWorks.subtitle": "Notre système de comparaison unique apprend vos préférences et vous met en relation avec des personnes vraiment compatibles.",
     "howItWorks.step1.title": "Comparer",
     "howItWorks.step1.desc": "Deux profils apparaissent côte à côte. Pas de balayage sans fin – choisissez simplement celui que vous trouvez le plus attirant.",
-    "howItWorks.step2.title": "Grimper",
-    "howItWorks.step2.desc": "Chaque choix met à jour les notes ELO. Gagnez des comparaisons pour monter dans 10 ligues uniques.",
+    "howItWorks.step2.title": "Noter",
+    "howItWorks.step2.desc": "Chaque choix met à jour les notes ELO. Vos préférences façonnent votre pool de correspondances.",
     "howItWorks.step3.title": "Se connecter",
-    "howItWorks.step3.desc": "Rencontrez des personnes de votre ligue. La qualité plutôt que la quantité – trouvez votre vraie correspondance.",
+    "howItWorks.step3.desc": "Rencontrez des personnes de votre niveau. La qualité plutôt que la quantité – trouvez votre vraie correspondance.",
     "howItWorks.cta": "Voir en action",
     
     // Compare Showcase
@@ -408,20 +362,6 @@ const translations: Record<Language, Record<string, string>> = {
     "compare.greatChoice": "Excellent choix !",
     "compare.ratingsRevealed": "Notes révélées ! Prochain tour à venir...",
     "compare.eloRating": "Note ELO",
-    
-    // League Preview
-    "league.badge": "Système de ligue",
-    "league.title1": "Grimpez les",
-    "league.title2": "classements",
-    "league.subtitle": "Rivalisez avec des utilisateurs du monde entier. Montez dans 10 ligues uniques basées sur votre note ELO et voyez où vous vous situez sur le classement mondial.",
-    "league.leagues": "Ligues",
-    "league.global": "Mondial",
-    "league.updates": "Mises à jour",
-    "league.cta": "Voir le classement complet",
-    "league.tip": "Astuce :",
-    "league.tipText": "Gagnez plus de comparaisons pour monter dans les ligues !",
-    "league.elo": "ELO",
-    "league.you": "VOUS",
     
     // Stats Teaser
     "stats.badge": "Analyses détaillées",

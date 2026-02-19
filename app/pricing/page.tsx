@@ -8,14 +8,16 @@ import PricingComparison from "@/components/PricingComparison";
 import PricingFAQ from "@/components/PricingFAQ";
 import Footer from "@/components/Footer";
 
+export type BillingPeriod = "weekly" | "monthly" | "quarterly" | "annually";
+
 export default function PricingPage() {
-  const [isAnnual, setIsAnnual] = useState(false);
+  const [period, setPeriod] = useState<BillingPeriod>("weekly");
 
   return (
     <main className="min-h-screen" style={{ backgroundColor: "var(--ratch-cream)" }}>
       <Navbar />
-      <PricingHero isAnnual={isAnnual} setIsAnnual={setIsAnnual} />
-      <PricingTiers isAnnual={isAnnual} />
+      <PricingHero period={period} setPeriod={setPeriod} />
+      <PricingTiers period={period} />
       <PricingComparison />
       <PricingFAQ />
       <Footer />

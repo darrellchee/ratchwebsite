@@ -1,14 +1,17 @@
 "use client";
 
 import { motion } from "framer-motion";
+import type { BillingPeriod } from "@/app/pricing/page";
 
 interface PricingTiersProps {
-  isAnnual: boolean;
+  period: BillingPeriod;
 }
 
 type Tier = {
   name: string;
+  weeklyPrice: number;
   monthlyPrice: number;
+  quarterlyPrice: number;
   annualPrice: number;
   description: string;
   highlighted: boolean;
@@ -21,7 +24,9 @@ type Tier = {
 const tiers: Tier[] = [
   {
     name: "Free",
+    weeklyPrice: 0,
     monthlyPrice: 0,
+    quarterlyPrice: 0,
     annualPrice: 0,
     description: "Get started with the basics",
     highlighted: false,
@@ -38,8 +43,10 @@ const tiers: Tier[] = [
   },
   {
     name: "Plus",
+    weeklyPrice: 5.99,
     monthlyPrice: 9.99,
-    annualPrice: 7.99,
+    quarterlyPrice: 24.99,
+    annualPrice: 79.99,
     description: "More features, more matches",
     highlighted: false,
     color: "#FFF8E1",
@@ -55,8 +62,10 @@ const tiers: Tier[] = [
   },
   {
     name: "Pro",
-    monthlyPrice: 19.99,
-    annualPrice: 15.99,
+    weeklyPrice: 9.99,
+    monthlyPrice: 15.99,
+    quarterlyPrice: 39.99,
+    annualPrice: 119.99,
     description: "Unlock your full potential",
     highlighted: true,
     color: "#FFC629",
@@ -72,8 +81,10 @@ const tiers: Tier[] = [
   },
   {
     name: "Ultra",
-    monthlyPrice: 29.99,
-    annualPrice: 23.99,
+    weeklyPrice: 13.99,
+    monthlyPrice: 21.99,
+    quarterlyPrice: 59.99,
+    annualPrice: 159.99,
     description: "The ultimate dating experience",
     highlighted: false,
     color: "#1A1A1A",
@@ -90,11 +101,57 @@ const tiers: Tier[] = [
   },
 ];
 
-export default function PricingTiers({ isAnnual }: PricingTiersProps) {
+const PERIOD_SUFFIX: Record<BillingPeriod, { suffix: string; isFree: (tier: Tier) => boolean }> = {
+  weekly: { suffix: "/week", isFree: (t) => t.weeklyPrice === 0 },
+  monthly: { suffix: "/month", isFree: (t) => t.monthlyPrice === 0 },
+  quarterly: { suffix: "/quarter", isFree: (t) => t.quarterlyPrice === 0 },
+  annually: { suffix: "/year", isFree: (t) => t.annualPrice === 0 },
+};
+
+export default function PricingTiers({ period }: PricingTiersProps) {
+  const getPrice = (tier: Tier) => {
+    switch (period) {
+      case "weekly": return tier.weeklyPrice;
+      case "monthly": return tier.monthlyPrice;
+      case "quarterly": return tier.quarterlyPrice;
+      case "annually": return tier.annualPrice;
+    }
+  };
+
   const formatPrice = (tier: Tier) => {
-    const price = isAnnual ? tier.annualPrice : tier.monthlyPrice;
-    if (price === 0) return "$0";
-    return `$${price.toFixed(2)}`;
+    const price = getPrice(tier);
+    if (price === 0) return "A$0";
+    return `A$${price.toFixed(2)}`;
+  };
+
+  const { suffix, isFree } = PERIOD_SUFFIX[period];
+
+  const getSavingsText = (tier: Tier): string | null => {
+    if (tier.weeklyPrice === 0) return null;
+    switch (period) {
+      case "weekly":
+        return null;
+      case "monthly": {
+        const yearlyWeekly = tier.weeklyPrice * 52;
+        const yearlyMonthly = tier.monthlyPrice * 12;
+        const save = yearlyWeekly - yearlyMonthly;
+        if (save <= 0) return null;
+        return `Save A$${save.toFixed(0)}/year vs weekly`;
+      }
+      case "quarterly": {
+        const yearlyMonthly = tier.monthlyPrice * 12;
+        const yearlyQuarterly = tier.quarterlyPrice * 4;
+        const save = yearlyMonthly - yearlyQuarterly;
+        if (save <= 0) return null;
+        return `Save A$${save.toFixed(0)}/year vs monthly`;
+      }
+      case "annually": {
+        const yearlyMonthly = tier.monthlyPrice * 12;
+        const save = yearlyMonthly - tier.annualPrice;
+        if (save <= 0) return null;
+        return `Save A$${save.toFixed(0)}/year vs monthly`;
+      }
+    }
   };
 
   return (
@@ -131,12 +188,12 @@ export default function PricingTiers({ isAnnual }: PricingTiersProps) {
                 <div className="mt-4">
                   <span className="text-4xl font-bold">{formatPrice(tier)}</span>
                   <span className={`text-sm ${tier.textLight ? "text-gray-300" : "text-[var(--ratch-gray)]"}`}>
-                    {tier.monthlyPrice === 0 ? " forever" : isAnnual ? "/mo (billed annually)" : "/month"}
+                    {isFree(tier) ? " forever" : suffix}
                   </span>
                 </div>
-                {isAnnual && tier.monthlyPrice > 0 && (
+                {getSavingsText(tier) && (
                   <p className="mt-2 text-sm font-medium" style={{ color: tier.textLight ? "#FFD700" : "var(--ratch-coral)" }}>
-                    Save ${((tier.monthlyPrice - tier.annualPrice) * 12).toFixed(0)}/year
+                    {getSavingsText(tier)}
                   </p>
                 )}
                 <p className={`mt-3 text-sm ${tier.textLight ? "text-gray-300" : "text-[var(--ratch-gray)]"}`}>
@@ -206,12 +263,12 @@ export default function PricingTiers({ isAnnual }: PricingTiersProps) {
               <div className="mt-2">
                 <span className="text-3xl font-bold">{formatPrice(tier)}</span>
                 <span className={`text-sm ${tier.textLight ? "text-gray-300" : "text-[var(--ratch-gray)]"}`}>
-                  {tier.monthlyPrice === 0 ? " forever" : isAnnual ? "/mo" : "/month"}
+                  {isFree(tier) ? " forever" : suffix}
                 </span>
               </div>
-              {isAnnual && tier.monthlyPrice > 0 && (
+              {getSavingsText(tier) && (
                 <p className="mt-1 text-sm font-medium" style={{ color: tier.textLight ? "#FFD700" : "var(--ratch-coral)" }}>
-                  Save ${((tier.monthlyPrice - tier.annualPrice) * 12).toFixed(0)}/year
+                  {getSavingsText(tier)}
                 </p>
               )}
               <p className={`mt-2 text-sm ${tier.textLight ? "text-gray-300" : "text-[var(--ratch-gray)]"}`}>

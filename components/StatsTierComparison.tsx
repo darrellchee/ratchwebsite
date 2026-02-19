@@ -131,14 +131,14 @@ const statsFeatures: StatsFeature[] = [
 const tiers = [
   { 
     name: "Free", 
-    price: "$0", 
+    price: "A$0", 
     color: "#6B7280", 
     bg: "#F9FAFB",
     description: "Basic stats access" 
   },
   { 
     name: "Plus", 
-    price: "$9.99", 
+    price: "A$9.99", 
     period: "/month",
     color: "#3B82F6", 
     bg: "#EFF6FF",
@@ -146,7 +146,7 @@ const tiers = [
   },
   { 
     name: "Pro", 
-    price: "$19.99", 
+    price: "A$15.99", 
     period: "/month",
     color: "#8B5CF6", 
     bg: "#F5F3FF",
@@ -155,7 +155,7 @@ const tiers = [
   },
   { 
     name: "Ultra", 
-    price: "$29.99", 
+    price: "A$21.99", 
     period: "/month",
     color: "#1A1A1A", 
     bg: "#FFC629",

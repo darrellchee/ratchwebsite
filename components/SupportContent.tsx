@@ -82,17 +82,17 @@ export default function SupportContent() {
           id="terms-of-service"
           icon="📜"
           title="Terms of Service"
-          description="By using MeetMatch, you agree to be bound by these terms."
+          description="By using Ratch, you agree to be bound by these terms."
         />
         
         <div className="space-y-0">
           <CollapsibleSection title="1. Agreement to Terms" defaultOpen>
-            <p>By accessing or using MeetMatch (&quot;the App&quot;, &quot;we&quot;, &quot;our&quot;, or &quot;us&quot;), you agree to be bound by these Terms of Service (&quot;Terms&quot;). If you do not agree to these terms, please do not use the App.</p>
-            <p>MeetMatch is a dating application that uses a profile comparison system with ELO ratings to help users find compatible matches. By creating an account, you confirm that you are at least 18 years of age and legally capable of entering into a binding agreement.</p>
+            <p>By accessing or using Ratch (&quot;the App&quot;, &quot;we&quot;, &quot;our&quot;, or &quot;us&quot;), you agree to be bound by these Terms of Service (&quot;Terms&quot;). If you do not agree to these terms, please do not use the App.</p>
+            <p>Ratch is a dating application that uses a profile comparison system with ELO ratings to help users find compatible matches. By creating an account, you confirm that you are at least 18 years of age and legally capable of entering into a binding agreement.</p>
           </CollapsibleSection>
 
           <CollapsibleSection title="2. Eligibility">
-            <p>You must meet the following requirements to use MeetMatch:</p>
+            <p>You must meet the following requirements to use Ratch:</p>
             <ul className="space-y-1 mt-2">
               <ListItem><strong>Age Requirement:</strong> You must be at least 18 years old</ListItem>
               <ListItem><strong>Legal Capacity:</strong> You must be legally permitted to form a binding contract</ListItem>
@@ -147,7 +147,7 @@ export default function SupportContent() {
           </CollapsibleSection>
 
           <CollapsibleSection title="6. The Comparison System & ELO Ratings">
-            <p>MeetMatch uses a unique profile comparison system:</p>
+            <p>Ratch uses a unique profile comparison system:</p>
             <ul className="space-y-1 mt-2">
               <ListItem><strong>How It Works:</strong> Two profiles are shown side-by-side, and users choose which they prefer</ListItem>
               <ListItem><strong>ELO Rating:</strong> Comparison results are used to calculate your ELO rating (0-10,000 scale)</ListItem>
@@ -159,13 +159,13 @@ export default function SupportContent() {
           </CollapsibleSection>
 
           <CollapsibleSection title="7. Subscriptions and In-App Purchases">
-            <p>MeetMatch offers optional paid subscriptions with additional features:</p>
+            <p>Ratch offers optional paid subscriptions with additional features:</p>
             <div className="mt-3 p-4 bg-gray-50 rounded-xl">
               <p className="font-medium text-bumble-black mb-2">Subscription Tiers:</p>
               <ul className="space-y-1">
-                <ListItem><strong>Ratch+ (Plus):</strong> $12/month</ListItem>
-                <ListItem><strong>Ratch Pro:</strong> $18/month</ListItem>
-                <ListItem><strong>Ratch Ultra:</strong> $30/month</ListItem>
+                <ListItem><strong>Ratch+ (Plus):</strong> A$9.99/month</ListItem>
+                <ListItem><strong>Ratch Pro:</strong> A$15.99/month</ListItem>
+                <ListItem><strong>Ratch Ultra:</strong> A$21.99/month</ListItem>
               </ul>
             </div>
             <p className="mt-3"><strong>Auto-Renewal:</strong> Subscriptions automatically renew unless cancelled at least 24 hours before the renewal date.</p>
@@ -191,14 +191,14 @@ export default function SupportContent() {
               <ListItem><strong>Unmatch:</strong> Unmatch to end conversations</ListItem>
               <ListItem><strong>Safety Tips:</strong> Meet in public places and inform someone of your plans</ListItem>
             </ul>
-            <p className="mt-3 p-3 bg-amber-50 rounded-lg text-amber-800"><strong>Important:</strong> MeetMatch is not responsible for the conduct of users on or off the platform. Use your best judgment when interacting with other users.</p>
+            <p className="mt-3 p-3 bg-amber-50 rounded-lg text-amber-800"><strong>Important:</strong> Ratch is not responsible for the conduct of users on or off the platform. Use your best judgment when interacting with other users.</p>
           </CollapsibleSection>
 
           <CollapsibleSection title="10. Intellectual Property">
             <ul className="space-y-1">
-              <ListItem><strong>Our Content:</strong> MeetMatch and its original content are protected by international copyright, trademark, and other intellectual property laws</ListItem>
+              <ListItem><strong>Our Content:</strong> Ratch and its original content are protected by international copyright, trademark, and other intellectual property laws</ListItem>
               <ListItem><strong>Your Content:</strong> You retain ownership but grant us a non-exclusive, royalty-free license to use your content within the App</ListItem>
-              <ListItem><strong>Trademarks:</strong> &quot;MeetMatch&quot;, &quot;Ratch&quot;, and related marks are trademarks of MeetMatch</ListItem>
+              <ListItem><strong>Trademarks:</strong> &quot;Ratch&quot; and related marks are trademarks of Ratch</ListItem>
             </ul>
           </CollapsibleSection>
 
@@ -214,7 +214,7 @@ export default function SupportContent() {
           </CollapsibleSection>
 
           <CollapsibleSection title="12. Limitation of Liability">
-            <p>To the maximum extent permitted by law, MeetMatch shall not be liable for any indirect, incidental, special, consequential, or punitive damages, including but not limited to loss of profits, data, or other intangible losses resulting from your use of the App.</p>
+            <p>To the maximum extent permitted by law, Ratch shall not be liable for any indirect, incidental, special, consequential, or punitive damages, including but not limited to loss of profits, data, or other intangible losses resulting from your use of the App.</p>
           </CollapsibleSection>
 
           <CollapsibleSection title="13. Termination">
@@ -247,8 +247,8 @@ export default function SupportContent() {
         
         <div className="space-y-0">
           <CollapsibleSection title="Introduction" defaultOpen>
-            <p>MeetMatch (&quot;we&quot;, &quot;our&quot;, or &quot;us&quot;) is committed to protecting your privacy. This Privacy Policy explains how we collect, use, disclose, and safeguard your information when you use our mobile application.</p>
-            <p>Please read this policy carefully. By using MeetMatch, you consent to the practices described in this Privacy Policy.</p>
+            <p>Ratch (&quot;we&quot;, &quot;our&quot;, or &quot;us&quot;) is committed to protecting your privacy. This Privacy Policy explains how we collect, use, disclose, and safeguard your information when you use our mobile application.</p>
+            <p>Please read this policy carefully. By using Ratch, you consent to the practices described in this Privacy Policy.</p>
           </CollapsibleSection>
 
           <CollapsibleSection title="Information We Collect">
@@ -292,7 +292,7 @@ export default function SupportContent() {
             <ul className="space-y-1 mt-2">
               <ListItem>Your profile (photos, name, age, bio, prompts) is visible to other users</ListItem>
               <ListItem>Matched users can see your messages and profile</ListItem>
-              <ListItem>If you opt-in, your ELO rating may be displayed on leaderboards</ListItem>
+              <ListItem>Your profile and ELO rating are used to find compatible matches</ListItem>
             </ul>
             <p className="mt-3"><strong>With Service Providers:</strong> We share information with third-party service providers who help us operate the App (see Third-Party Services section).</p>
             <p className="mt-3"><strong>For Legal Reasons:</strong> We may disclose your information to comply with legal obligations, protect our rights, or respond to lawful requests from public authorities.</p>
@@ -321,7 +321,7 @@ export default function SupportContent() {
           </CollapsibleSection>
 
           <CollapsibleSection title="Children's Privacy">
-            <p>MeetMatch is not intended for anyone under 18 years of age. We do not knowingly collect personal information from children. If we discover that a child under 18 has provided us with personal information, we will delete it immediately.</p>
+            <p>Ratch is not intended for anyone under 18 years of age. We do not knowingly collect personal information from children. If we discover that a child under 18 has provided us with personal information, we will delete it immediately.</p>
           </CollapsibleSection>
         </div>
       </section>
@@ -436,17 +436,17 @@ export default function SupportContent() {
             <tbody>
               <tr className="border-b border-gray-100">
                 <td className="py-3 px-4 font-medium">Ratch+ (Plus)</td>
-                <td className="py-3 px-4">$12/month</td>
+                <td className="py-3 px-4">A$9.99/month</td>
                 <td className="py-3 px-4 text-bumble-gray">15 daily DMs, Limited Dual Matches, Limited Super Likes, Always see rating</td>
               </tr>
               <tr className="border-b border-gray-100">
                 <td className="py-3 px-4 font-medium">Ratch Pro</td>
-                <td className="py-3 px-4">$18/month</td>
+                <td className="py-3 px-4">A$15.99/month</td>
                 <td className="py-3 px-4 text-bumble-gray">Unlimited DMs, Unlimited Dual Matches, More Super Likes, Premium filters, Full stats</td>
               </tr>
               <tr>
                 <td className="py-3 px-4 font-medium">Ratch Ultra</td>
-                <td className="py-3 px-4">$30/month</td>
+                <td className="py-3 px-4">A$21.99/month</td>
                 <td className="py-3 px-4 text-bumble-gray">All Pro features + Unlimited Super Likes, Photo analytics, Full rating logs</td>
               </tr>
             </tbody>
@@ -470,7 +470,7 @@ export default function SupportContent() {
               <li>Open Settings on your iOS device</li>
               <li>Tap your Apple ID at the top</li>
               <li>Tap &quot;Subscriptions&quot;</li>
-              <li>Select &quot;MeetMatch&quot;</li>
+              <li>Select &quot;Ratch&quot;</li>
               <li>Tap &quot;Cancel Subscription&quot;</li>
             </ol>
             <p className="mt-3">Cancellation takes effect at the end of the current billing period. You retain access to premium features until then.</p>
@@ -528,7 +528,7 @@ export default function SupportContent() {
             },
             {
               right: "Right to Object",
-              description: "Opt-out of marketing, analytics, or leaderboard participation",
+              description: "Opt-out of marketing or analytics",
               icon: "🚫",
             },
             {
@@ -549,7 +549,7 @@ export default function SupportContent() {
 
         <div className="p-4 bg-blue-50 rounded-xl">
           <p className="text-sm text-blue-800">
-            <strong>How to Exercise Your Rights:</strong> Use the app&apos;s settings or contact us at <a href="mailto:support@ratematch.app" className="underline">support@ratematch.app</a>. We will respond within 30 days.
+            <strong>How to Exercise Your Rights:</strong> Use the app&apos;s settings or contact us at <a href="mailto:ratchappcontact@gmail.com" className="underline">ratchappcontact@gmail.com</a>. We will respond within 30 days.
           </p>
         </div>
       </section>
@@ -568,8 +568,8 @@ export default function SupportContent() {
             <h4 className="font-bold text-blue-800 mb-3 flex items-center gap-2">
               <span>📧</span> Email Support
             </h4>
-            <a href="mailto:support@ratematch.app" className="text-blue-600 font-medium text-lg hover:underline">
-              support@ratematch.app
+            <a href="mailto:ratchappcontact@gmail.com" className="text-blue-600 font-medium text-lg hover:underline">
+              ratchappcontact@gmail.com
             </a>
             <p className="text-sm text-blue-700 mt-2">We aim to respond within 48 hours</p>
           </div>
@@ -590,14 +590,14 @@ export default function SupportContent() {
           <CollapsibleSection title="Report a User">
             <ul className="space-y-1">
               <ListItem><strong>In-App:</strong> Tap the user&apos;s profile → Report</ListItem>
-              <ListItem><strong>Via Email:</strong> Email support@ratematch.app with details</ListItem>
+              <ListItem><strong>Via Email:</strong> Email ratchappcontact@gmail.com with details</ListItem>
               <ListItem><strong>Response:</strong> We review all reports and take appropriate action</ListItem>
             </ul>
           </CollapsibleSection>
 
           <CollapsibleSection title="Report a Bug">
             <p><strong>In-App:</strong> Settings → Report a Problem</p>
-            <p className="mt-2"><strong>Via Email:</strong> Email support@ratematch.app with:</p>
+            <p className="mt-2"><strong>Via Email:</strong> Email ratchappcontact@gmail.com with:</p>
             <ul className="space-y-1 mt-2">
               <ListItem>Description of the issue</ListItem>
               <ListItem>Steps to reproduce</ListItem>
@@ -610,7 +610,7 @@ export default function SupportContent() {
             <p>If you&apos;ve lost access to your account:</p>
             <ul className="space-y-1 mt-2">
               <ListItem><strong>Password Reset:</strong> Use &quot;Forgot Password&quot; on the login screen</ListItem>
-              <ListItem><strong>Email Support:</strong> Contact support@ratematch.app with your email address, display name, and approximate account creation date</ListItem>
+              <ListItem><strong>Email Support:</strong> Contact ratchappcontact@gmail.com with your email address, display name, and approximate account creation date</ListItem>
             </ul>
           </CollapsibleSection>
         </div>
@@ -680,7 +680,7 @@ export default function SupportContent() {
         <div className="text-center">
           <h3 className="text-xl font-bold mb-4">Acknowledgment</h3>
           <p className="text-gray-300 max-w-2xl mx-auto mb-6">
-            By using MeetMatch, you acknowledge that you have read, understood, and agree to be bound by these Terms of Service, our Privacy Policy, all applicable laws and regulations, and App Store terms and conditions.
+            By using Ratch, you acknowledge that you have read, understood, and agree to be bound by these Terms of Service, our Privacy Policy, all applicable laws and regulations, and App Store terms and conditions.
           </p>
           <div className="flex flex-wrap justify-center gap-4 text-sm">
             <span className="px-4 py-2 bg-white/10 rounded-full">Version 1.0</span>
@@ -693,15 +693,15 @@ export default function SupportContent() {
       <section className="text-center py-8">
         <h3 className="font-bold text-bumble-black mb-4">Contact Information</h3>
         <div className="flex flex-wrap justify-center gap-6 text-sm text-bumble-gray">
-          <a href="mailto:support@ratematch.app" className="hover:text-bumble-black transition-colors">
-            📧 support@ratematch.app
+          <a href="mailto:ratchappcontact@gmail.com" className="hover:text-bumble-black transition-colors">
+            📧 ratchappcontact@gmail.com
           </a>
-          <a href="https://ratematch.app" className="hover:text-bumble-black transition-colors">
-            🌐 ratematch.app
+          <a href="https://ratch.app" className="hover:text-bumble-black transition-colors">
+            🌐 ratch.app
           </a>
         </div>
         <p className="mt-4 text-xs text-bumble-gray">
-          MeetMatch • Australia
+          Ratch • Australia
         </p>
       </section>
     </div>
