@@ -194,7 +194,7 @@ const FirstPhotoImpact = () => (
     <div className="grid grid-cols-3 gap-4 text-center">
       <div className="bg-white/70 rounded-xl p-3">
         <p className="text-2xl font-bold text-bumble-black">78%</p>
-        <p className="text-xs text-bumble-gray mt-1">Swipe decisions</p>
+        <p className="text-xs text-bumble-gray mt-1">Choice decisions</p>
       </div>
       <div className="bg-white/70 rounded-xl p-3">
         <p className="text-2xl font-bold text-green-600">+23%</p>
@@ -309,7 +309,7 @@ export default function StatsPhotoPerformance() {
             Get detailed photo analytics
           </p>
           <p className="text-white/80 mt-2">
-            Plus+ members see exactly how each photo performs. Optimize your profile for maximum matches.
+            Plus+ members see exactly how each photo performs. Optimize your profile for maximum friends.
           </p>
           <button className="mt-6 px-6 py-3 rounded-full text-sm font-medium bg-white text-blue-600 hover:bg-gray-100 transition-colors">
             Upgrade to Plus+

@@ -19,7 +19,7 @@ const faqs: FAQItem[] = [
   },
   {
     question: "What happens to my data if I downgrade?",
-    answer: "Your profile and match history are always preserved. If you downgrade, you'll lose access to premium features but keep all your connections and conversations. You can upgrade again at any time to regain access to premium features.",
+    answer: "Your profile and friend history are always preserved. If you downgrade, you'll lose access to premium features but keep all your friends and conversations. You can upgrade again at any time to regain access to premium features.",
   },
   {
     question: "Can I switch plans mid-subscription?",

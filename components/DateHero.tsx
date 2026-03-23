@@ -165,18 +165,18 @@ export default function DateHero() {
               className="inline-block px-4 py-2 rounded-full text-sm font-medium mb-6"
               style={{ backgroundColor: "#FFC629", color: "#1A1A1A" }}
             >
-              Ratch Dating
+              Ratch Friends
             </motion.span>
             
             <h1 className="text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold text-bumble-black leading-[1.1]">
               A New Way
               <br />
-              <span style={{ color: "#FFC629" }}>to Date</span>
+              <span style={{ color: "#FFC629" }}>to Make Friends</span>
             </h1>
             
             <p className="mt-6 text-lg lg:text-xl text-bumble-gray max-w-lg leading-relaxed">
-              Forget endless swiping. Choose between two profiles and watch your 
-              preferences shape who you meet. Every choice matters.
+              Forget endless scrolling. Choose between two profiles and watch your
+              preferences shape who you become friends with. Every choice matters.
             </p>
             
             <div className="mt-8 flex flex-wrap gap-4">

@@ -59,7 +59,7 @@ export default function PricingHero({ period, setPeriod }: PricingHeroProps) {
           <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-[var(--ratch-black)] leading-tight">
             Find Your Perfect
             <br />
-            <span className="text-gradient">Match Plan</span>
+            <span className="text-gradient">Friend Plan</span>
           </h1>
 
           {/* Subtitle */}

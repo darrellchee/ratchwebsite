@@ -52,10 +52,10 @@ export default function MemberCircle() {
                   Share your ideas
                 </h2>
                 <p className="mt-6 text-bumble-gray text-lg leading-relaxed">
-                  Help shape the future of Bumble by joining our Member Circle. This select community of Members shares ideas directly with our team through chats, discussions, and product tests.
+                  Help shape the future of Ratch by joining our Member Circle. This select community of members shares ideas directly with our team through chats, discussions, and product tests.
                 </p>
                 <p className="mt-4 text-bumble-gray text-lg leading-relaxed">
-                  Participants get early access to new features, sneak peeks at upcoming campaigns, and the chance to help make Bumble even better for everyone.
+                  Participants get early access to new features, sneak peeks at upcoming campaigns, and the chance to help make Ratch even better for everyone.
                 </p>
                 <motion.a
                   href="#signup"

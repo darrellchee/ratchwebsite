@@ -4,8 +4,9 @@ import { motion } from "framer-motion";
 
 const features = [
   {
-    name: "Super Like",
-    description: "Give a profile a 2x ELO boost and instantly create a message request. They'll know you're serious.",
+    slug: "super_like",
+    label: "Priority Friend Request",
+    description: "Give a profile a 2x ELO boost and instantly send a priority friend request. They'll know you're serious.",
     icon: (
       <svg className="w-8 h-8" fill="currentColor" viewBox="0 0 24 24">
         <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
@@ -16,8 +17,9 @@ const features = [
     iconColor: "#6366F1",
   },
   {
-    name: "Boost",
-    description: "Increase your profile visibility for 30 minutes. Appear more frequently in other users' comparisons.",
+    slug: "boost",
+    label: "Boost Visibility",
+    description: "Increase your profile visibility for 30 minutes. Appear more frequently in other users' friend discovery.",
     icon: (
       <svg className="w-8 h-8" fill="currentColor" viewBox="0 0 24 24">
         <path d="M13 10V3L4 14h7v7l9-11h-7z"/>
@@ -28,8 +30,9 @@ const features = [
     iconColor: "#A855F7",
   },
   {
-    name: "Dual Match",
-    description: "Can't decide? Like both profiles at once. Creates message requests with both users and boosts their ratings.",
+    slug: "dual_connection",
+    label: "Dual Friend Request",
+    description: "Can't decide? React to both profiles at once. Sends friend requests to both users and boosts their ratings.",
     icon: (
       <svg className="w-8 h-8" fill="currentColor" viewBox="0 0 24 24">
         <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
@@ -65,7 +68,7 @@ export default function PremiumFeatures() {
             <span className="text-bumble-gray">The Crowd</span>
           </h2>
           <p className="mt-6 text-lg text-bumble-gray">
-            Unlock powerful features to boost your dating experience and connect with more matches.
+            Unlock powerful features to strengthen your presence and make friends with more people.
           </p>
         </motion.div>
 
@@ -73,7 +76,7 @@ export default function PremiumFeatures() {
         <div className="grid md:grid-cols-3 gap-6 lg:gap-8">
           {features.map((feature, index) => (
             <motion.div
-              key={feature.name}
+              key={feature.slug}
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
@@ -105,14 +108,14 @@ export default function PremiumFeatures() {
 
                 {/* Text */}
                 <h3 className="text-xl lg:text-2xl font-bold text-bumble-black mb-3">
-                  {feature.name}
+                  {feature.label}
                 </h3>
                 <p className="text-bumble-gray leading-relaxed">
                   {feature.description}
                 </p>
 
-                {/* Preview animation for Super Like */}
-                {feature.name === "Super Like" && (
+                {/* Preview animation for Priority Friend Request */}
+                {feature.slug === "super_like" && (
                   <motion.div
                     className="mt-6 flex items-center gap-2"
                     animate={{ scale: [1, 1.05, 1] }}
@@ -134,7 +137,7 @@ export default function PremiumFeatures() {
                 )}
 
                 {/* Preview animation for Boost */}
-                {feature.name === "Boost" && (
+                {feature.slug === "boost" && (
                   <div className="mt-6 flex items-center gap-3">
                     <div className="relative">
                       <motion.div
@@ -159,8 +162,8 @@ export default function PremiumFeatures() {
                   </div>
                 )}
 
-                {/* Preview animation for Dual Match */}
-                {feature.name === "Dual Match" && (
+                {/* Preview animation for Dual Friend Request */}
+                {feature.slug === "dual_connection" && (
                   <div className="mt-6 flex items-center gap-2">
                     <div className="flex -space-x-2">
                       <motion.div
@@ -184,7 +187,7 @@ export default function PremiumFeatures() {
                         <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
                       </svg>
                     </motion.div>
-                    <span className="text-xs text-bumble-gray">Like both profiles</span>
+                    <span className="text-xs text-bumble-gray">Make friends with both profiles</span>
                   </div>
                 )}
               </div>

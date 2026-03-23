@@ -34,7 +34,7 @@ export default function Download() {
                   </div>
                 </div>
                 <p className="mt-4 text-sm text-bumble-black text-center font-medium">
-                  Scan the QR code to get the Bumble app
+                  Scan the QR code to get the Ratch app
                 </p>
               </div>
             </div>

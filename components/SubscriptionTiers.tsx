@@ -12,8 +12,8 @@ type TierFeature = {
 
 const features: TierFeature[] = [
   { name: "Daily DMs", free: "5", plus: "15", pro: "Unlimited", ultra: "Unlimited" },
-  { name: "Dual Match", free: false, plus: "Limited", pro: "Unlimited", ultra: "Unlimited" },
-  { name: "Super Like", free: "Limited", plus: "More", pro: "Even More", ultra: "Unlimited" },
+  { name: "Dual Friend Request", free: false, plus: "Limited", pro: "Unlimited", ultra: "Unlimited" },
+  { name: "Priority Friend Requests", free: "Limited", plus: "More", pro: "Even More", ultra: "Unlimited" },
   { name: "Boost", free: false, plus: "Limited", pro: "More", ultra: "Unlimited" },
   { name: "Premium Filters", free: false, plus: false, pro: true, ultra: true },
   { name: "Read Receipts", free: false, plus: false, pro: true, ultra: true },
@@ -33,7 +33,7 @@ const tiers = [
     name: "Plus",
     price: "A$9.99",
     period: "/month",
-    description: "More features, more matches",
+    description: "More features, more friends",
     highlighted: false,
     color: "#FFF8E1",
   },
@@ -49,7 +49,7 @@ const tiers = [
     name: "Ultra",
     price: "A$21.99",
     period: "/month",
-    description: "The ultimate dating experience",
+    description: "The ultimate friend experience",
     highlighted: false,
     color: "#1A1A1A",
     textLight: true,

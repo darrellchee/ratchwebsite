@@ -96,7 +96,7 @@ export default function StatsHero() {
             </h1>
             
             <p className="mt-6 text-lg lg:text-xl text-bumble-gray max-w-lg leading-relaxed">
-              Data-driven insights into your dating performance. Track your rating trends, 
+              Data-driven insights into your friend-building performance. Track your rating trends,
               analyze your wins, and understand what makes you stand out.
             </p>
             

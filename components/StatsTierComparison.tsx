@@ -138,16 +138,16 @@ const tiers = [
   },
   { 
     name: "Plus", 
-    price: "A$9.99", 
-    period: "/month",
+    price: "A$2.31", 
+    period: "/week",
     color: "#3B82F6", 
     bg: "#EFF6FF",
     description: "Photo analytics" 
   },
   { 
     name: "Pro", 
-    price: "A$15.99", 
-    period: "/month",
+    price: "A$3.69", 
+    period: "/week",
     color: "#8B5CF6", 
     bg: "#F5F3FF",
     description: "Full analytics",
@@ -155,8 +155,8 @@ const tiers = [
   },
   { 
     name: "Ultra", 
-    price: "A$21.99", 
-    period: "/month",
+    price: "A$5.08", 
+    period: "/week",
     color: "#1A1A1A", 
     bg: "#FFC629",
     description: "Everything unlocked" 
@@ -209,7 +209,7 @@ export default function StatsTierComparison() {
             Choose Your Stats Level
           </h2>
           <p className="mt-4 text-lg text-bumble-gray max-w-2xl mx-auto">
-            Unlock more insights with higher tiers. Find the plan that matches your need for data-driven dating.
+            Unlock more insights with higher tiers. Find the plan that fits your need for data-driven friend recommendations.
           </p>
         </motion.div>
 

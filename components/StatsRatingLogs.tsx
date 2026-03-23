@@ -19,7 +19,7 @@ const RatingLogEntry = ({
   const typeConfig = {
     win: { icon: "✓", color: "#22C55E", bg: "#DCFCE7", label: "Won" },
     loss: { icon: "✗", color: "#EF4444", bg: "#FEE2E2", label: "Lost" },
-    super_like: { icon: "⭐", color: "#8B5CF6", bg: "#EDE9FE", label: "Super Liked" },
+    super_like: { icon: "⭐", color: "#8B5CF6", bg: "#EDE9FE", label: "Priority Friend Request" },
     boost: { icon: "⚡", color: "#F59E0B", bg: "#FEF3C7", label: "Boosted" },
   };
 
@@ -375,7 +375,7 @@ export default function StatsRatingLogs() {
             See who views you. Know every rating change.
           </p>
           <p className="text-white/70 mt-2 max-w-lg mx-auto">
-            Ultra members get complete transparency into their dating analytics. Know exactly who&apos;s interested.
+            Ultra members get complete transparency into their social analytics. Know exactly who&apos;s interested.
           </p>
           <button className="mt-6 px-8 py-4 rounded-full text-lg font-medium bg-yellow-400 text-bumble-black hover:bg-yellow-500 transition-colors">
             Upgrade to Ultra

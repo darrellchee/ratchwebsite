@@ -88,7 +88,7 @@ export default function SupportContent() {
         <div className="space-y-0">
           <CollapsibleSection title="1. Agreement to Terms" defaultOpen>
             <p>By accessing or using Ratch (&quot;the App&quot;, &quot;we&quot;, &quot;our&quot;, or &quot;us&quot;), you agree to be bound by these Terms of Service (&quot;Terms&quot;). If you do not agree to these terms, please do not use the App.</p>
-            <p>Ratch is a dating application that uses a profile comparison system with ELO ratings to help users find compatible matches. By creating an account, you confirm that you are at least 18 years of age and legally capable of entering into a binding agreement.</p>
+            <p>Ratch is a social networking app that uses a profile comparison system with ELO ratings to help users build compatible friendships. By creating an account, you confirm that you are at least 18 years of age and legally capable of entering into a binding agreement.</p>
           </CollapsibleSection>
 
           <CollapsibleSection title="2. Eligibility">
@@ -151,7 +151,7 @@ export default function SupportContent() {
             <ul className="space-y-1 mt-2">
               <ListItem><strong>How It Works:</strong> Two profiles are shown side-by-side, and users choose which they prefer</ListItem>
               <ListItem><strong>ELO Rating:</strong> Comparison results are used to calculate your ELO rating (0-10,000 scale)</ListItem>
-              <ListItem><strong>Rating Impact:</strong> Your rating affects which profiles you&apos;re shown and matched with</ListItem>
+              <ListItem><strong>Rating Impact:</strong> Your rating affects which profiles you&apos;re shown and helps you become friends with</ListItem>
               <ListItem><strong>Server-Side Calculation:</strong> All rating calculations happen server-side to ensure fairness</ListItem>
               <ListItem><strong>No Manipulation:</strong> Individual comparison votes are not revealed</ListItem>
               <ListItem><strong>Seasonal Resets:</strong> Ratings reset quarterly with archived history</ListItem>
@@ -173,14 +173,14 @@ export default function SupportContent() {
             <p><strong>Cancellation:</strong> You may cancel your subscription at any time through App Store settings.</p>
           </CollapsibleSection>
 
-          <CollapsibleSection title="8. Messaging & Matches">
-            <p><strong>Dual Matches:</strong> When two users choose each other in comparisons, a &quot;Dual Match&quot; is created, allowing direct messaging.</p>
+          <CollapsibleSection title="8. Messaging & Friends">
+            <p><strong>Dual Friend Requests:</strong> When two users choose each other in comparisons, a &quot;Dual Friend Request&quot; is created, allowing direct messaging.</p>
             <ul className="space-y-1 mt-2">
               <ListItem>Mutual interest is required before full messaging unlocks</ListItem>
               <ListItem>Initial messages create message requests until mutual interest is established</ListItem>
               <ListItem>Daily message limits vary by subscription tier</ListItem>
             </ul>
-            <p className="mt-3"><strong>Direct Messages:</strong> All messages are subject to our content guidelines. Users can unmatch at any time, which removes the conversation.</p>
+            <p className="mt-3"><strong>Direct Messages:</strong> All messages are subject to our content guidelines. Users can unfriend at any time, which removes the conversation.</p>
           </CollapsibleSection>
 
           <CollapsibleSection title="9. Safety and Reporting">
@@ -188,7 +188,7 @@ export default function SupportContent() {
             <ul className="space-y-1 mt-2">
               <ListItem><strong>Report Users:</strong> Report users who violate our terms</ListItem>
               <ListItem><strong>Block Users:</strong> Block users to prevent further contact</ListItem>
-              <ListItem><strong>Unmatch:</strong> Unmatch to end conversations</ListItem>
+              <ListItem><strong>Unfriend:</strong> Unfriend to end conversations</ListItem>
               <ListItem><strong>Safety Tips:</strong> Meet in public places and inform someone of your plans</ListItem>
             </ul>
             <p className="mt-3 p-3 bg-amber-50 rounded-lg text-amber-800"><strong>Important:</strong> Ratch is not responsible for the conduct of users on or off the platform. Use your best judgment when interacting with other users.</p>
@@ -205,7 +205,7 @@ export default function SupportContent() {
           <CollapsibleSection title="11. Disclaimers">
             <p className="uppercase text-xs">THE APP IS PROVIDED &quot;AS IS&quot; WITHOUT WARRANTIES OF ANY KIND, EXPRESS OR IMPLIED. WE DO NOT GUARANTEE:</p>
             <ul className="space-y-1 mt-2">
-              <ListItem>That you will find a match or romantic partner</ListItem>
+              <ListItem>That you will build a friendship</ListItem>
               <ListItem>The accuracy of information provided by other users</ListItem>
               <ListItem>Uninterrupted or error-free operation of the App</ListItem>
               <ListItem>The conduct or identity of any user</ListItem>
@@ -256,7 +256,7 @@ export default function SupportContent() {
             <ul className="space-y-1 mt-2">
               <ListItem><strong>Account Information:</strong> Name, email address, date of birth, gender, sexual orientation</ListItem>
               <ListItem><strong>Profile Details:</strong> Photos, bio, prompts, height, hometown, education, job title, religion, ethnicity</ListItem>
-              <ListItem><strong>Preferences:</strong> Dating intentions, interests, lifestyle choices, location preferences</ListItem>
+              <ListItem><strong>Preferences:</strong> Friend preferences, interests, lifestyle choices, location preferences</ListItem>
               <ListItem><strong>Communications:</strong> Messages sent to other users, reports, support requests</ListItem>
               <ListItem><strong>Payment Information:</strong> Subscription tier and purchase history (processed by Apple)</ListItem>
             </ul>
@@ -276,11 +276,12 @@ export default function SupportContent() {
               <ListItem>Create and manage your account</ListItem>
               <ListItem>Show your profile to other users for comparisons</ListItem>
               <ListItem>Calculate and display your ELO rating</ListItem>
-              <ListItem>Facilitate matches and enable messaging</ListItem>
-              <ListItem>Send notifications about matches, messages, and app updates</ListItem>
+              <ListItem>Facilitate friendships and enable messaging</ListItem>
+              <ListItem>Send notifications about friend requests, messages, and app updates</ListItem>
               <ListItem>Personalize your experience and content</ListItem>
               <ListItem>Monitor and analyze usage patterns to improve the app</ListItem>
               <ListItem>Detect, prevent, and address technical issues and fraud</ListItem>
+              <ListItem>Moderate text content for safety and policy enforcement</ListItem>
               <ListItem>Enforce our Terms of Service and community guidelines</ListItem>
               <ListItem>Display advertisements (for free tier users only)</ListItem>
               <ListItem>Comply with legal obligations</ListItem>
@@ -291,10 +292,10 @@ export default function SupportContent() {
             <p><strong>With Other Users:</strong></p>
             <ul className="space-y-1 mt-2">
               <ListItem>Your profile (photos, name, age, bio, prompts) is visible to other users</ListItem>
-              <ListItem>Matched users can see your messages and profile</ListItem>
-              <ListItem>Your profile and ELO rating are used to find compatible matches</ListItem>
+              <ListItem>Friends can see your messages and profile</ListItem>
+              <ListItem>Your profile and ELO rating are used to find compatible friendships</ListItem>
             </ul>
-            <p className="mt-3"><strong>With Service Providers:</strong> We share information with third-party service providers who help us operate the App (see Third-Party Services section).</p>
+            <p className="mt-3"><strong>With Service Providers:</strong> We share information with third-party service providers who help us operate the App (see Third-Party Services section), including OpenAI for text moderation of user-submitted text.</p>
             <p className="mt-3"><strong>For Legal Reasons:</strong> We may disclose your information to comply with legal obligations, protect our rights, or respond to lawful requests from public authorities.</p>
           </CollapsibleSection>
 
@@ -314,7 +315,7 @@ export default function SupportContent() {
             <ul className="space-y-1">
               <ListItem><strong>Active Accounts:</strong> Data is retained as long as your account is active</ListItem>
               <ListItem><strong>Deleted Accounts:</strong> Data is deleted within 30 days of account deletion</ListItem>
-              <ListItem><strong>Messages:</strong> Deleted when you unmatch or delete your account</ListItem>
+              <ListItem><strong>Messages:</strong> Deleted when you unfriend or delete your account</ListItem>
               <ListItem><strong>Rating History:</strong> Retained for analytics unless account is deleted</ListItem>
               <ListItem><strong>Logs:</strong> Usage logs are retained for up to 90 days</ListItem>
             </ul>
@@ -374,10 +375,17 @@ export default function SupportContent() {
             },
             {
               name: "AWS Rekognition",
-              purpose: "Content moderation for photo uploads",
+              purpose: "Photo moderation for uploaded images",
               data: "Uploaded photos (temporarily, for moderation)",
               link: "https://aws.amazon.com/privacy/",
               color: "#FF9900",
+            },
+            {
+              name: "OpenAI (GPT Moderation API)",
+              purpose: "Text content moderation and safety checks",
+              data: "User-submitted text for moderation (e.g., bios, prompts, display names, direct messages)",
+              link: "https://openai.com/policies/privacy-policy/",
+              color: "#10A37F",
             },
           ].map((service) => (
             <div 
@@ -403,6 +411,11 @@ export default function SupportContent() {
               >
                 View Privacy Policy →
               </a>
+              {service.name === "OpenAI (GPT Moderation API)" && (
+                <p className="text-sm text-bumble-gray mt-2">
+                  <strong>Note:</strong> Used to detect policy-violating text and enforce community safety rules.
+                </p>
+              )}
             </div>
           ))}
         </div>
@@ -437,17 +450,17 @@ export default function SupportContent() {
               <tr className="border-b border-gray-100">
                 <td className="py-3 px-4 font-medium">Ratch+ (Plus)</td>
                 <td className="py-3 px-4">A$9.99/month</td>
-                <td className="py-3 px-4 text-bumble-gray">15 daily DMs, Limited Dual Matches, Limited Super Likes, Always see rating</td>
+                <td className="py-3 px-4 text-bumble-gray">15 daily DMs, Limited Dual Friend Requests, Limited Priority Friend Requests, Always see rating</td>
               </tr>
               <tr className="border-b border-gray-100">
                 <td className="py-3 px-4 font-medium">Ratch Pro</td>
                 <td className="py-3 px-4">A$15.99/month</td>
-                <td className="py-3 px-4 text-bumble-gray">Unlimited DMs, Unlimited Dual Matches, More Super Likes, Premium filters, Full stats</td>
+                <td className="py-3 px-4 text-bumble-gray">Unlimited DMs, Unlimited Dual Friend Requests, More Priority Friend Requests, Premium filters, Full stats</td>
               </tr>
               <tr>
                 <td className="py-3 px-4 font-medium">Ratch Ultra</td>
                 <td className="py-3 px-4">A$21.99/month</td>
-                <td className="py-3 px-4 text-bumble-gray">All Pro features + Unlimited Super Likes, Photo analytics, Full rating logs</td>
+                <td className="py-3 px-4 text-bumble-gray">All Pro features + Unlimited Priority Friend Requests, Photo analytics, Full rating logs</td>
               </tr>
             </tbody>
           </table>
@@ -635,12 +648,12 @@ export default function SupportContent() {
           
           <div className="p-4 rounded-2xl bg-green-50 border border-green-100">
             <h4 className="font-bold text-green-800 mb-2">Content Moderation</h4>
-            <p className="text-sm text-green-700">All photos are moderated using AWS Rekognition before approval</p>
+            <p className="text-sm text-green-700">Photos are moderated using AWS Rekognition and text is moderated using OpenAI moderation services.</p>
           </div>
           
           <div className="p-4 rounded-2xl bg-blue-50 border border-blue-100">
             <h4 className="font-bold text-blue-800 mb-2">Safety Features</h4>
-            <p className="text-sm text-blue-700">Report, Block, and Unmatch tools available to all users</p>
+            <p className="text-sm text-blue-700">Report, Block, and Unfriend tools available to all users</p>
           </div>
         </div>
 
@@ -650,7 +663,7 @@ export default function SupportContent() {
               <ListItem><strong>Location Services (Optional):</strong> &quot;We use your location to show you profiles in your area&quot;</ListItem>
               <ListItem><strong>Photo Library Access:</strong> &quot;We need access to your photos to let you upload profile pictures&quot;</ListItem>
               <ListItem><strong>Camera Access (Optional):</strong> &quot;We need camera access if you want to take new profile photos&quot;</ListItem>
-              <ListItem><strong>Notifications:</strong> For matches, messages, and app updates</ListItem>
+              <ListItem><strong>Notifications:</strong> For friend requests, messages, and app updates</ListItem>
             </ul>
           </CollapsibleSection>
 

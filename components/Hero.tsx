@@ -88,7 +88,9 @@ const FloatingCard = ({
       >
         {/* Card */}
         <div 
-          className={`relative w-[180px] md:w-[200px] lg:w-[220px] aspect-[3/4] rounded-3xl overflow-hidden card-shadow-xl transition-all duration-500 ${isSelected ? 'ring-4 ring-green-500' : ''}`}
+          className={`relative w-[180px] md:w-[200px] lg:w-[220px] aspect-[3/4] rounded-3xl overflow-hidden card-shadow-xl transition-all duration-500 ${
+            isSelected ? 'border-4 border-green-500' : ''
+          }`}
           style={{ 
             background: `linear-gradient(135deg, ${profile.gradientFrom} 0%, ${profile.gradientTo} 100%)`,
             filter: isUnselected ? 'grayscale(100%)' : 'none',
@@ -146,28 +148,6 @@ const FloatingCard = ({
                   <path strokeLinecap="round" strokeLinejoin="round" d="M15 15l-2 5L9 9l11 4-5 2zm0 0l5 5M7.188 2.239l.777 2.897M5.136 7.965l-2.898-.777M13.95 4.05l-2.122 2.122m-5.657 5.656l-2.12 2.122" />
                 </svg>
               </motion.div>
-            )}
-          </AnimatePresence>
-
-          {/* Higher/Lower Pill - shows after selection, centered in middle */}
-          <AnimatePresence>
-            {(isSelected || isUnselected) && (
-              <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
-                <motion.div
-                  initial={{ opacity: 0, scale: 0.5 }}
-                  animate={{ opacity: 1, scale: 1 }}
-                  transition={{ duration: 0.3, delay: 0.2 }}
-                  className={`px-4 py-1.5 rounded-full font-bold text-sm shadow-lg ${
-                    isSelected
-                      ? position === "top"
-                        ? "bg-green-500 text-white"
-                        : "bg-red-500 text-white"
-                      : "bg-gray-400 text-white"
-                  }`}
-                >
-                  {position === "top" ? "higher" : "lower"}
-                </motion.div>
-              </div>
             )}
           </AnimatePresence>
         </div>

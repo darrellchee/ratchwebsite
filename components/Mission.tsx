@@ -77,7 +77,7 @@ export default function Mission() {
               whileTap={{ scale: 0.98 }}
               className="inline-block mt-8 px-8 py-4 bg-bumble-black text-white rounded-full font-medium text-lg hover:bg-gray-800 transition-colors"
             >
-              Download Bumble
+              Download Ratch
             </motion.a>
           </motion.div>
 

@@ -28,13 +28,13 @@ const featureCategories: FeatureCategory[] = [
     ],
   },
   {
-    category: "Matching",
+    category: "Friend Requests",
     features: [
-      { name: "Dual Match", free: false, plus: "Limited", pro: "Unlimited", ultra: "Unlimited" },
-      { name: "Super Likes", free: "1/week", plus: "5/week", pro: "15/week", ultra: "Unlimited" },
+      { name: "Dual Friend Requests", free: false, plus: "Limited", pro: "Unlimited", ultra: "Unlimited" },
+      { name: "Priority Friend Requests", free: "1/week", plus: "5/week", pro: "15/week", ultra: "Unlimited" },
       { name: "Boosts", free: false, plus: "1/month", pro: "3/month", ultra: "Unlimited" },
-      { name: "See Who Likes You", free: false, plus: false, pro: false, ultra: true },
-      { name: "Rewind (Undo Swipe)", free: false, plus: true, pro: true, ultra: true },
+      { name: "See Who Wants to Be Friends With You", free: false, plus: false, pro: false, ultra: true },
+      { name: "Rewind (Undo Request)", free: false, plus: true, pro: true, ultra: true },
     ],
   },
   {
@@ -52,7 +52,7 @@ const featureCategories: FeatureCategory[] = [
     features: [
       { name: "Rating Visibility", free: "Weekly", plus: "Always", pro: "Always", ultra: "Always" },
       { name: "Profile Analytics", free: "Basic", plus: "Enhanced", pro: "Full", ultra: "Full" },
-      { name: "Match Insights", free: false, plus: true, pro: true, ultra: true },
+      { name: "Friend Request Insights", free: false, plus: true, pro: true, ultra: true },
       { name: "Activity Reports", free: false, plus: false, pro: true, ultra: true },
     ],
   },

@@ -4,9 +4,9 @@ import { motion } from "framer-motion";
 
 const products = [
   {
-    name: "Bumble Date",
-    description: "Whether you're new to dating or ready to try again, Bumble Date is built to bring you closer to love safely and meaningfully.",
-    cta: "Find your person",
+    name: "Ratch Friends",
+    description: "Whether you're new to making friends or ready to expand your circle, Ratch Friends helps you build meaningful friendships safely and confidently.",
+    cta: "Find your friends",
     bgStyle: { backgroundColor: '#FFC629' },
     icon: (
       <svg className="w-8 h-8" viewBox="0 0 24 24" fill="currentColor">
@@ -16,7 +16,7 @@ const products = [
   },
   {
     name: "BFF",
-    description: "Whether you've moved to a new city or just want to expand your circle, BFF makes it easy to meet like-minded people who match your vibe.",
+    description: "Whether you've moved to a new city or just want to expand your circle, BFF makes it easy to meet like-minded people who fit your vibe.",
     cta: "Find your people",
     bgStyle: { backgroundColor: '#FFC629' },
     icon: (

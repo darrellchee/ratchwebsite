@@ -19,7 +19,7 @@ export default function Events() {
               Start the chat in person
             </h2>
             <p className="mt-6 text-lg text-bumble-gray leading-relaxed max-w-lg">
-              Bumble IRL events mean you can stop typing and start talking. Come solo or bring a friend—and leave with a new connection.
+              Ratch IRL events mean you can stop typing and start talking. Come solo or bring a friend—and leave with a new friend.
             </p>
             <motion.a
               href="#events"

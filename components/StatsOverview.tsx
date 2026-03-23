@@ -354,7 +354,7 @@ export default function StatsOverview() {
             viewport={{ once: true }}
             transition={{ delay: 0.4 }}
           >
-            <QuickStatCard label="Match Rate" value="8.4%" icon="💕" trend="+1.2%" />
+            <QuickStatCard label="Friend Rate" value="8.4%" icon="🤝" trend="+1.2%" />
           </motion.div>
         </div>
 
