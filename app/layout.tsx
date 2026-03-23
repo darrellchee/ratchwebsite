@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import "./globals.css";
 import ScrollFrame from "@/components/ScrollFrame";
 import { LanguageProvider } from "@/contexts/LanguageContext";
+import { Analytics } from "@vercel/analytics/next";
 
 export const metadata: Metadata = {
   title: "Ratch",
@@ -42,6 +43,7 @@ export default function RootLayout({
         <LanguageProvider>
           <ScrollFrame>{children}</ScrollFrame>
         </LanguageProvider>
+        <Analytics />
       </body>
     </html>
   );
