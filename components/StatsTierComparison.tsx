@@ -15,16 +15,16 @@ type StatsFeature = {
 
 const statsFeatures: StatsFeature[] = [
   {
-    name: "Rating Trend Chart",
-    description: "View your rating history over time",
+    name: "Match Score Trend Chart",
+    description: "View your match score history over time",
     free: "Weekly snapshot",
     plus: "Full access",
     pro: "Full access",
     ultra: "Hourly data",
   },
   {
-    name: "Current Rating",
-    description: "See your exact ELO rating",
+    name: "Current Match Score",
+    description: "See your exact match score",
     free: "Hidden (???)",
     plus: true,
     pro: true,
@@ -103,8 +103,8 @@ const statsFeatures: StatsFeature[] = [
     ultra: true,
   },
   {
-    name: "Rating Log",
-    description: "Every rating change recorded",
+    name: "Score Updates Log",
+    description: "Every match score update recorded",
     free: false,
     plus: false,
     pro: false,

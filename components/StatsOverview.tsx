@@ -65,7 +65,7 @@ const RatingChart = ({ data, selectedRange }: { data: number[]; selectedRange: s
       {/* Header */}
       <div className="flex items-center justify-between mb-4">
         <div>
-          <p className="text-sm text-bumble-gray">Current Rating</p>
+          <p className="text-sm text-bumble-gray">Current Score</p>
           <div className="flex items-baseline gap-3">
             <p className="text-4xl font-bold text-bumble-black">{data[data.length - 1].toLocaleString()}</p>
             <span className={`flex items-center text-sm font-medium ${isPositive ? 'text-green-500' : 'text-red-500'}`}>
@@ -165,7 +165,7 @@ const RatingTierBadge = ({ rating }: { rating: number }) => {
           {tier.name === "Elite" ? "👑" : tier.name === "Outstanding" ? "⭐" : tier.name === "Rising Star" ? "🌟" : "📈"}
         </div>
         <div>
-          <p className="text-xs text-bumble-gray">Rating Tier</p>
+          <p className="text-xs text-bumble-gray">Score Tier</p>
           <p className="text-2xl font-bold" style={{ color: tier.color }}>{tier.name}</p>
           <p className="text-sm text-bumble-gray">{tier.percentile}</p>
         </div>
@@ -291,7 +291,7 @@ export default function StatsOverview() {
             Track Your Progress
           </h2>
           <p className="mt-4 text-lg text-bumble-gray max-w-2xl mx-auto">
-            Your rating journey at a glance. See how you&apos;ve performed over time and where you stand.
+            Your score journey at a glance. See how you&apos;ve performed over time and where you stand.
           </p>
         </motion.div>
 

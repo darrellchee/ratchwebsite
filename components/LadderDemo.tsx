@@ -159,7 +159,7 @@ const LeagueSection = ({
             </span>
           )}
         </div>
-        <p className="text-xs text-bumble-gray">{tagline} • {range} ELO</p>
+        <p className="text-xs text-bumble-gray">{tagline} • {range} Match Score</p>
       </div>
       <div className="text-right">
         <p className="text-sm font-medium text-bumble-black">{members.length}</p>
@@ -297,7 +297,7 @@ export default function LadderDemo() {
               <p className="font-bold text-green-700">Your League & Above</p>
             </div>
             <p className="text-sm text-green-600">
-              See all profiles, names, cities, and ratings in your league and higher leagues.
+              See all profiles, names, cities, and match scores in your league and higher leagues.
             </p>
           </motion.div>
 
@@ -315,7 +315,7 @@ export default function LadderDemo() {
               <p className="font-bold text-gray-700">Leagues Below You</p>
             </div>
             <p className="text-sm text-gray-600">
-              Profiles are anonymous. Names, photos, and ratings are blurred to protect privacy.
+              Profiles are anonymous. Names, photos, and match scores are blurred to protect privacy.
             </p>
           </motion.div>
 

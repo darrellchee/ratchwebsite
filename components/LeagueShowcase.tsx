@@ -81,7 +81,7 @@ const LeagueCard = ({
       {/* Stats */}
       <div className="mt-4 flex items-center justify-between">
         <div>
-          <p className="text-xs text-bumble-gray">ELO Range</p>
+          <p className="text-xs text-bumble-gray">Match Score Range</p>
           <p className="text-sm font-medium text-bumble-black">{league.range}</p>
         </div>
         <div className="text-right">
@@ -133,8 +133,8 @@ export default function LeagueShowcase() {
             10 Leagues to Climb
           </h2>
           <p className="mt-4 text-lg text-bumble-gray max-w-2xl mx-auto">
-            Your ELO rating determines your league. Rise through the ranks from Low-Key to Irresistible 
-            and compete with users in your tier.
+            Your match score helps determine your league. Rise through the tiers from Low-Key to Irresistible 
+            and compete with users in your level.
           </p>
         </motion.div>
 
@@ -171,8 +171,8 @@ export default function LeagueShowcase() {
             
             {/* Labels */}
             <div className="flex justify-between mt-3">
-              <span className="text-xs text-bumble-gray">0 ELO</span>
-              <span className="text-xs text-bumble-gray">10,000 ELO</span>
+              <span className="text-xs text-bumble-gray">0 Match Score</span>
+              <span className="text-xs text-bumble-gray">10,000 Match Score</span>
             </div>
           </div>
         </motion.div>
@@ -199,7 +199,7 @@ export default function LeagueShowcase() {
           <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white border border-gray-200">
             <span className="text-lg">🏆</span>
             <p className="text-sm text-bumble-gray">
-              <span className="font-medium text-bumble-black">Tip:</span> Win more comparisons to increase your ELO and climb leagues!
+              <span className="font-medium text-bumble-black">Tip:</span> Win more comparisons to grow your match score and climb leagues!
             </p>
           </div>
         </motion.div>

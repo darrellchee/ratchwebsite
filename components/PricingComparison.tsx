@@ -50,7 +50,7 @@ const featureCategories: FeatureCategory[] = [
   {
     category: "Analytics & Insights",
     features: [
-      { name: "Rating Visibility", free: "Weekly", plus: "Always", pro: "Always", ultra: "Always" },
+      { name: "Match Score Visibility", free: "Weekly", plus: "Always", pro: "Always", ultra: "Always" },
       { name: "Profile Analytics", free: "Basic", plus: "Enhanced", pro: "Full", ultra: "Full" },
       { name: "Friend Request Insights", free: false, plus: true, pro: true, ultra: true },
       { name: "Activity Reports", free: false, plus: false, pro: true, ultra: true },

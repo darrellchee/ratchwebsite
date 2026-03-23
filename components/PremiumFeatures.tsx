@@ -6,7 +6,7 @@ const features = [
   {
     slug: "super_like",
     label: "Priority Friend Request",
-    description: "Give a profile a 2x ELO boost and instantly send a priority friend request. They'll know you're serious.",
+    description: "Give a profile a 2x match score boost and instantly send a priority friend request. They'll know you're serious.",
     icon: (
       <svg className="w-8 h-8" fill="currentColor" viewBox="0 0 24 24">
         <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
@@ -32,7 +32,7 @@ const features = [
   {
     slug: "dual_connection",
     label: "Dual Friend Request",
-    description: "Can't decide? React to both profiles at once. Sends friend requests to both users and boosts their ratings.",
+    description: "Can't decide? React to both profiles at once. Sends friend requests to both users and boosts their match scores.",
     icon: (
       <svg className="w-8 h-8" fill="currentColor" viewBox="0 0 24 24">
         <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
@@ -132,7 +132,7 @@ export default function PremiumFeatures() {
                         <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
                       </svg>
                     </div>
-                    <span className="text-xs text-bumble-gray">2x Rating Boost</span>
+                    <span className="text-xs text-bumble-gray">2x Match Score Boost</span>
                   </motion.div>
                 )}
 

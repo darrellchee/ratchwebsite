@@ -34,7 +34,7 @@ const tiers: Tier[] = [
     features: [
       "5 daily DMs",
       "Basic profile creation",
-      "Weekly rating visibility",
+      "Weekly match score visibility",
       "Limited Priority Friend Requests",
       "Standard filters",
       "Community access",
@@ -53,7 +53,7 @@ const tiers: Tier[] = [
     features: [
       "15 daily DMs",
       "Limited Dual Friend Requests",
-      "Always-on rating visibility",
+      "Always-on match score visibility",
       "More Priority Friend Requests",
       "Limited Boosts",
       "Extended filters",

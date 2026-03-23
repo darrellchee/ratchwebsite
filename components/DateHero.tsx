@@ -106,7 +106,7 @@ const ProfileCardDemo = ({
       )}
     </AnimatePresence>
 
-    {/* ELO Pill - shows after selection, centered in middle */}
+    {/* Score pill - shows after selection, centered in middle */}
     <AnimatePresence>
       {(isSelected || isUnselected) && (
         <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
@@ -205,12 +205,12 @@ export default function DateHero() {
                 <p className="text-sm text-bumble-gray mt-1">Comparison</p>
               </div>
               <div>
-                <p className="text-3xl font-bold text-bumble-black">ELO</p>
-                <p className="text-sm text-bumble-gray mt-1">Rating System</p>
+                <p className="text-3xl font-bold text-bumble-black">Match</p>
+                <p className="text-sm text-bumble-gray mt-1">Score System</p>
               </div>
               <div>
                 <p className="text-3xl font-bold text-bumble-black">0-10K</p>
-                <p className="text-sm text-bumble-gray mt-1">Rating Scale</p>
+                <p className="text-sm text-bumble-gray mt-1">Score Scale</p>
               </div>
             </div>
           </motion.div>

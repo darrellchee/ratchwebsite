@@ -275,7 +275,7 @@ export default function Hero() {
               </div>
               <div className="w-px bg-gray-200" />
               <div>
-                <p className="text-2xl lg:text-3xl font-bold text-[var(--ratch-black)]">ELO</p>
+                <p className="text-2xl lg:text-3xl font-bold text-[var(--ratch-black)]">Match</p>
                 <p className="text-sm text-[var(--ratch-gray)]">{t("hero.rating")}</p>
               </div>
               <div className="w-px bg-gray-200" />

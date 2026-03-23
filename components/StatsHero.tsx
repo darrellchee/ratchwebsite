@@ -96,7 +96,7 @@ export default function StatsHero() {
             </h1>
             
             <p className="mt-6 text-lg lg:text-xl text-bumble-gray max-w-lg leading-relaxed">
-              Data-driven insights into your friend-building performance. Track your rating trends,
+              Data-driven insights into your friend-building performance. Track your score trends,
               analyze your wins, and understand what makes you stand out.
             </p>
             
@@ -174,7 +174,7 @@ export default function StatsHero() {
                     {/* Rating Card */}
                     <div className="bg-gray-50 rounded-2xl p-4 mb-3">
                       <div className="flex items-center justify-between mb-2">
-                        <p className="text-xs text-bumble-gray">Current Rating</p>
+                        <p className="text-xs text-bumble-gray">Current Score</p>
                         <span className="px-2 py-0.5 rounded-full text-xs font-medium bg-green-100 text-green-600">+128 this week</span>
                       </div>
                       <p className="text-3xl font-bold text-bumble-black">7,542</p>

@@ -6,7 +6,7 @@ import { LanguageProvider } from "@/contexts/LanguageContext";
 export const metadata: Metadata = {
   title: "Ratch",
   description: "Ratch - Make friends with people. Compare profiles and track your stats.",
-  keywords: ["social app", "ratch", "friends", "friendships", "networking", "rating", "community"],
+  keywords: ["social app", "ratch", "friends", "friendships", "networking", "community"],
   authors: [{ name: "Ratch" }],
   icons: {
     icon: "/favicon.png",

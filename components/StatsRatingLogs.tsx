@@ -139,7 +139,7 @@ const RatingTimeline = () => {
 
   return (
     <div className="bg-white rounded-2xl p-5 shadow-sm border border-gray-100">
-      <p className="text-lg font-bold text-bumble-black mb-4">Rating Journey</p>
+      <p className="text-lg font-bold text-bumble-black mb-4">Score Journey</p>
 
       <div className="relative">
         {/* Timeline line */}
@@ -239,7 +239,7 @@ const ComparisonDetails = () => {
                 </span>
               </div>
               <div className="flex items-center justify-between text-xs text-bumble-gray">
-                <span>Rating: {youWon ? comp.loser.rating : comp.winner.rating}</span>
+                <span>Score: {youWon ? comp.loser.rating : comp.winner.rating}</span>
                 <span>{comp.time}</span>
               </div>
             </motion.div>
@@ -280,10 +280,10 @@ export default function StatsRatingLogs() {
             Ultra Exclusive
           </span>
           <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-bumble-black">
-            Complete Rating History
+            Complete Match Score History
           </h2>
           <p className="mt-4 text-lg text-bumble-gray max-w-2xl mx-auto">
-            Every comparison, every rating change, every viewer. The most detailed analytics available only for Ultra members.
+            Every comparison, every score update, every viewer. The most detailed analytics available only for Ultra members.
           </p>
         </motion.div>
 
@@ -297,7 +297,7 @@ export default function StatsRatingLogs() {
           >
             <div className="bg-white rounded-2xl p-5 shadow-sm border border-gray-100">
               <div className="flex items-center justify-between mb-4">
-                <p className="text-lg font-bold text-bumble-black">Rating Log</p>
+                <p className="text-lg font-bold text-bumble-black">Score Updates Log</p>
                 <div className="flex gap-2">
                   <button className="px-3 py-1.5 rounded-full text-xs font-medium bg-bumble-black text-white">
                     All
@@ -372,7 +372,7 @@ export default function StatsRatingLogs() {
             <span className="font-medium">Ultra Exclusive</span>
           </div>
           <p className="text-2xl font-bold">
-            See who views you. Know every rating change.
+            See who views you. Know every score update.
           </p>
           <p className="text-white/70 mt-2 max-w-lg mx-auto">
             Ultra members get complete transparency into their social analytics. Know exactly who&apos;s interested.

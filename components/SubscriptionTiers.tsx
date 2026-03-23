@@ -17,7 +17,7 @@ const features: TierFeature[] = [
   { name: "Boost", free: false, plus: "Limited", pro: "More", ultra: "Unlimited" },
   { name: "Premium Filters", free: false, plus: false, pro: true, ultra: true },
   { name: "Read Receipts", free: false, plus: false, pro: true, ultra: true },
-  { name: "Rating Visibility", free: "Weekly", plus: "Always", pro: "Always", ultra: "Always" },
+  { name: "Match Score Visibility", free: "Weekly", plus: "Always", pro: "Always", ultra: "Always" },
 ];
 
 const tiers = [
