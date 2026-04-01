@@ -106,7 +106,7 @@ export default function HowItWorks() {
   return (
     <section 
       id="how-it-works" 
-      className="pt-8 pb-24 lg:pt-12 lg:pb-32 relative overflow-hidden -mt-1"
+      className="pt-8 pb-24 lg:pt-12 lg:pb-32 relative overflow-hidden"
       style={{ backgroundColor: "var(--ratch-warm-white)" }}
     >
       {/* Background decoration */}

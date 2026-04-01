@@ -23,9 +23,9 @@ const translations: Record<Language, Record<string, string>> = {
     
     // Hero Section
     "hero.badge": "A new way to make friends",
-    "hero.title1": "Making friends,",
-    "hero.title2": "Chosen.",
-    "hero.subtitle": "No more endless scrolling. Compare two profiles, pick what resonates, and let your choices shape your friend circle.",
+    "hero.title1": "Your Snapshot,",
+    "hero.title2": "Determined.",
+    "hero.subtitle": "Find where you stand. Compare two profiles, get honest feedback, and discover how people actually see you.",
     "hero.download": "Download App",
     "hero.howItWorks": "How It Works",
     "hero.leagues": "Leagues",
