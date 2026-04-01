@@ -169,7 +169,7 @@ export default function Hero() {
                 {t("hero.download")}
               </motion.a>
               <motion.a
-                href="#how-it-works"
+                href="#try-compare"
                 whileHover={{ scale: 1.02 }}
                 whileTap={{ scale: 0.98 }}
                 className="px-8 py-4 border-2 border-[var(--ratch-black)] text-[var(--ratch-black)] rounded-full font-medium text-lg hover:bg-[var(--ratch-black)] hover:text-white transition-colors"

@@ -37,7 +37,7 @@ export default function FinalCTA() {
   return (
     <section
       id="download"
-      className="py-24 lg:py-32 relative overflow-hidden"
+      className="py-24 lg:py-32 relative overflow-hidden -mb-px"
       style={{ backgroundColor: "var(--ratch-warm-white)" }}
     >
       {/* Background gradient blobs */}
@@ -54,6 +54,14 @@ export default function FinalCTA() {
           style={{
             background: "linear-gradient(135deg, #FFD700 0%, #FF8FA3 100%)",
             animationDuration: "18s",
+          }}
+        />
+        {/* Bottom-right wash: matches TryCompareSection blob tones so the transition is not cooler/starker than #try-compare */}
+        <div
+          className="absolute bottom-0 right-0 z-[1] w-[min(100%,820px)] h-[min(38vw,10rem)] pointer-events-none"
+          style={{
+            background:
+              "radial-gradient(ellipse 105% 90% at 100% 100%, rgba(255, 107, 107, 0.22) 0%, rgba(255, 179, 71, 0.2) 38%, rgba(254, 252, 248, 0.5) 62%, transparent 72%)",
           }}
         />
       </div>
@@ -347,18 +355,33 @@ export default function FinalCTA() {
         </motion.div>
       </div>
 
-      {/* Wave transition → TryCompareSection (cream) */}
-      <div className="absolute bottom-0 left-0 right-0 pointer-events-none">
+      {/* Wave transition → TryCompareSection: gradient shifts cream → coral-peach on the right (aligns with #try-compare blobs). */}
+      <div className="absolute bottom-0 left-0 right-0 z-[2] pointer-events-none leading-[0]">
         <svg
           viewBox="0 0 1440 120"
           fill="none"
           xmlns="http://www.w3.org/2000/svg"
-          className="w-full h-auto"
-          preserveAspectRatio="none"
+          className="w-full aspect-[1440/120] block"
+          preserveAspectRatio="xMidYMid meet"
         >
+          <defs>
+            <linearGradient
+              id="finalCtaWaveToTryGradient"
+              x1="0"
+              y1="0"
+              x2="1440"
+              y2="0"
+              gradientUnits="userSpaceOnUse"
+            >
+              <stop offset="0%" stopColor="#FEFCF8" />
+              <stop offset="52%" stopColor="#FEFCF8" />
+              <stop offset="82%" stopColor="#FDF1EC" />
+              <stop offset="100%" stopColor="#F7D6CC" />
+            </linearGradient>
+          </defs>
           <path
-            d="M0 120L60 110C120 100 240 80 360 70C480 60 600 60 720 65C840 70 960 80 1080 85C1200 90 1320 90 1380 90L1440 90V120H1380C1320 120 1200 120 1080 120C960 120 840 120 720 120C600 120 480 120 360 120C240 120 120 120 60 120H0Z"
-            fill="var(--ratch-cream)"
+            d="M0 120 L48 112 C160 86 320 58 480 66 C660 75 820 92 980 84 C1100 78 1220 94 1340 106 C1380 110 1410 106 1440 102 L1440 120 L0 120 Z"
+            fill="url(#finalCtaWaveToTryGradient)"
           />
         </svg>
       </div>

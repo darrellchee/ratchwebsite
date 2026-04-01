@@ -1,6 +1,5 @@
 import Navbar from "@/components/Navbar";
 import Hero from "@/components/Hero";
-import HowItWorks from "@/components/HowItWorks";
 import CompareShowcase from "@/components/CompareShowcase";
 import StatsTeaser from "@/components/StatsTeaser";
 import FinalCTA from "@/components/FinalCTA";
@@ -14,7 +13,6 @@ export default function Home() {
       <Hero />
       <FinalCTA />
       <TryCompareSection />
-      <HowItWorks />
       <CompareShowcase />
       <StatsTeaser />
       <Footer />

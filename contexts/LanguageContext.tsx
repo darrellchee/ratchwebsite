@@ -36,19 +36,6 @@ const translations: Record<Language, Record<string, string>> = {
     "hero.chosen": "chosen!",
     "hero.scrollToExplore": "Scroll to explore",
     
-    // How It Works
-    "howItWorks.badge": "How It Works",
-    "howItWorks.title1": "Three steps to",
-    "howItWorks.title2": "better friendships",
-    "howItWorks.subtitle": "Our unique comparison system learns your preferences and helps you make friends with people who are truly compatible.",
-    "howItWorks.step1.title": "Compare",
-    "howItWorks.step1.desc": "Two profiles appear side by side. No endless scrolling – just pick the one that fits you best.",
-    "howItWorks.step2.title": "Rate",
-    "howItWorks.step2.desc": "Every choice updates your match score. Your preferences shape your friend circle.",
-    "howItWorks.step3.title": "Make Friends",
-    "howItWorks.step3.desc": "Make friends with people at your level. Quality over quantity – find your best friend fit.",
-    "howItWorks.cta": "See it in action",
-    
     // Compare Showcase
     "compare.badge": "The Compare Experience",
     "compare.title1": "Forced choices,",
@@ -67,16 +54,16 @@ const translations: Record<Language, Record<string, string>> = {
     "compare.eloRating": "Match Score",
     
     // Stats Teaser
-    "stats.badge": "Detailed Analytics",
-    "stats.title1": "Know your",
-    "stats.title2": "worth",
-    "stats.subtitle": "Data-driven insights into your friend-building performance. Track your score trends, analyze your wins, and understand what makes you stand out.",
-    "stats.feature1.title": "Score History",
-    "stats.feature1.desc": "Track your match score over time",
-    "stats.feature2.title": "Win Rate Analysis",
-    "stats.feature2.desc": "See your performance breakdown",
-    "stats.feature3.title": "Photo Performance",
-    "stats.feature3.desc": "Learn which photos work best",
+    "stats.badge": "Audience Insights",
+    "stats.title1": "Know who's",
+    "stats.title2": "into you",
+    "stats.subtitle": "See exactly who is choosing you. Break down your performance by ethnicity, age, and background — so you know where you stand.",
+    "stats.feature1.title": "Choice Rate by Ethnicity",
+    "stats.feature1.desc": "See what % of each group chose you vs. passed.",
+    "stats.feature2.title": "Age Breakdown",
+    "stats.feature2.desc": "Discover which age groups are most into your profile.",
+    "stats.feature3.title": "Background Insights",
+    "stats.feature3.desc": "Understand your audience across different backgrounds.",
     "stats.cta": "Explore Stats",
     "stats.statistics": "Statistics",
     "stats.currentRating": "Current Score",
@@ -134,19 +121,6 @@ const translations: Record<Language, Record<string, string>> = {
     "hero.tapToChoose": "Ketuk untuk memilih preferensi Anda",
     "hero.chosen": "dipilih!",
     "hero.scrollToExplore": "Gulir untuk menjelajahi",
-    
-    // How It Works
-    "howItWorks.badge": "Cara Kerjanya",
-    "howItWorks.title1": "Tiga langkah menuju",
-    "howItWorks.title2": "persahabatan yang lebih baik",
-    "howItWorks.subtitle": "Sistem perbandingan unik kami mempelajari preferensi Anda dan membantu Anda membuat teman dengan orang yang benar-benar cocok.",
-    "howItWorks.step1.title": "Bandingkan",
-    "howItWorks.step1.desc": "Dua profil muncul berdampingan. Tidak ada scroll tanpa akhir – cukup pilih yang paling sesuai untuk Anda.",
-    "howItWorks.step2.title": "Nilai",
-    "howItWorks.step2.desc": "Setiap pilihan memperbarui skor kecocokan. Preferensi Anda membentuk lingkaran teman Anda.",
-    "howItWorks.step3.title": "Buat Teman",
-    "howItWorks.step3.desc": "Buat teman dengan orang yang setara dengan Anda. Kualitas lebih penting daripada kuantitas – temukan teman terbaik Anda.",
-    "howItWorks.cta": "Lihat dalam aksi",
     
     // Compare Showcase
     "compare.badge": "Pengalaman Membandingkan",
@@ -234,19 +208,6 @@ const translations: Record<Language, Record<string, string>> = {
     "hero.chosen": "已选择！",
     "hero.scrollToExplore": "滚动探索",
     
-    // How It Works
-    "howItWorks.badge": "工作原理",
-    "howItWorks.title1": "三步走向",
-    "howItWorks.title2": "更好的友谊",
-    "howItWorks.subtitle": "我们独特的比较系统学习您的偏好，并帮助您与真正合适的人交朋友。",
-    "howItWorks.step1.title": "比较",
-    "howItWorks.step1.desc": "两个个人资料并排出现。无需无尽滚动——选择您认为最合适的人。",
-    "howItWorks.step2.title": "评分",
-    "howItWorks.step2.desc": "每次选择都会更新匹配得分。您的偏好塑造您的朋友圈。",
-    "howItWorks.step3.title": "交朋友",
-    "howItWorks.step3.desc": "在同一水平的人那里交友。质量胜过数量——找到更好的朋友。",
-    "howItWorks.cta": "查看实际操作",
-    
     // Compare Showcase
     "compare.badge": "比较体验",
     "compare.title1": "强制选择，",
@@ -332,19 +293,6 @@ const translations: Record<Language, Record<string, string>> = {
     "hero.tapToChoose": "Appuyez pour choisir votre préférence",
     "hero.chosen": "choisi !",
     "hero.scrollToExplore": "Faites défiler pour explorer",
-    
-    // How It Works
-    "howItWorks.badge": "Comment ça marche",
-    "howItWorks.title1": "Trois étapes vers",
-    "howItWorks.title2": "de meilleures amitiés",
-    "howItWorks.subtitle": "Notre système de comparaison unique apprend vos préférences et vous aide à vous faire des amis avec des personnes vraiment compatibles.",
-    "howItWorks.step1.title": "Comparer",
-    "howItWorks.step1.desc": "Deux profils apparaissent côte à côte. Pas de défilement sans fin – choisissez simplement celui qui vous ressemble le plus.",
-    "howItWorks.step2.title": "Noter",
-    "howItWorks.step2.desc": "Chaque choix met à jour votre score de compatibilité. Vos préférences façonnent votre cercle d'amis.",
-    "howItWorks.step3.title": "Se faire des amis",
-    "howItWorks.step3.desc": "Faites des amis avec des personnes de votre niveau. La qualité plutôt que la quantité — trouvez votre meilleure amitié.",
-    "howItWorks.cta": "Voir en action",
     
     // Compare Showcase
     "compare.badge": "L'expérience de comparaison",

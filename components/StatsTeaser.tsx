@@ -3,49 +3,46 @@
 import { motion } from "framer-motion";
 import { useLanguage } from "@/contexts/LanguageContext";
 
-// Mini chart component
-const MiniLineChart = () => {
-  const points = [40, 45, 42, 55, 52, 60, 58, 65, 70, 68, 75, 80];
-  const maxY = Math.max(...points);
-  const minY = Math.min(...points);
-  const range = maxY - minY;
-  
-  const pathD = points
-    .map((y, i) => {
-      const x = (i / (points.length - 1)) * 100;
-      const normalizedY = 100 - ((y - minY) / range) * 80 - 10;
-      return `${i === 0 ? 'M' : 'L'} ${x} ${normalizedY}`;
-    })
-    .join(' ');
+const ethnicityData = [
+  { label: "Asian",             pct: 80, chose: 89,  passed: 23 },
+  { label: "Hispanic/Latino",   pct: 88, chose: 50,  passed: 7  },
+  { label: "White",             pct: 66, chose: 36,  passed: 19 },
+  { label: "Black",             pct: 84, chose: 43,  passed: 8  },
+  { label: "Mixed/Multiracial", pct: 76, chose: 32,  passed: 10 },
+  { label: "Other",             pct: 74, chose: 31,  passed: 11 },
+  { label: "Middle Eastern",    pct: 71, chose: 25,  passed: 10 },
+  { label: "Pacific Islander",  pct: 69, chose: 18,  passed: 8  },
+];
 
-  return (
-    <svg viewBox="0 0 100 100" className="w-full h-full" preserveAspectRatio="none">
-      <defs>
-        <linearGradient id="chartGradient" x1="0%" y1="0%" x2="0%" y2="100%">
-          <stop offset="0%" stopColor="#FF6B6B" stopOpacity="0.3" />
-          <stop offset="100%" stopColor="#FF6B6B" stopOpacity="0" />
-        </linearGradient>
-      </defs>
-      <path
-        d={`${pathD} L 100 100 L 0 100 Z`}
-        fill="url(#chartGradient)"
-      />
-      <motion.path
-        d={pathD}
-        fill="none"
-        stroke="#FF6B6B"
-        strokeWidth="2.5"
-        strokeLinecap="round"
-        initial={{ pathLength: 0 }}
-        whileInView={{ pathLength: 1 }}
+const EthnicityRow = ({ item, index }: { item: typeof ethnicityData[0]; index: number }) => (
+  <div className="flex flex-col justify-center min-h-0">
+    <div className="flex items-center justify-between mb-1">
+      <span className="text-[10px] font-semibold text-[#1a1a1a] leading-tight">{item.label}</span>
+      <span className="text-[9px] font-bold text-green-500 shrink-0 ml-1">{item.pct}% chose you</span>
+    </div>
+    {/* Bar track: green fill + salmon remainder — thicker bar */}
+    <div className="relative h-4 rounded-full overflow-hidden bg-[#FFCDD2] shadow-inner">
+      <motion.div
+        className="absolute left-0 top-0 h-full rounded-full bg-green-500"
+        initial={{ width: "0%" }}
+        whileInView={{ width: `${item.pct}%` }}
         viewport={{ once: true }}
-        transition={{ duration: 1.5, delay: 0.5 }}
+        transition={{ duration: 1, delay: 0.25 + index * 0.08, ease: [0.25, 0.46, 0.45, 0.94] }}
       />
-    </svg>
-  );
-};
+    </div>
+    <div className="flex gap-3 mt-1">
+      <span className="text-[8px] text-[#555] flex items-center gap-0.5">
+        <span className="w-2 h-2 rounded-full bg-green-500 inline-block shrink-0" />
+        {item.chose} chose
+      </span>
+      <span className="text-[8px] text-[#555] flex items-center gap-0.5">
+        <span className="w-2 h-2 rounded-full bg-[#FF8A80] inline-block shrink-0" />
+        {item.passed} passed
+      </span>
+    </div>
+  </div>
+);
 
-// Floating stat badge component - Using CSS animation for better mobile performance
 const FloatingStat = ({ 
   children, 
   className = "",
@@ -133,7 +130,7 @@ export default function StatsTeaser() {
                   className="w-12 h-12 rounded-xl flex items-center justify-center text-xl"
                   style={{ backgroundColor: "rgba(255, 107, 107, 0.1)" }}
                 >
-                  📈
+                  👥
                 </div>
                 <div>
                   <p className="font-semibold text-[var(--ratch-black)]">{t("stats.feature1.title")}</p>
@@ -152,7 +149,7 @@ export default function StatsTeaser() {
                   className="w-12 h-12 rounded-xl flex items-center justify-center text-xl"
                   style={{ backgroundColor: "rgba(255, 179, 71, 0.1)" }}
                 >
-                  🏆
+                  🎂
                 </div>
                 <div>
                   <p className="font-semibold text-[var(--ratch-black)]">{t("stats.feature2.title")}</p>
@@ -171,7 +168,7 @@ export default function StatsTeaser() {
                   className="w-12 h-12 rounded-xl flex items-center justify-center text-xl"
                   style={{ backgroundColor: "rgba(34, 197, 94, 0.1)" }}
                 >
-                  📊
+                  🌍
                 </div>
                 <div>
                   <p className="font-semibold text-[var(--ratch-black)]">{t("stats.feature3.title")}</p>
@@ -211,15 +208,15 @@ export default function StatsTeaser() {
             transition={{ duration: 0.6, delay: 0.2 }}
             className="flex justify-center relative"
           >
-            {/* Floating stats around the phone */}
+            {/* Floating audience stat badges */}
             <FloatingStat 
-              className="top-0 -left-4 lg:left-0 z-20"
+              className="top-0 -left-4 lg:-left-2 z-20"
               delay={0.6}
               direction="up"
             >
               <div className="bg-white rounded-2xl p-4 card-shadow-lg">
-                <p className="text-sm text-[var(--ratch-gray)]">{t("stats.winRateLabel")}</p>
-                <p className="text-2xl font-bold text-green-500">72%</p>
+                <p className="text-sm text-[var(--ratch-gray)]">Asian chose you</p>
+                <p className="text-2xl font-bold text-green-500">80%</p>
               </div>
             </FloatingStat>
 
@@ -229,8 +226,8 @@ export default function StatsTeaser() {
               direction="down"
             >
               <div className="bg-white rounded-2xl p-4 card-shadow-lg">
-                <p className="text-sm text-[var(--ratch-gray)]">{t("stats.thisWeek")}</p>
-                <p className="text-2xl font-bold text-[#FF6B6B]">+128</p>
+                <p className="text-sm text-[var(--ratch-gray)]">Hispanic/Latino</p>
+                <p className="text-2xl font-bold text-green-500">88%</p>
               </div>
             </FloatingStat>
 
@@ -240,9 +237,9 @@ export default function StatsTeaser() {
               direction="up"
             >
               <div className="bg-white rounded-2xl p-4 card-shadow-lg flex items-center gap-2">
-                <span className="text-xl">🔥</span>
+                <span className="text-xl">👍</span>
                 <div>
-                  <p className="text-sm font-medium text-[var(--ratch-black)]">7 {t("stats.dayStreak")}!</p>
+                  <p className="text-sm font-medium text-[var(--ratch-black)]">Top performer!</p>
                 </div>
               </div>
             </FloatingStat>
@@ -266,78 +263,39 @@ export default function StatsTeaser() {
                   
                   {/* Screen */}
                   <div 
-                    className="aspect-[9/19.5] flex flex-col p-4 pt-14"
+                    className="aspect-[9/19.5] flex flex-col p-4 pt-14 overflow-hidden"
                     style={{ backgroundColor: "#FEFCF8" }}
                   >
-                    {/* Header */}
-                    <div className="flex items-center justify-between mb-4">
-                      <p className="text-sm font-semibold text-[var(--ratch-black)]">{t("stats.statistics")}</p>
-                      <div className="flex gap-1.5">
-                        {[0,1,2,3,4].map((i) => (
-                          <div 
-                            key={i} 
-                            className={`w-2 h-2 rounded-full ${i === 0 ? 'bg-[var(--ratch-black)]' : 'bg-gray-300'}`}
-                          />
-                        ))}
+                    {/* App header */}
+                    <div className="flex items-center gap-2 mb-1">
+                      <div className="w-7 h-7 rounded-full bg-gradient-to-br from-[#FFB347] to-[#FF6B6B] flex items-center justify-center text-white text-[10px] font-bold shrink-0">
+                        R
                       </div>
-                    </div>
-                    
-                    {/* Rating Card */}
-                    <div className="bg-white rounded-2xl p-4 mb-3 shadow-sm">
-                      <div className="flex items-center justify-between mb-2">
-                        <p className="text-xs text-[var(--ratch-gray)]">{t("stats.currentRating")}</p>
-                        <span className="px-2 py-0.5 rounded-full text-xs font-medium bg-green-100 text-green-600">+128</span>
-                      </div>
-                      <p className="text-3xl font-bold text-[var(--ratch-black)]">7,542</p>
-                      <div className="h-16 mt-2">
-                        <MiniLineChart />
+                      <div>
+                        <p className="text-[12px] font-bold text-[#1a1a1a] leading-tight">Audience</p>
+                        <p className="text-[8px] text-[#888] leading-tight">Who&apos;s choosing you by gender, age, ethnicity.</p>
                       </div>
                     </div>
 
-                    {/* Quick Stats */}
-                    <div className="grid grid-cols-3 gap-2 mb-3">
-                      <div className="bg-white rounded-xl p-2 text-center shadow-sm">
-                        <p className="text-lg font-bold text-[var(--ratch-black)]">1.2K</p>
-                        <p className="text-[10px] text-[var(--ratch-gray)]">{t("stats.comparisons")}</p>
+                    {/* Divider */}
+                    <div className="h-px bg-gray-100 mb-3" />
+
+                    {/* WHO CHOOSES YOU label */}
+                    <div className="mb-2">
+                      <div className="flex items-center gap-1 mb-0.5">
+                        <span className="text-[10px]">👍</span>
+                        <p className="text-[9px] font-bold uppercase tracking-wider text-[#1a1a1a]">Who Chooses You</p>
                       </div>
-                      <div className="bg-white rounded-xl p-2 text-center shadow-sm">
-                        <p className="text-lg font-bold text-[var(--ratch-black)]">892</p>
-                        <p className="text-[10px] text-[var(--ratch-gray)]">{t("stats.wins")}</p>
-                      </div>
-                      <div className="bg-white rounded-xl p-2 text-center shadow-sm">
-                        <p className="text-lg font-bold text-[var(--ratch-black)]">72%</p>
-                        <p className="text-[10px] text-[var(--ratch-gray)]">{t("stats.rate")}</p>
-                      </div>
+                      <p className="text-[8px] text-[#888] leading-tight">Choice rate by ethnicity of the person exploring you</p>
                     </div>
 
-                    {/* Win Rate Card */}
-                    <div 
-                      className="rounded-2xl p-4 shadow-sm"
-                      style={{ background: "linear-gradient(135deg, rgba(255, 107, 107, 0.1) 0%, rgba(255, 179, 71, 0.1) 100%)" }}
-                    >
-                      <div className="flex items-center gap-3">
-                        <div className="w-12 h-12 rounded-full bg-gradient-to-br from-[#FF6B6B] to-[#FFB347] flex items-center justify-center">
-                          <span className="text-lg">🏆</span>
+                    {/* Ethnicity rows — equal vertical slices so the mock fills the phone */}
+                    <div className="flex-1 min-h-0 flex flex-col">
+                      {ethnicityData.map((item, i) => (
+                        <div key={item.label} className="flex-1 flex flex-col justify-center min-h-0 py-0.5">
+                          <EthnicityRow item={item} index={i} />
                         </div>
-                        <div>
-                          <p className="text-xs text-[var(--ratch-gray)]">{t("stats.winRate")}</p>
-                          <p className="text-2xl font-bold text-[var(--ratch-black)]">72%</p>
-                        </div>
-                        <div className="ml-auto text-right">
-                          <p className="text-xs font-medium text-[#FF6B6B]">{t("stats.onFire")} 🔥</p>
-                        </div>
-                      </div>
-                    </div>
-
-                    {/* Activity Streak */}
-                    <div className="mt-3 flex items-center gap-2">
-                      <span className="text-lg">🔥</span>
-                      <p className="text-xs text-[var(--ratch-gray)]">7 {t("stats.dayStreak")}</p>
-                      <div className="flex gap-1 ml-auto">
-                        {[1,2,3,4,5,6,7].map((d) => (
-                          <div key={d} className="w-4 h-4 rounded-sm bg-green-400" />
-                        ))}
-                      </div>
+                      ))}
                     </div>
                   </div>
                 </div>

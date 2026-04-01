@@ -301,22 +301,6 @@ export default function TryCompareSection() {
           </div>
         </div>
       </div>
-
-      {/* Wave transition → HowItWorks (warm-white) */}
-      <div className="absolute bottom-0 left-0 right-0 pointer-events-none">
-        <svg
-          viewBox="0 0 1440 120"
-          fill="none"
-          xmlns="http://www.w3.org/2000/svg"
-          className="w-full h-auto"
-          preserveAspectRatio="none"
-        >
-          <path
-            d="M0 0L60 10C120 20 240 40 360 50C480 60 600 60 720 55C840 50 960 40 1080 35C1200 30 1320 30 1380 30L1440 30V120H1380C1320 120 1200 120 1080 120C960 120 840 120 720 120C600 120 480 120 360 120C240 120 120 120 60 120H0Z"
-            fill="var(--ratch-warm-white)"
-          />
-        </svg>
-      </div>
     </section>
   );
 }
