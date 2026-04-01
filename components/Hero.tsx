@@ -22,7 +22,7 @@ const RatingCard = () => {
         {/* Profile image */}
         <div className="absolute inset-0">
           <Image
-            src="/person1.png"
+            src="/person3.png"
             alt="Profile"
             fill
             className="object-cover"
