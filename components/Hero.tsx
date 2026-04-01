@@ -56,17 +56,21 @@ const RatingCard = () => {
 
           {/* Progress bar */}
           <div className="relative w-full h-1.5 rounded-full bg-white/30">
-            <div
+            <motion.div
               className="absolute left-0 top-0 h-full rounded-full"
+              initial={{ width: "0%" }}
+              animate={{ width: `${percentage}%` }}
+              transition={{ duration: 1.2, delay: 1.4, ease: [0.25, 0.46, 0.45, 0.94] }}
               style={{
-                width: `${percentage}%`,
                 background: "linear-gradient(90deg, #FF6B6B 0%, #FFB347 45%, #22C55E 100%)",
               }}
             />
             {/* Thumb dot */}
-            <div
+            <motion.div
               className="absolute top-1/2 -translate-y-1/2 w-3.5 h-3.5 rounded-full bg-white shadow-md border-2 border-white/60"
-              style={{ left: `calc(${percentage}% - 7px)` }}
+              initial={{ left: "0%" }}
+              animate={{ left: `calc(${percentage}% - 7px)` }}
+              transition={{ duration: 1.2, delay: 1.4, ease: [0.25, 0.46, 0.45, 0.94] }}
             />
           </div>
         </div>

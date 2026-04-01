@@ -116,7 +116,7 @@ export default function FinalCTA() {
                 <span className="text-gradient">waitlist</span>
               </h2>
               <p className="mt-4 text-lg text-[var(--ratch-gray)] max-w-lg mx-auto">
-                Be among the first to experience Ratch. We&apos;ll reach out when your spot is ready.
+                Be among the first to experience Ratch. We&apos;ll reach out when the app is in the App Store.
               </p>
             </div>
 
