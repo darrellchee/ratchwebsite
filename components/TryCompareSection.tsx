@@ -71,7 +71,7 @@ const FloatingCard = ({
         damping: 15,
       }}
       onClick={onClick}
-      className="relative cursor-pointer gpu-accelerated"
+      className="relative w-full min-w-0 max-w-[220px] md:w-[200px] lg:w-[220px] md:max-w-none cursor-pointer gpu-accelerated"
     >
       <div
         className="relative animate-float"
@@ -80,7 +80,7 @@ const FloatingCard = ({
         }}
       >
         <div
-          className={`relative w-[180px] md:w-[200px] lg:w-[220px] aspect-[3/4] rounded-3xl overflow-hidden card-shadow-xl transition-all duration-500 ${
+          className={`relative w-full aspect-[3/4] rounded-2xl md:rounded-3xl overflow-hidden card-shadow-xl transition-all duration-500 ${
             isSelected ? "border-4 border-green-500" : ""
           }`}
           style={{
@@ -112,8 +112,8 @@ const FloatingCard = ({
             }}
           />
 
-          <div className="absolute bottom-0 left-0 right-0 p-5">
-            <p className="text-white font-bold text-xl drop-shadow-lg">
+          <div className="absolute bottom-0 left-0 right-0 p-3 md:p-5">
+            <p className="text-white font-bold text-base md:text-xl drop-shadow-lg">
               {profile.name}, {profile.age}
             </p>
             <div className="flex gap-1.5 mt-2">
@@ -181,10 +181,10 @@ export default function TryCompareSection() {
         />
       </div>
 
-      <div className="relative max-w-[1400px] mx-auto px-6 lg:px-12">
-        <div className="grid lg:grid-cols-2 gap-12 lg:gap-20 items-center">
+      <div className="relative max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-12 min-w-0">
+        <div className="grid lg:grid-cols-2 gap-12 lg:gap-20 items-center min-w-0">
           {/* Left copy */}
-          <div className="text-center lg:text-left max-w-xl mx-auto lg:mx-0">
+          <div className="text-center lg:text-left max-w-xl mx-auto lg:mx-0 min-w-0 px-1 sm:px-0">
             <motion.div
               initial={{ opacity: 0, y: 16 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -197,16 +197,16 @@ export default function TryCompareSection() {
               <span className="text-sm font-medium text-[#FF6B6B]">{t("hero.tryIt")}</span>
             </motion.div>
 
-            <h2 className="text-4xl md:text-5xl font-bold text-[var(--ratch-black)] leading-tight">
+            <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-[var(--ratch-black)] leading-tight text-balance">
               Try comparing profiles
             </h2>
-            <p className="mt-4 text-lg text-[var(--ratch-gray)]">
+            <p className="mt-4 text-base sm:text-lg text-[var(--ratch-gray)] text-pretty max-w-prose mx-auto lg:mx-0">
               Tap the person you prefer — we learn what you like from every choice.
             </p>
           </div>
 
           {/* Right interactive demo */}
-          <div className="relative flex flex-col items-center gap-6">
+          <div className="relative flex flex-col items-center gap-6 w-full min-w-0 max-w-full">
             <AnimatePresence>
               {selectedIndex === null && (
                 <motion.div
@@ -214,7 +214,7 @@ export default function TryCompareSection() {
                   animate={{ opacity: 1 }}
                   exit={{ opacity: 0 }}
                   transition={{ duration: 0.5, delay: 0.2 }}
-                  className="absolute -left-28 lg:-left-36 top-1/2 -translate-y-1/2 z-20"
+                  className="hidden md:block absolute -left-28 lg:-left-36 top-1/2 -translate-y-1/2 z-20"
                 >
                   <div className="flex items-end gap-1 animate-float gpu-accelerated" style={{ animationDuration: "1.5s" }}>
                     <p className="text-gray-400 text-sm font-medium italic mb-6">{t("hero.tryIt")}</p>
@@ -240,39 +240,47 @@ export default function TryCompareSection() {
               )}
             </AnimatePresence>
 
-            <div className="relative flex items-center justify-center gap-12 md:gap-16">
-              <FloatingCard
-                profile={profiles[0]}
-                position="left"
-                isSelected={selectedIndex === 0}
-                isUnselected={selectedIndex === 1}
-                onClick={() => handleSelect(0)}
-                delay={0.2}
-              />
+            <div
+              className="relative grid w-full max-w-md md:max-w-none md:w-auto mx-auto items-center gap-2 sm:gap-4 md:gap-12 lg:gap-16 px-0 min-w-0
+              grid-cols-[minmax(0,1fr)_auto_minmax(0,1fr)]
+              md:grid-cols-[200px_auto_200px] lg:grid-cols-[220px_auto_220px]"
+            >
+              <div className="min-w-0 flex justify-end">
+                <FloatingCard
+                  profile={profiles[0]}
+                  position="left"
+                  isSelected={selectedIndex === 0}
+                  isUnselected={selectedIndex === 1}
+                  onClick={() => handleSelect(0)}
+                  delay={0.2}
+                />
+              </div>
 
               <motion.div
                 initial={{ opacity: 0, scale: 0 }}
                 whileInView={{ opacity: 1, scale: 1 }}
                 viewport={{ once: true }}
                 transition={{ delay: 0.3, type: "spring" }}
-                className="relative z-20 shrink-0"
+                className="relative z-20 shrink-0 justify-self-center"
               >
                 <div
-                  className="w-14 h-14 rounded-full flex items-center justify-center font-bold text-white text-sm card-shadow-lg"
+                  className="w-11 h-11 md:w-14 md:h-14 rounded-full flex items-center justify-center font-bold text-white text-xs md:text-sm card-shadow-lg"
                   style={{ background: "var(--gradient-coral-amber)" }}
                 >
                   VS
                 </div>
               </motion.div>
 
-              <FloatingCard
-                profile={profiles[1]}
-                position="right"
-                isSelected={selectedIndex === 1}
-                isUnselected={selectedIndex === 0}
-                onClick={() => handleSelect(1)}
-                delay={0.35}
-              />
+              <div className="min-w-0 flex justify-start">
+                <FloatingCard
+                  profile={profiles[1]}
+                  position="right"
+                  isSelected={selectedIndex === 1}
+                  isUnselected={selectedIndex === 0}
+                  onClick={() => handleSelect(1)}
+                  delay={0.35}
+                />
+              </div>
             </div>
 
             <AnimatePresence mode="wait">
